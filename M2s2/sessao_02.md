@@ -1,0 +1,429 @@
+Análise de Dados em R (FNDE) - Módulo 2
+Sessão 2 - Loops em R
+========================================================
+author: Allan Vieira
+date: março de 2018
+width: 1440
+height: 900
+<style>
+.small-code pre code {
+  font-size: 1em;
+}
+</style>
+<!-- para trazer codigos em caixas menores: -->
+<!-- https://stackoverflow.com/questions/25612385/code-box-size-and-font-size-in-rpres -->
+
+
+
+Objetivos
+========================================================
+incremental: true
+
+<br />
+<br />
+- aprender as principais estruturas de laço (loops);
+<br />
+<br />
+- saber quando utilizá-las
+
+
+Introdução (1)
+========================================================
+incremental: true
+class: small-code
+
+<br />
+- Loops ou laços são estruturas de controle, assim como if, else e a função ifelse() que vimos no Módulo 1;
+
+<br />
+- Existem em todas as linguagens de programação;
+
+<br />
+- As estruturas de controle nas linguagens de programação permitem controlar o fluxo de execução do nosso programa, dependendo do trecho de execução; 
+
+<br />
+- Elas permitem executar parte(s) do nosso programa até que se atenda a uma regra de parada.
+
+<br />
+- Exemplo prático: voluntário(a)?
+
+<!-- How to tech loops -->
+<!-- http://forum.code.org/t/teaching-loops-and-efficiency/405/3 -->
+<!-- With my younger students I do a very simple activity to show how loops are "easier." I have one student stand in the middle of the room all the way in the back. I tell them to follow my directions. I say "student name take one step forward." I literally repeat that same line about 15/20 times. As I get to the 10th, 11th, 12th time saying it I act so tired. I am taking bigger breaths and my body language is hunched over because I am sooooo tired. Eventually the student reaches me and I am just so tired and out of breath I can't teach anymore. I ask the students to explain why I am so tired. I then ask them to figure out a way to make my directions easier. They soon start reenacting the steps taken and begin counting how many were taken. Eventually, they determine a much easier way to give the directions and they are so excited to tell me that I should have said "student name take 15 steps forward." -->
+
+
+Introdução (2)
+========================================================
+incremental: true
+class: small-code
+
+<br />
+- Particularidade do R: devido ao seu funcionamento vetorizado, poderemos em algumas ocasiões substituir os laços por funções -- assunto da próxima sessão;
+
+<br />
+- A recomedação (antiga) é: evitar loops ao máximo no R;
+
+<br />
+- Se não der para evitar, utilize-os;
+
+<br />
+- Se o foco for rapidez: evite;
+
+<br />
+- Se o foco for resolver um problema independente do tempo de execução: utilize;
+
+
+Introdução (3)
+========================================================
+incremental: true
+class: small-code
+
+Estruturas mais comuns para construir loops no R:
+
+
+|ESTRUTURA |TAREFA                                             |
+|:---------|:--------------------------------------------------|
+|for       |executa um loop n vezes                            |
+|while     |executa um loop enquanto uma condição é verdadeira |
+|repeat    |executa um loop infinito                           |
+|break     |para a execução do loop                            |
+|next      |sai da iteração de um loop                         |
+|return    |sai de uma função                                  |
+
+- A maioria das estruturas de controle não são usadas em sessões interativas do R (execução comando a comando), mas principalmente quando estamos escrevendo funções ou programas para automatizar alguma tarefa.
+
+
+Loops for (1)
+========================================================
+incremental: true
+class: small-code
+
+- pegam uma variável de iteração e atribuem a ela números sucessivos de uma sequência ou vetor;
+
+- utilizados percorrer os elementos de um objeto no R, como por exemplo as colunas de uma matriz;
+
+- exemplo básico: imprimir na tela os valores que a variável de iteração assumirá a cada “rodada” do loop.
+
+
+```r
+for(i in 1:4){
+  print(i)
+}
+```
+
+```
+[1] 1
+[1] 2
+[1] 3
+[1] 4
+```
+
+
+***
+Funcionamento:
+
+- a variável de iteração é a variável i;
+
+- o laço pega os valores da sequência de 1 a 4 e vai atribuindo um de cada vez a variável i;
+
+- após atribuir o último número da sequência, saímos do loop.
+
+
+Loops for (2)
+========================================================
+incremental: true
+class: small-code
+
+- Nos próximos exemplos, aproveitamos a variável de iteração para passá-la como índice de um vetor:
+
+
+```r
+x<-c("a","b","c","d")
+
+for(i in 1:4){
+  print(x[i])
+}
+```
+
+```
+[1] "a"
+[1] "b"
+[1] "c"
+[1] "d"
+```
+
+
+```r
+for(i in seq_along(x)){
+  print(x[i])
+}
+```
+
+```
+[1] "a"
+[1] "b"
+[1] "c"
+[1] "d"
+```
+
+***
+
+```r
+for(letter in x){
+  print(letter)
+}
+```
+
+```
+[1] "a"
+[1] "b"
+[1] "c"
+[1] "d"
+```
+
+
+- Note que os 3 loops têm o mesmo comportamento, embora sejam estruturados de forma diferente;
+
+- Isso corrobora a máxima de que podemos fazer a mesma coisa de várias maneiras distintas no R !!
+
+
+Loops for (3)
+========================================================
+incremental: true
+<!-- class: small-code -->
+
+- Assim como os ifelse() anihandos do Módulo 1, podemos contruir loops FOR aninhados também;
+
+- No exemplo abaixo, utilizaremos dois FOR, um para percorrer as linhas de uma matriz e outro para percorrer as colunas de uma matriz:
+
+***
+
+```r
+m <- matrix(1:6, 2 ,3)
+
+for(i in 1:nrow(m)){
+  for(j in 1:ncol(m)){
+    print(m[i,j])
+  }
+}
+```
+
+```
+[1] 1
+[1] 3
+[1] 5
+[1] 2
+[1] 4
+[1] 6
+```
+
+- Note que para cada loop, usamos uma variável de iteração diferente: para receber os índices das linhas, usamos i; para receber os índices das colunas, usamos j.
+
+<!-- EXPLICAR NO QUADRO DE FORMA MAIS DETALHADA ESCREVENDO A MATRIZ -->
+
+
+Looping patterns para o FOR
+========================================================
+incremental: true
+<!-- class: small-code -->
+
+No R, há três formas básicas para fazer um loop sobre um vetor que servirá como sequência para iteração:
+
+1. loop sobre os elementos: ``for(x in vetor)``
+2. loop sobre os índices numéricos: ``for(i in seq_along(vetor))``
+3. loop sobre os nomes: ``for(nm in names(vetor))``
+
+- É importante compreender essas 3 opções, pois iremos retomá-las ao falar sobre as funções da família apply na próxima seção.
+
+- A primeira normalmente não é uma boa escolha, porque costuma levar a formas ineficientes de salvar o output;
+
+- Hadley Wickham (e eu também) sugere a segunda que é a mais comum nas demais linguagens de programação.
+
+
+Loop while (1)
+========================================================
+incremental: true
+class: small-code
+
+- Começam testando uma condição;
+  + se a condição for TRUE. os comandos do "corpo" do loop são executados;
+  + após a execução do laço, a condição é novamente testada e repete-se todo o processo;
+  + somente quando, ao se testar a condção novamente, esta for FALSE, o laço é interrompido;
+
+***
+
+```r
+count <- 0
+while(count < 10){
+  print(count)
+  count <- count + 1
+}
+```
+
+```
+[1] 0
+[1] 1
+[1] 2
+[1] 3
+[1] 4
+[1] 5
+[1] 6
+[1] 7
+[1] 8
+[1] 9
+```
+
+  
+Loop while (2)
+========================================================
+incremental: true
+class: small-code
+
+- Podemos, ainda, testar mais de uma condição utilizando os operadores lógicos que vimos no Módulo 1:
+
+
+```r
+z <- 5
+
+while(z >= 3 && z <= 10){
+  print(z)
+  coin <- rbinom(1, 1, 0.5)
+  
+  if(coin == 1){ ## random walk ou passeio aleatório
+    z <- z + 1
+  } else {
+    z <- z-1
+  }
+}
+```
+
+```
+[1] 5
+[1] 4
+[1] 3
+```
+
+***
+- Os loops FOR e WHILE são os mais importantes e utilizados;
+
+- As demais estruturas serão passadas apenas a título de conhecimento.
+
+Repeat (2)
+========================================================
+incremental: true
+class: small-code
+
+- A estrutura repeat inicia um loop infinito;
+
+- Não é uma estrutura muito utilizada, mas pode ser útil em alguns momentos;
+
+- Para sair de um laço do tipo repeat, devemos utilizar o comando "break":
+
+
+```r
+a <- 0
+b <- -3
+
+repeat{
+  print("FNDE")
+  
+  if((b - a) > 0){
+    break
+  } else {
+    b <- b+1
+  }
+  
+}
+```
+
+```
+[1] "FNDE"
+[1] "FNDE"
+[1] "FNDE"
+[1] "FNDE"
+[1] "FNDE"
+```
+
+***
+- Usar "repeat" pod ser perigoso: não há garantias de que o loop repeat atingirá sua condição de parada. 
+
+- É bom estabelecer um número máximo de iterações (acresecentando um loop for, por exemplo) dentro de repeat e depois verificar se a condição ou convergência foi ou não atingida;
+
+  + esse tipo de estratégia é bastante utilizada em ajustes de modelos e em algoritmos de machine learning.
+  
+
+Next
+========================================================
+incremental: true
+class: small-code
+
+A estrutura ``next`` é utilizada para “pular” a iteração (ou um número de iterações) de um loop. Veja o exemplo:
+
+
+```r
+for(i in 1:10){
+  if(i <= 6){
+    # pula as primeiras 6 iterações
+    next
+  }
+  print("FNDE")
+}
+```
+
+```
+[1] "FNDE"
+[1] "FNDE"
+[1] "FNDE"
+[1] "FNDE"
+```
+
+- Note que utilizamos uma expressão condicional com if, para informamos quantas (ou quais) iterações gostaríamos de pular;
+
+- read.table internamente tem uma estrutura parecida para quando desejamos ler um arquivo, mas precisamos pular as "n" primeiras linhas -- isso é passado no argumento "skip".
+
+Return
+========================================================
+incremental: true
+
+- ``return`` é uma estrutura usada especificamente em funções. Como já vimos, ela sinaliza que a função deve sair e retornar um determinado valor.
+
+
+```r
+myfun <- function(argumentos){
+  # executar algum comando
+  # (...)
+  return(objeto_a_retornar)
+}
+```
+
+
+Exercícios
+========================================================
+incremental: true
+class: small-code
+
+1)  Crie os seguintes objetos:
+  + vetor numérico com 10 números;
+  + vetor de contendo as 12 primeiras letras do alfabeto;
+  + data.frame com duas colunas qualquer;
+  + uma lista contendo todos os objetos acima.
+
+2)  Por meio de um laço, crie um programa para obter a classe (class()) de cada um dos objetos presentes na lista que criou. Você pode imprimir os resultados no console ou salvar em um vetor se preferir.
+
+***
+
+3)  Crie 4 matrizes com qualquer tamanho e coloque todas em uma lista. Depois, utilizando laço, extraia somente as colunas pares de cada uma dessas matrizes presentes na lista e salve o resultado em uma nova lista.
+
+DICAS: 
+
+  + no item 1, utilize help(letters) para verificar como criar o vetor de ltras de formamais rápida;
+  + no item 3, utilize a função seq() para gerar um vetor somente com números pares e indexar as colunas pares das matrizes;
+  + no item 3, se você quer extrarir a coluna j da i-ésima posição da lista, utilize: mylist[[i]][,j]
+  
+  
+FIM
+========================================================
+incremental: false
+class: small-code
+
+OBRIGADO!!
