@@ -42,7 +42,7 @@ incremental: true
 <br />
 <br />
 
-> DADOS -> INFORMAÇÃO -> usando *R*
+> DADOS -> INFORMAÇÃO -> usando **R**
 
 
 ***
@@ -99,9 +99,9 @@ Voltando à linguagem S:
 
 <br />
 <br />
-*R* surge como uma alternativa livre/gratuita à linguagem *S*
+**R** surge como uma alternativa livre/gratuita à linguagem **S**
 
-Criada por *R*oss Ihaka e  *R*obert Gentleman
+Criada por **R**oss Ihaka e  **R**obert Gentleman
 
 ***
 <br />
@@ -307,7 +307,7 @@ sqrt((3*3)^2)
 ***
 Estrutura básica:
 
-*função(argumentos)*
+**função(argumentos)**
 
 **"R, at its heart, is a functional programming (FP) language"**
 (Hadley Wickham)
@@ -363,9 +363,9 @@ Pacotes no R (2)
 incremental: true
 css: small-code
 
-- Repositório central de pacotes do R: *CRAN* **Comprehensive R Archive Network**
+- Repositório central de pacotes do R: **CRAN** - **Comprehensive R Archive Network**
 - Para um pacote ser incluído no CRAN, ele passa por uma série de testes.
-- *Bioconductor* é um repositório voltado para pacotes com a aplicações na área de Biológicas e Ciências Médicas.
+- **Bioconductor** é um repositório voltado para pacotes com a aplicações na área de Biológicas e Ciências Médicas.
 - Mas há outras fontes com pacotes sensacionais também!!
 - Como installar um pacote no R?
 ```{r packages2,echo=TRUE, eval=FALSE}
@@ -388,7 +388,7 @@ Vamos fazer um teste...
 </br>
 </br>
 </br>
-- Instale e carregue o pacote *fun*
+- Instale e carregue o pacote **fun**
 ```{r miner1,echo=TRUE, eval=FALSE}
 install.packages("fun")
 library(fun)
@@ -438,7 +438,7 @@ OBS:
 
 1. Ele só poderá pesquisar nas funções de um determinado pacote se o pacote estiver carregado.
 </br>
-2. Quando abrir o "Help", foque em *Usage*, *Arguments* e *Examples*  
+2. Quando abrir o "Help", foque em **Usage**, **Arguments** e **Examples**  
 
 Outras formas de obter ajuda ...
 ========================================================
@@ -453,7 +453,7 @@ css: small-code
 </br>
 - Exemplos:
 </br>
-*Stack Overflow*, *RBloggers*, *Github*, *mailing lists ([R-br])*,...
+**Stack Overflow**, **RBloggers**, **Github**, **mailing lists ([R-br])**,...
 </br>
 Cuidado: há certas regras para postar questões nestes sites!!
 
@@ -464,7 +464,7 @@ css: small-code
 
 - O R possui uma série de "camadas" (ou environments), nas quais os objetos criados em uma sessão são "alocados";
 
-- Ha uma hierarquia entre essas camadas/ambientes e a posição mais alta na hierarquia é ocupada pelo $\textbf{Global Environment}$;
+- Ha uma hierarquia entre essas camadas/ambientes e a posição mais alta na hierarquia é ocupada pelo **Global Environment**;
 
 ![alt text](./img/envsearch_path.png)
 Fonte: "Advanced R" - Hadley Wickham
