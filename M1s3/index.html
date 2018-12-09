@@ -771,16 +771,6 @@ hljs.initHighlightingOnLoad();
 </script>
 
    
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    showProcessingMessages: false,
-    messageStyle: "none"
-  });
-</script>
-
-<script type="text/javascript" src="sessao3_files/mathjax-26/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
   
 
 Análise de Dados em R (FNDE) - Módulo 1
@@ -811,7 +801,7 @@ Análise de Dados em R (FNDE) - Módulo 1
 
 </section>
 <section data-transition="linear" data-transition-speed="default">
-<h3>Objetivos desta Aula</h3>
+<h3>Objetivos desta Sessão</h3>
 <div class="slideContent" >
 <p><br /></p>
 
@@ -821,8 +811,8 @@ Análise de Dados em R (FNDE) - Módulo 1
 </br></li>
 <li class="fragment">Manipular esses objetos.
 </br>
-</br>
-\( \textbf{OBS:} \) há algumas regras para atribuir nomes aos objetos no R.</li>
+</br></li>
+<li class="fragment"><strong>OBS:</strong> há algumas regras para atribuir nomes aos objetos no R.</li>
 </ul>
 
 </div>
@@ -838,7 +828,7 @@ Análise de Dados em R (FNDE) - Módulo 1
 <li class="fragment">Tudo (ou quase tudo) no R são objetos !
 <br />
 <br /></li>
-<li class="fragment">Objetos: \( \textbf{vetores, matrizes, dataframes, listas e funções} \).</li>
+<li class="fragment">Objetos: <strong>vetores</strong>, <strong>matrizes</strong>, <strong>dataframes</strong>, <strong>listas</strong> e <strong>funções</strong>.</li>
 </ul>
 
 </div>
@@ -851,13 +841,13 @@ Análise de Dados em R (FNDE) - Módulo 1
 <br /></p>
 
 <ul>
-<li class="fragment">são arrays \( \textbf{unidimensionais} \) (sequências unidimensionais);
+<li class="fragment">são arrays <strong>unidimensionais</strong> (sequências unidimensionais);
 <br />
 <br /></li>
 <li class="fragment">tipos: numéricos, strings, expressões lógicas;
 <br />
 <br /></li>
-<li class="fragment">\( \textbf{OBS:} \) os elementos só podem ser de um único tipo.</li>
+<li class="fragment"><strong>OBS:</strong> os elementos só podem ser de um único tipo.</li>
 </ul>
 
 </div>
@@ -878,7 +868,7 @@ Análise de Dados em R (FNDE) - Módulo 1
 </code></pre>
 
 <ul>
-<li class="fragment">\( \textbf{Atenção:} \) Strings são declaradas com aspas duplas/simples; output será sempre com aspas dupla.</li>
+<li class="fragment"><strong>Atenção:</strong> Strings são declaradas com aspas duplas <strong>OU</strong> simples; output será sempre com aspas dupla.</li>
 </ul>
 
 
@@ -902,13 +892,13 @@ Análise de Dados em R (FNDE) - Módulo 1
 <br /></p>
 
 <ul>
-<li class="fragment">são arrays \( \textbf{BIidimensionais} \), com coleção de vetores (linhas ou colunas) do mesmo tipo;
+<li class="fragment">são arrays <strong>Bidimensionais</strong>, com coleção de vetores (linhas ou colunas) do mesmo tipo;
 <br />
 <br /></li>
 <li class="fragment">tipos: numéricos, strings, expressões lógicas;
 <br />
 <br /></li>
-<li class="fragment">\( \textbf{OBS:} \) todos os vetores da coleção são do mesmo tipo e tamanho.</li>
+<li class="fragment"><strong>OBS:</strong> todos os vetores da coleção são do mesmo tipo e tamanho.</li>
 </ul>
 
 </div>
@@ -920,8 +910,8 @@ Análise de Dados em R (FNDE) - Módulo 1
 <p>Matriz numérica:</p>
 
 <pre class="fragment"><code>          [,1]       [,2]
-[1,] 0.5250582 0.84664581
-[2,] 0.3826475 0.05758494
+[1,] 0.9453489 0.05102219
+[2,] 0.8881304 0.42832298
 </code></pre>
 
 <p class="fragment"><br />
@@ -970,7 +960,7 @@ Matriz de strings:</p>
 <li class="fragment">são objetos parecidos com uma matriz, com a diferença de que as colunas ou linhas podem ser de tipos diferentes;
 <br />
 <br /></li>
-<li class="fragment">\( \textbf{OBS:} \) é o principal objeto utilizado para armazenar tabelas de dados no R.</li>
+<li class="fragment"><strong>OBS:</strong> é o principal objeto utilizado para armazenar tabelas de dados no R.</li>
 </ul>
 
 </div>
@@ -1002,10 +992,10 @@ Matriz de strings:</p>
 <br /></p>
 
 <ul>
-<li class="fragment">são um conjunto de procedimentos que recebem nenhum, um ou mais parâmetros, como \( \textit{input} \), realizam um cálculo ou procedimento e retornam um resultado para o usuário;
+<li class="fragment">são um conjunto de procedimentos que recebem nenhum, um ou mais parâmetros, como <em>input</em>, realizam um cálculo ou procedimento e retornam um resultado para o usuário;
 <br />
 <br /></li>
-<li class="fragment">\( \textbf{OBS:} \) até funções são tratadas como objetos pelo R.</li>
+<li class="fragment"><strong>OBS:</strong> até funções são tratadas como objetos pelo R.</li>
 </ul>
 
 </div>
@@ -1040,7 +1030,7 @@ meu_cubo
 <li class="fragment">são o tipo mais amplo de objeto, que pode reunir coleções de dataframes, vetores, matrizes, funções ou ainda de todos esses tipos juntos;
 <br />
 <br /></li>
-<li class="fragment">\( \textbf{OBS:} \) Como os objetos de uma lista não precisam ser do mesmo tipo, também não há a necessidade de que sejam do mesmo tamanho. Isso, muitas vezes, ajuda na manipulação de dados.</li>
+<li class="fragment"><strong>OBS:</strong> Como os objetos de uma lista não precisam ser do mesmo tipo, também não há a necessidade de que sejam do mesmo tamanho. Isso, muitas vezes, ajuda na manipulação de dados.</li>
 </ul>
 
 </div>
@@ -1067,8 +1057,8 @@ meu_cubo
 
 [[3]]
           [,1]       [,2]
-[1,] 0.5250582 0.84664581
-[2,] 0.3826475 0.05758494
+[1,] 0.9453489 0.05102219
+[2,] 0.8881304 0.42832298
 
 [[4]]
 function (x) 
@@ -1114,7 +1104,7 @@ function (x)
 <!-- class: small-code -->
 
 <ul>
-<li class="fragment">Para \( \textbf{atribuir} \) valores a um objeto use &ldquo;&lt;-&rdquo;:</li>
+<li class="fragment">Para <strong>atribuir</strong> valores a um objeto use &ldquo;<strong>&lt;-</strong>&rdquo;:</li>
 </ul>
 
 <pre class="fragment"><code class="r">x &lt;- 4
@@ -1125,7 +1115,7 @@ x = 4
 <p><br /></p>
 
 <ul>
-<li class="fragment">Para \( \textbf{concatenar} \) vários valores e salvá-los em um objeto, use a função &ldquo;c(\( \space \))&rdquo;:</li>
+<li class="fragment">Para <strong>concatenar</strong> vários valores e salvá-los em um objeto, use a função &ldquo;<strong>c(objeto1, objeto2, &hellip;)</strong>&rdquo;:</li>
 </ul>
 
 <pre class="fragment"><code class="r">x &lt;- c(4,5,6,7,8)
@@ -1140,7 +1130,7 @@ x = c(4,5,6,7,8)
 
 
 <ul>
-<li class="fragment">Para \( \textbf{extrair} \) um ou vários elementos de um objeto, use &ldquo;objeto[índice]&rdquo;:</li>
+<li class="fragment">Para <strong>extrair</strong> um ou vários elementos de um objeto, use &ldquo;<strong>objeto[índice]</strong>&rdquo;:</li>
 </ul>
 
 <pre class="fragment"><code class="r">x[3] # extraindo 3º elemento do vetor x
@@ -1545,13 +1535,13 @@ rm(objeto) # remover
 <pre class="fragment"><code class="r">sample(x=vetor1, size=2, replace=FALSE) # sorteia dois elementos do vetor1 sem repetição
 </code></pre>
 
-<pre class="fragment"><code>[1] 12 NA
+<pre class="fragment"><code>[1] 67.0 43.8
 </code></pre>
 
 <pre class="fragment"><code class="r">sample(x=1:5, size=4, replace=TRUE) # sorteia 4 elementos da sequencia de 1 a 5...com possibilidade de repetição
 </code></pre>
 
-<pre class="fragment"><code>[1] 2 5 4 2
+<pre class="fragment"><code>[1] 2 2 5 1
 </code></pre>
 
 </div>

@@ -38,7 +38,7 @@ incremental: true
 - 90% do trabalho da análise de dados é preparar os dados;
 <br />
 <br />
-- assim como no caso dos gráficos, o $\textbf{R}$ possui dezenas de pacotes para leitura e escrita de dados -- uns focam em rapidez, outros na praticidade e outros no tamanho dos dados a serem lidos;
+- assim como no caso dos gráficos, o **R** possui dezenas de pacotes para leitura e escrita de dados -- uns focam em rapidez, outros na praticidade e outros no tamanho dos dados a serem lidos;
 
 
 Leitura de Dados
@@ -47,10 +47,10 @@ incremental: true
 class: small-code
 <br />
 <br />
-- Na maioria das vezes que fizermos uma leitura de dados no $\textbf{R}$, ele tentará carregá-los como um dataframe;
+- Na maioria das vezes que fizermos uma leitura de dados no **R**, ele tentará carregá-los como um dataframe;
 <br />
 <br />
-- Lembre-se de que você sempre poderá confirmar o tipo de objeto resultante da leitura com as funções $\textbf{str()}$ ou $\textbf{class()}$.
+- Lembre-se de que você sempre poderá confirmar o tipo de objeto resultante da leitura com as funções **str()** ou **class()**.
 
 
 Função scan() (1)
@@ -72,40 +72,17 @@ class: small-code
 ***
 
 - Leia os dados da seguinte tabela com a função scan() ( out <- scan() ):
-<table>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 34 </td>
-   <td style="text-align:right;"> 22 </td>
-   <td style="text-align:right;"> 21 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 34 </td>
-   <td style="text-align:right;"> 109 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 23 </td>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 67 </td>
-   <td style="text-align:right;"> 88 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 45 </td>
-   <td style="text-align:right;"> 88 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 291 </td>
-   <td style="text-align:right;"> 38 </td>
-   <td style="text-align:right;"> 92 </td>
-  </tr>
-</tbody>
-</table>
+```{r,echo=FALSE, results='asis'}
+df <- data.frame(c(10,2,23,45,0),
+                 c(34,34,10,88,291),
+                 c(22,109,67,1,38),
+                 c(21,3,88,1,92))
+
+knitr::kable(df, format = "html", col.names = NULL)
+#help(kable)
+# library(xtable)
+# print(xtable(df, type = "html", include.rownames = F))
+```
 
 
 
@@ -115,9 +92,8 @@ incremental: true
 
 - Note que a função scan() lerá seus dados como um único vetor (Verifique com str(out)) ! Cabe a você separá-los da forma correta.
 
-- Se quiser transformá-los em um data.frame, jogue primeiro para uma matriz (usando o parâmetro byrow=TRUE) e depois force-os como dataframe, utilizando $\textbf{as.data.frame()}$:
-
-```r
+- Se quiser transformá-los em um data.frame, jogue primeiro para uma matriz (usando o parâmetro byrow=TRUE) e depois force-os como dataframe, utilizando **as.data.frame()**:
+```{r, eval=FALSE}
 out_df <- as.data.frame(matrix(out, ncol=4, byrow=TRUE))
 ```
 
@@ -133,17 +109,17 @@ incremental: true
 - No entanto, pode ser bastante útil quando desejamos ler todas as informações de um arquivo (.txt por exemplo) para trabalhar posteriormente com expressões regulares;
 <br />
 <br />
-- Verifique mais sobre esta função depois com $\textbf{help(readLines)}$.
+- Verifique mais sobre esta função depois com **help(readLines)**.
 
 Funções da família read.table() (1)
 ========================================================
 incremental: true
 <br />
 <br />
-- As funções da família read.table() são as que você mais irá utilizar (inicialmente) para leitura de dados externos ao $\textbf{R}$;
+- As funções da família read.table() são as que você mais irá utilizar (inicialmente) para leitura de dados externos ao **R**;
 <br />
 <br />
-- $\textbf{read.table()}$ é uma função genérica com a qual você poderá ler principalmente arquivos $\textbf{.txt}$ e $\textbf{.csv}$;
+- **read.table()** é uma função genérica com a qual você poderá ler principalmente arquivos **.txt** e **.csv**;
 <br />
 <br />
 - Verifique o help() de read.table()!
@@ -152,61 +128,54 @@ incremental: true
 
 
 ***
-- Há vários parâmetros que podem ser passados a ela, mas $\textbf{5}$ são extremamente importantes de serem observados:
+- Há vários parâmetros que podem ser passados a ela, mas **5** são extremamente importantes de serem observados:
 
   + 1. localização do arquivo; 
   + 2. existência ou não de cabeçalho nos dados; 
   + 3. forma de separação das colunas;
   + 4. forma de especificação da casa decimal nos dados;
-  + 5. $\textit{stringsAsFactors}$.
+  + 5. *stringsAsFactors*.
   
   
 Funções da família read.table() (2)
 ========================================================
 incremental: true
 class: small-code
-- 1. Localização do arquivo - parâmetro $\textbf{file}$:
-
-```r
+- 1. Localização do arquivo - parâmetro **file**:
+```{r, eval=FALSE}
 #informar a localização correta do arquivo em seu computador;
 #lembrar de usar barra invertida dupla no Windows:
 df <- read.table(  file="C:\\caminho\\até\\meu\\arquivo\\meu_arquivo.txt")
 ```
 
   
-- 2. Os dados possuem cabeçalho? - parâmetro $\textbf{header}$:
+- 2. Os dados possuem cabeçalho? - parâmetro **header**:
   + caso POSITIVO:
-
-```r
+```{r, eval=FALSE}
 df <- read.table(  file="C:\\caminho\\até\\meu\\arquivo\\meu_arquivo.txt", header=TRUE)
 ```
   + caso NEGATIVO:
-
-```r
+```{r, eval=FALSE}
 df <- read.table(  file="C:\\caminho\\até\\meu\\arquivo\\meu_arquivo.txt", header=FALSE)
 ```
 
 ***
 
-- 3. Como estão separadas as colunas? - parâmetro $\textbf{sep}$:
+- 3. Como estão separadas as colunas? - parâmetro **sep**:
   + por vírgula:
-
-```r
+```{r, eval=FALSE}
 df <- read.table(  file="C:\\caminho\\até\\meu\\arquivo\\meu_arquivo.txt", ... , sep=",")
 ```
   + por ponto e vírgula:
-
-```r
+```{r, eval=FALSE}
 df <- read.table(  file="C:\\caminho\\até\\meu\\arquivo\\meu_arquivo.txt", ..., sep=";")
 ```
   + por espaço:
-
-```r
+```{r, eval=FALSE}
 df <- read.table(  file="C:\\caminho\\até\\meu\\arquivo\\meu_arquivo.txt", ..., sep=" ")
 ```
   + por TAB:
-
-```r
+```{r, eval=FALSE}
 df <- read.table(  file="C:\\caminho\\até\\meu\\arquivo\\meu_arquivo.txt", ..., sep="\t")
 ```
 
@@ -215,15 +184,13 @@ Funções da família read.table() (3)
 ========================================================
 incremental: true
 class: small-code
-- 4. Qual a especificação decimal para seus dados numéricos? parâmetro $\textbf{dec}$:
+- 4. Qual a especificação decimal para seus dados numéricos? parâmetro **dec**:
   + caso seja "," (padrão brasileiro):
-
-```r
+```{r, eval=FALSE}
 df <- read.table(  file="C:\\caminho\\até\\meu\\arquivo\\meu_arquivo.txt", ..., dec=",")
 ```
   + caso seja "." (padrão anglo saxão):
-
-```r
+```{r, eval=FALSE}
 df <- read.table(  file="C:\\caminho\\até\\meu\\arquivo\\meu_arquivo.txt", ..., dec=".")
 ```
 
@@ -231,15 +198,14 @@ df <- read.table(  file="C:\\caminho\\até\\meu\\arquivo\\meu_arquivo.txt", ...,
 
 ***
 
-- 5. parâmetro $\textbf{stringsAsFactors}$:
+- 5. parâmetro **stringsAsFactors**:
   + O parâmetro stringsAsFActors indica como você quer ler as colunas de strings: como variáveis qualitativas categóricas/ fatores; ou como caracteres apenas.
   + O mais recomedado é passas stringsAsFactors=FALSE sempre
-
-```r
+```{r, eval=FALSE}
 df <- read.table(  file="C:\\caminho\\até\\meu\\arquivo\\meu_arquivo.txt", ... , stringsAsFactors=FALSE)
 ```
 
-- Caso haja alguma coluna nos seus dados que deva ser tratada como variável qualitativa categórica, você poderá modificá-la postriormente com $\textbf{as.factor(nome_da_variavel)}$.
+- Caso haja alguma coluna nos seus dados que deva ser tratada como variável qualitativa categórica, você poderá modificá-la postriormente com **as.factor(nome_da_variavel)**.
 
 Funções da família read.table() (4)
 ========================================================
@@ -250,10 +216,10 @@ class: small-code
 corretamente os parâmetros;
 <br />
 <br />
-- Você pode por exemplo ter um arquivo $\textit{.dat}$ que consegue abrir no bloco de notas para identificar como deve passar os parâmetros no $\textbf{R}$;
+- Você pode por exemplo ter um arquivo *.dat* que consegue abrir no bloco de notas para identificar como deve passar os parâmetros no **R**;
 <br />
 <br />
-- Como na maioria das vezes, estamos lidando com arquivos do tipo .txt ou .csv separados por TAB, vírgula ou ponto e vírgula, o $\textbf{R}$ já traz quatro funções específicas para não perdermos tempo com a especificação dos parâmetros:
+- Como na maioria das vezes, estamos lidando com arquivos do tipo .txt ou .csv separados por TAB, vírgula ou ponto e vírgula, o **R** já traz quatro funções específicas para não perdermos tempo com a especificação dos parâmetros:
   + read.csv() - (separador vírgula, decimal com ponto)
   + read.csv2() - (separador ponto e virgula, decimal vírgula)
   + read.delim() - (separador "\t" (TAB), e decimal ponto)
@@ -270,8 +236,7 @@ class: small-code
 - Para você não ter que ficar digitando toda vez o caminho completo até seu arquivo, há uma função que te permite navegar até o arquivo, selecioná-lo e, então guardar a sua localização como uma string em um objeto no R.
 
 - Tente:
-
-```r
+```{r, eval=FALSE}
 arq.loc <- file.choose()
 ```
 
@@ -290,16 +255,14 @@ class: small-code
 <br />
 <br />
 - Leia o arquivo com:
-
-```r
+```{r, eval=FALSE}
 repasse.loc <- file.choose()
 repasse.df <- read.csv2(file=repasse.loc, stringsAsFactors=FALSE)
 ```
 
 - Ou:
 
-
-```r
+```{r, eval=FALSE}
 repasse.df <- read.table(file=repasse.loc, sep=";", dec=",", stringsAsFactors=FALSE)
 ```
 
@@ -308,7 +271,7 @@ Escrita de dados
 incremental: true
 class: small-code
 
-- A escrita de dados no R, segue a  mesma lógica da leitura: há uma família de funções do tipo $\textbf{write.table()}$, com parâmetros parecidos com a read.table.
+- A escrita de dados no R, segue a  mesma lógica da leitura: há uma família de funções do tipo **write.table()**, com parâmetros parecidos com a read.table.
 <br />
 <br />
 - Também há suas derivadas... write.csv, write.csv2, write.delim, etc;
@@ -317,8 +280,7 @@ class: small-code
 - Verifique o help de write.table e seus argumentos !!
 
 - A forma mais simples da write.table é:
-
-```r
+```{r, eval=FALSE}
 write.table(x = objeto_do_R, file="C:\\caminho\\até\\meu\\arquivo\\meu_arquivo.txt" )
 ```
 
@@ -330,8 +292,7 @@ class: small-code
 - Para você não ter que ficar digitando toda vez o caminho completo até seu arquivo, há uma função que te permite navegar até um DIRETÓRIO (o arquivo ainda não existe), selecioná-lo e, então, guardar a sua localização como uma string em um objeto no R.
 
 - Tente:
-
-```r
+```{r, eval=FALSE}
 dir.loc <- choose.dir()
 ```
 
@@ -340,8 +301,7 @@ dir.loc <- choose.dir()
 ***
 
 - Depois usamos a função paste para "grudar" o caminho até o diretório com um nome de arquivo a ser criado:
-
-```r
+```{r, eval=FALSE}
 dir.loc <- choose.dir()
 write.table(x = objeto_do_R, file=paste(dir.loc, "meu_arquivo_novo.csv", sep="\\"), sep=";" )
 ```
@@ -368,8 +328,7 @@ class: small-code
 
 - Normalmente, sempre depois que lemos um banco de dados externo no R, verificamos sua integridade com algumas funções;
 
-
-```r
+```{r, eval=FALSE}
 # verificar estrutura do data.frame:
 str(repasse.df)
 # calcular algumas estatísticas descritivas das colunas
@@ -399,6 +358,9 @@ subset(repasse.df, PERC_RISCO == "NA") # função subset encara NA como uma stri
 
 # função with - para evitar ter que ficar digitando tda hora o nome do dataframe
 repasse.df$nova_coluna <- with(reapsse.df, (VR_DIVIDA*PERC_RISCO)/VR_REPASSE)
+
+
+
 ```
 
 - Além dessas funções, você pode utilizar as que foram ensinadas na aula de manipulação e objetos!!

@@ -917,7 +917,7 @@ Análise de Dados em R (FNDE) - Módulo 2
 <p class="fragment"><br /></p>
 
 <ul>
-<li class="fragment">A família apply é composta pelas seguintes funções: apply(), lapply(), sapply(), vapply(), mapply() e tapply(). Como e quando usar essas funções dependem do tipo de objeto em que vamos aplicá-las e também o tipo de objeto que desejamos ter na saída.</li>
+<li class="fragment">A família apply é composta pelas seguintes funções: <strong>apply()</strong>, <strong>lapply()</strong>, <strong>sapply()</strong>, <strong>vapply()</strong>, <strong>mapply()</strong> e <strong>tapply()</strong>. Como e quando usar essas funções dependem do tipo de objeto em que vamos aplicá-las e também o tipo de objeto que desejamos ter na saída.</li>
 </ul>
 
 </div>
@@ -951,14 +951,14 @@ NULL
 </code></pre>
 
 <ul>
-<li class="fragment"><p><em>X</em> é um array ou matriz (array de dimensão 2);</p></li>
-<li class="fragment"><p class="fragment"><em>FUN</em> é a função que você vai aplicar aos dados;</p></li>
+<li class="fragment"><p><strong>X</strong> é um array ou matriz (array de dimensão 2);</p></li>
+<li class="fragment"><p class="fragment"><strong>FUN</strong> é a função que você vai aplicar aos dados;</p></li>
 </ul>
 
 <!-- coloqueiFUN antes para quando dizer função aser aplicada em margem, ele não acharem que é a apply -->
 
 <ul>
-<li class="fragment"><em>MARGIN</em> define onde a função (a definir) será aplicada: se <em>MARGIN=1</em>, a função será aplicada nas linhas; se <em>MARGIN=2</em>, a função será aplicada nas colunas. Caso você deseje aplicar a função tanto às linhas quanto às colunas, você deve usar <em>MARGIN=c(1,2)</em>.</li>
+<li class="fragment"><strong>MARGIN</strong> define onde a função (a definir) será aplicada: se <strong>MARGIN=1</strong>, a função será aplicada nas linhas; se <strong>MARGIN=2</strong>, a função será aplicada nas colunas. Caso você deseje aplicar a função tanto às linhas quanto às colunas, você deve usar <strong>MARGIN=c(1,2)</strong>.</li>
 </ul>
 
 </div>
@@ -968,7 +968,7 @@ NULL
 <h3>apply() (2)</h3>
 <div class="column column1 slideContent small-code" >
 <ul>
-<li class="fragment">Veja um exemplo da utilização de <em>apply()</em>:</li>
+<li class="fragment">Veja um exemplo da utilização de <strong>apply()</strong>:</li>
 </ul>
 
 <pre class="fragment"><code class="r"># Construindo uma matriz 5x6
@@ -1003,7 +1003,7 @@ apply(X, 2, sum)
 Fonte: Datacamp</p></li>
 </ul>
 
-<p class="fragment"><em>apply(X, 2, sum)</em> siginifica: aplique a função <em>sum</em> sobre as colunas (ou ao longo da margem/dimensão 2) da matriz <em>X</em>.</p>
+<p class="fragment"><strong>apply(X, 2, sum)</strong> siginifica: aplique a função <strong>sum</strong> sobre as colunas (ou ao longo da margem/dimensão 2) da matriz <strong>X</strong>.</p>
 
 </div>
 
@@ -1025,7 +1025,7 @@ Fonte: Datacamp</p></li>
 <li class="fragment">rowMeans(X, dims=2) equivale a apply(X,c(1,2), mean);</li>
 </ul></li>
 <li class="fragment"><p class="fragment">As funções atalhos são mais rápidas que suas respectivas versões em apply. No entanto, há alguns casos em que não temos funções atalhos e fatalmente teremos que usar <em>apply()</em>;</p></li>
-<li class="fragment"><p class="fragment">Há casos em que temos que criar funções <em>anônimas</em> dentro da chamada de <em>apply()</em> para executar um cálculo ou operação personalizada (daqui 2 slides !!).</p></li>
+<li class="fragment"><p class="fragment">Há casos em que temos que criar funções <strong>anônimas</strong> dentro da chamada de <em>apply()</em> para executar um cálculo ou operação personalizada (daqui 2 slides !!).</p></li>
 </ul>
 
 </div>
@@ -1035,7 +1035,7 @@ Fonte: Datacamp</p></li>
 <h3>apply() - OBSERVAÇÕES (2)</h3>
 <div class="column column1 slideContent small-code" >
 <ul>
-<li class="fragment">Caso você deseje especificar/passar algum parâmetro da função (<em>FUN</em>) a ser utilizada, pode proceder como no exemplo a seguir:</li>
+<li class="fragment">Caso você deseje especificar/passar algum parâmetro da função (<strong>FUN</strong>) a ser utilizada, pode proceder como no exemplo a seguir:</li>
 </ul>
 
 <pre class="fragment"><code class="r"># Construindo uma matriz 5x6
@@ -1070,8 +1070,8 @@ apply(X, 2, sum, na.rm = TRUE)
 
 
 <ul>
-<li class="fragment"><p>Note que o parâmetro <em>na.rm</em>, embora pertencente a função <em>sum()</em>, não é passado dentro desta, mas sim como um argumento de <em>apply()</em>. Será a função <em>apply()</em> que se encarregará de direcionar este argumento para a função <em>sum()</em>;</p></li>
-<li class="fragment"><p class="fragment">Veja a diferença caso não tivessemos especificado na.rm = TRUE</p></li>
+<li class="fragment"><p>Note que o parâmetro <strong>na.rm</strong>, embora pertencente a função <strong>sum()</strong>, não é passado dentro desta, mas sim como um argumento de <em>apply()</em>. Será a função <em>apply()</em> que se encarregará de direcionar este argumento para a função <em>sum()</em>;</p></li>
+<li class="fragment"><p class="fragment">Veja a diferença caso não tivessemos especificado <strong>na.rm = TRUE</strong></p></li>
 </ul>
 
 <pre class="fragment"><code class="r">apply(X, 2, sum)
@@ -1094,7 +1094,7 @@ apply(X, 2, sum, na.rm = TRUE)
 <li class="fragment"><p class="fragment">Há duas opções: </p>
 
 <ul>
-<li class="fragment">criamos a nossa própria função dentro de apply  - é o que se chama de <em>anonymous function</em>; </li>
+<li class="fragment">criamos a nossa própria função dentro de apply  - é o que se chama de <strong>anonymous function</strong>; </li>
 <li class="fragment">ou criamos uma função fora da função <em>apply()</em> e depois chamamos a função criada (utilizando o nome atribuído).</li>
 </ul></li>
 <li class="fragment"><p class="fragment">Vejamos um exemplo &hellip;</p></li>
@@ -1149,7 +1149,7 @@ apply(M, 1, myfun)
 <ul>
 <li class="fragment"><p>Os resultados são exatamente os mesmos!</p></li>
 <li class="fragment"><p class="fragment">Note que a criação da função anônima se dá da mesma forma em que criaríamos uma função normal, conforme visto no primeiro capítulo. </p></li>
-<li class="fragment"><p class="fragment">As únicas diferenças são: a função é criada dentro do argumento <em>FUN</em> da função da família <strong>apply</strong> e não atribuímos qualquer nome para a função que está sendo criada.</p></li>
+<li class="fragment"><p class="fragment">As únicas diferenças são: a função é criada dentro do argumento <strong>FUN</strong> da função da família <strong>apply</strong> e não atribuímos qualquer nome para a função que está sendo criada.</p></li>
 </ul>
 
 </div>
@@ -1162,7 +1162,7 @@ apply(M, 1, myfun)
 <li class="fragment"><strong>lapply()</strong> é uma das funções mais básicas da família <em>apply</em>;</li>
 <li class="fragment">Ela receberá como input uma lista, aplicará uma função aos elementos desta lista, retornando também uma lista;</li>
 <li class="fragment">Uma observação a ser feita é que, caso o objeto inputado não seja uma lista, internamente, <strong>lapply()</strong> forçará esse objeto a ser uma lista utilizando <em>as.list()</em>;</li>
-<li class="fragment">Portanto, fica claro o motivo do <strong>l</strong> em <strong>l</strong><em>apply()</em>;</li>
+<li class="fragment">Portanto, fica claro o motivo do <strong>l</strong> em <strong>l</strong>apply();</li>
 </ul>
 
 
@@ -1202,7 +1202,7 @@ apply(M, 1, myfun)
 <div class="column column1 slideContent small-code" >
 <ul>
 <li class="fragment">A estrutura de argumentos de <em>lapply()</em> é bem parecida com a função <em>apply()</em>;</li>
-<li class="fragment">A diferença é que desta vez não temos o argumento <em>MARGIN</em>.</li>
+<li class="fragment">A diferença é que desta vez não temos o argumento <strong>MARGIN</strong>.</li>
 </ul>
 
 <pre class="fragment"><code class="r">args(lapply)
@@ -1392,7 +1392,7 @@ lapply(out, mean)
 
 <ul>
 <li class="fragment"><p>O fato de utilizarmos os índices para iteração, nos permite maior controle sobre o que deseamos fazer com os dados.</p></li>
-<li class="fragment"><p class="fragment">OBS: Note que em todos os casos que usamos <strong>lapply()</strong>,  os objetos retornados eram listas. Se quiser confirmar repita os códigos anteriores salvando as saídas e depois aplicando <em>str()</em>.</p></li>
+<li class="fragment"><p class="fragment">OBS: Note que em todos os casos que usamos <strong>lapply()</strong>,  os objetos retornados eram listas. Se quiser confirmar repita os códigos anteriores salvando as saídas e depois aplicando <strong>str()</strong>.</p></li>
 </ul>
 
 </div>
@@ -1496,10 +1496,10 @@ NULL
 <li class="fragment"><p>Os diferenciais aqui são:</p>
 
 <ul>
-<li class="fragment"><em>FUN.VALUE</em>: onde se especifica o tipo e tamanho do vetor de retorno;</li>
-<li class="fragment"><em>USE.NAMES</em>: caso seu objeto de entrada já possua nomes para os elementos, eles podem (TRUE) ou não ser utilizados (FALSE).</li>
+<li class="fragment"><strong>FUN.VALUE</strong>: onde se especifica o tipo e tamanho do vetor de retorno;</li>
+<li class="fragment"><strong>USE.NAMES</strong>: caso seu objeto de entrada já possua nomes para os elementos, eles podem (TRUE) ou não ser utilizados (FALSE).</li>
 </ul></li>
-<li class="fragment"><p class="fragment">O principal argumento <em>FUN.VALUE</em>, que é o que nos permite restringir a saída de <em>vapply()</em> e identificar possíveis erros antes que aconteçam - digamos - em um ambiente de produção.</p></li>
+<li class="fragment"><p class="fragment">O principal argumento <strong>FUN.VALUE</strong>, que é o que nos permite restringir a saída de <em>vapply()</em> e identificar possíveis erros antes que aconteçam - digamos - em um ambiente de produção.</p></li>
 </ul>
 
 </div>
@@ -1511,7 +1511,7 @@ NULL
 <p>Comparando <em>vapply()</em> e <em>sapply()</em>&hellip; </p>
 
 <ul>
-<li class="fragment">No exemplo a seguir, vamos criar obter os tipos de colunas de um data.frame simulado. Primeiro o teste com <em>sapply()</em>:</li>
+<li class="fragment">No exemplo a seguir, vamos criar obter os tipos de colunas de um data.frame simulado. Primeiro o teste com <strong>sapply()</strong>:</li>
 </ul>
 
 <pre class="fragment"><code class="r"># criando um data.frame
@@ -1532,7 +1532,7 @@ sapply(df, class)
 
 
 <ul>
-<li class="fragment">E agora, o teste com <em>vapply()</em>. Note que estamos passando o tipo e tamanho do vetor que esperamos ter como resultado:</li>
+<li class="fragment">E agora, o teste com <strong>vapply()</strong>. Note que estamos passando o tipo e tamanho do vetor que esperamos ter como resultado:</li>
 </ul>
 
 <pre class="fragment"><code class="r"># aplicando vapply
@@ -1637,8 +1637,8 @@ $y
 <p>sapply vs vapply:</p>
 
 <ul>
-<li class="fragment">Por fim, cabe destacar que <em>sapply()</em> é um <em>wrapper</em> (ou função envelope) de <em>lapply()</em>, que apenas transforma o output em um vetor ou matriz no final. </li>
-<li class="fragment"><em>vapply()</em>, por sua vez, é uma implementação diferenciada de <em>lapply()</em>, ou seja é uma função da família <em>apply</em> com código diferenciado;</li>
+<li class="fragment">Por fim, cabe destacar que <strong>sapply()</strong> é um <strong>wrapper</strong> (ou função envelope) de <em>lapply()</em>, que apenas transforma o output em um vetor ou matriz no final. </li>
+<li class="fragment"><strong>vapply()</strong>, por sua vez, é uma implementação diferenciada de <em>lapply()</em>, ou seja é uma função da família <em>apply</em> com código diferenciado;</li>
 <li class="fragment">A similaridade entre ambas estaria apenas no output: tentativa de fazê-lo como um vetor/array.</li>
 </ul>
 
@@ -1667,8 +1667,8 @@ NULL
 </code></pre>
 
 <ul>
-<li class="fragment">O argumento ao qual devemos nos atentar aqui é <em>MoreArgs</em>, que é uma lista de outros argumentos a serem passados para <em>FUN</em>;</li>
-<li class="fragment"><em>simplify=TRUE</em> é só para tentar simplificar o resultado, tentando transformá-lo em um vetor.</li>
+<li class="fragment">O argumento ao qual devemos nos atentar aqui é <strong>MoreArgs</strong>, que é uma lista de outros argumentos a serem passados para <strong>FUN</strong>;</li>
+<li class="fragment"><strong>simplify=TRUE</strong> é só para tentar simplificar o resultado, tentando transformá-lo em um vetor.</li>
 </ul>
 
 </div>
@@ -1697,7 +1697,7 @@ mapply(sum, l1$a, l1$b, l2$c, l2$d)
 </code></pre>
 
 <ul>
-<li class="fragment"><p>O que está acontecendo acima é que estamos passando múltiplos argumentos a serem somados posição por posição pela função <em>sum()</em>;</p></li>
+<li class="fragment"><p>O que está acontecendo acima é que estamos passando múltiplos argumentos a serem somados posição por posição pela função <strong>sum()</strong>;</p></li>
 <li class="fragment"><p class="fragment">Se passarmos os vetores inteiros para a função sum() sem mapply() todos os elementos seriam somados de uma vez;</p></li>
 </ul>
 
@@ -1710,7 +1710,7 @@ mapply(sum, l1$a, l1$b, l2$c, l2$d)
 
 
 <ul>
-<li class="fragment"><p class="fragment">Ao usarmos <strong>mapply()</strong>, podemos passar vários vetores para função sum() de modo que ela some as resectivas posições de forma <strong>paralela</strong>: <em>l1$a[1] + l1$b[1] + l2$c[1] + l2$d[1] = 39</em> e assim por diante.</p></li>
+<li class="fragment"><p class="fragment">Ao usarmos <strong>mapply()</strong>, podemos passar vários vetores para função sum() de modo que ela some as resectivas posições de forma <strong>paralela</strong>: <strong>l1$a[1] + l1$b[1] + l2$c[1] + l2$d[1] = 39</strong> e assim por diante.</p></li>
 <li class="fragment"><p class="fragment"><strong>mapply()</strong> nos permite, então, vetorizar argumentos para uma função que normalmente não funcionaria de forma <strong>vetorizada</strong>;</p></li>
 <li class="fragment"><p class="fragment">Com <em>lapply()</em> isso não seria possível, porque os argumentos adicionais são passados para todas as chamadas. Com <em>mapply()</em> é como se conseguíssemos segmentar conjuntos de argumentos para cada chamada.</p></li>
 </ul>
@@ -1722,7 +1722,7 @@ mapply(sum, l1$a, l1$b, l2$c, l2$d)
 <h3>mapply() (3)</h3>
 <div class="slideContent small-code" >
 <ul>
-<li>Outro exemplo: precisamos criar uma lista onde uma sequência de números de 1 até 10 são repetidos justamente o valor do próprio número: 1 deve ser repetido uma vez, 2 deve ser repetido duas vezes e assim por diante. A primeira ideia seria usar <em>rep()</em>. Ela até funcionaria, mas o output não seria exatamente o que estamos esperando.</li>
+<li>Outro exemplo: precisamos criar uma lista onde uma sequência de números de 1 até 10 são repetidos justamente o valor do próprio número: 1 deve ser repetido uma vez, 2 deve ser repetido duas vezes e assim por diante. A primeira ideia seria usar <strong>rep()</strong>. Ela até funcionaria, mas o output não seria exatamente o que estamos esperando.</li>
 </ul>
 
 <pre><code class="r">out &lt;- rep(1:10, 1:10)
@@ -1804,7 +1804,7 @@ out
 <div class="slideContent small-code" >
 <ul>
 <li><strong>tapply()</strong> sumariza um vetor a partir de outro vetor;</li>
-<li>Esta função é usada para aplicar outra função a <em>subsets</em> (subconjuntos) dos dados.</li>
+<li>Esta função é usada para aplicar outra função a <strong>subsets</strong> (subconjuntos) dos dados.</li>
 </ul>
 
 <pre><code class="r">args(tapply)
@@ -1815,10 +1815,10 @@ NULL
 </code></pre>
 
 <ul>
-<li><em>X</em> é um vetor;</li>
-<li><em>INDEX</em> é um fator ou lista de fatores. Se não for fator, será coercido como tal;</li>
-<li><em>FUN</em> é a função a ser aplicada;</li>
-<li><em>simplify</em> indica se o resultado dee ou não ser simplificado.</li>
+<li><strong>X</strong> é um vetor;</li>
+<li><strong>INDEX</strong> é um fator ou lista de fatores. Se não for fator, será coercido como tal;</li>
+<li><strong>FUN</strong> é a função a ser aplicada;</li>
+<li><strong>simplify</strong> indica se o resultado dee ou não ser simplificado.</li>
 </ul>
 
 </div>
@@ -1898,7 +1898,7 @@ aggregate(df[,c(&quot;saldo&quot;, &quot;dias&quot;)], by = df[&#39;banco&#39;],
 
 
 <ul>
-<li><p>Se não usarmos a forma natural de lista no argumento <em>by</em>, teremos que forçar o resultado como uma lista usando <em>list()</em>;</p></li>
+<li><p>Se não usarmos a forma natural de lista no argumento <strong>by</strong>, teremos que forçar o resultado como uma lista usando <strong>list()</strong>;</p></li>
 <li><p>Teremos o mesmo resultado, mas a diferença é que não teremos o nome da coluna de indexação trazido automaticamente como no exemplo acima:</p></li>
 </ul>
 

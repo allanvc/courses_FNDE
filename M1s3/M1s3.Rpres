@@ -13,7 +13,7 @@ height: 900
 <!-- para trazer codigos em caixas menores: -->
 <!-- https://stackoverflow.com/questions/25612385/code-box-size-and-font-size-in-rpres -->
 
-Objetivos desta Aula
+Objetivos desta Sessão
 ========================================================
 incremental: true
 <br />
@@ -23,7 +23,7 @@ incremental: true
 - Manipular esses objetos.
 </br>
 </br>
-$\textbf{OBS:}$ há algumas regras para atribuir nomes aos objetos no R.
+- **OBS:** há algumas regras para atribuir nomes aos objetos no R.
 
 Conceituação
 ========================================================
@@ -33,43 +33,39 @@ incremental: true
 - Tudo (ou quase tudo) no R são objetos !
 <br />
 <br />
-- Objetos: $\textbf{vetores, matrizes, dataframes, listas e funções}$.
+- Objetos: **vetores**, **matrizes**, **dataframes**, **listas** e **funções**.
 
 Vetores - Definição
 ========================================================
 incremental: true
 <br />
 <br />
-- são arrays $\textbf{unidimensionais}$ (sequências unidimensionais);
+- são arrays **unidimensionais** (sequências unidimensionais);
 <br />
 <br />
 - tipos: numéricos, strings, expressões lógicas;
 <br />
 <br />
-- $\textbf{OBS:}$ os elementos só podem ser de um único tipo.
+- **OBS:** os elementos só podem ser de um único tipo.
 
 Vetores - Exemplo
 ========================================================
 incremental: true
 Vetor numérico:
-
-```
-[1] 5.1 4.9 4.7 4.6 5.0 5.4
+```{r,echo=FALSE}
+v1 <- head(iris[,1]); v1
 ```
 Vetor de strings:
-
-```
- [1] "R"    "FNDE" "R"    "FNDE" "R"    "FNDE" "R"    "FNDE" "R"    "FNDE"
-[11] "R"    "FNDE" "R"    "FNDE" "R"    "FNDE" "R"    "FNDE" "R"    "FNDE"
+```{r,echo=FALSE}
+v2 <- rep(c("R", "FNDE"), 10); v2
 ```
 
-- $\textbf{Atenção:}$ Strings são declaradas com aspas duplas/simples; output será sempre com aspas dupla.
+- **Atenção:** Strings são declaradas com aspas duplas **OU** simples; output será sempre com aspas dupla.
 
 ***
 Vetor lógico:
-
-```
- [1]  TRUE  TRUE  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE
+```{r,echo=FALSE}
+v3 <- c(rep(TRUE,3), FALSE,rep(TRUE,2), rep(FALSE,4)); v3
 ```
 
 
@@ -78,47 +74,33 @@ Matrizes - Definição
 incremental: true
 <br />
 <br />
-- são arrays $\textbf{BIidimensionais}$, com coleção de vetores (linhas ou colunas) do mesmo tipo;
+- são arrays **Bidimensionais**, com coleção de vetores (linhas ou colunas) do mesmo tipo;
 <br />
 <br />
 - tipos: numéricos, strings, expressões lógicas;
 <br />
 <br />
-- $\textbf{OBS:}$ todos os vetores da coleção são do mesmo tipo e tamanho.
+- **OBS:** todos os vetores da coleção são do mesmo tipo e tamanho.
 
 Matrizes - Exemplo
 ========================================================
 incremental: true
 Matriz numérica:
-
-```
-          [,1]       [,2]
-[1,] 0.5250582 0.84664581
-[2,] 0.3826475 0.05758494
+```{r,echo=FALSE}
+m1 <- matrix(runif(2^2), 2); m1
 ```
 
 <br />
 <br />
 Matriz de strings:
-
-```
-     [,1]   [,2]  
-[1,] "R"    "FNDE"
-[2,] "FNDE" "R"   
-[3,] "R"    "FNDE"
-[4,] "FNDE" "R"   
-[5,] "R"    "FNDE"
+```{r, echo=FALSE}
+m2 <- matrix(rep(c("R", "FNDE"), 5), ncol=2); m2
 ```
 
 ***
 Matriz lógica:
-
-```
-      [,1]  [,2]  [,3]  [,4]
-[1,]  TRUE  TRUE  TRUE  TRUE
-[2,]  TRUE  TRUE  TRUE  TRUE
-[3,] FALSE FALSE FALSE FALSE
-[4,]  TRUE  TRUE  TRUE  TRUE
+```{r, echo=FALSE}
+m3 <- matrix(rep(c(TRUE, TRUE, FALSE, TRUE), 2^2), ncol=4); m3
 ```
 
 <br /> 
@@ -132,24 +114,13 @@ incremental: true
 - são objetos parecidos com uma matriz, com a diferença de que as colunas ou linhas podem ser de tipos diferentes;
 <br />
 <br />
-- $\textbf{OBS:}$ é o principal objeto utilizado para armazenar tabelas de dados no R.
+- **OBS:** é o principal objeto utilizado para armazenar tabelas de dados no R.
 
 Dataframes - Exemplo
 ========================================================
 incremental: true
-
-```
-   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-1           5.1         3.5          1.4         0.2  setosa
-2           4.9         3.0          1.4         0.2  setosa
-3           4.7         3.2          1.3         0.2  setosa
-4           4.6         3.1          1.5         0.2  setosa
-5           5.0         3.6          1.4         0.2  setosa
-6           5.4         3.9          1.7         0.4  setosa
-7           4.6         3.4          1.4         0.3  setosa
-8           5.0         3.4          1.5         0.2  setosa
-9           4.4         2.9          1.4         0.2  setosa
-10          4.9         3.1          1.5         0.1  setosa
+```{r,echo=FALSE}
+df1 <- head(iris, 10); df1
 ```
 
 
@@ -158,28 +129,20 @@ Funções - Definição
 incremental: true
 <br />
 <br />
-- são um conjunto de procedimentos que recebem nenhum, um ou mais parâmetros, como $\textit{input}$, realizam um cálculo ou procedimento e retornam um resultado para o usuário;
+- são um conjunto de procedimentos que recebem nenhum, um ou mais parâmetros, como *input*, realizam um cálculo ou procedimento e retornam um resultado para o usuário;
 <br />
 <br />
-- $\textbf{OBS:}$ até funções são tratadas como objetos pelo R.
+- **OBS:** até funções são tratadas como objetos pelo R.
 
 Funções - Exemplo
 ========================================================
 incremental: true
-
-```r
+```{r}
 meu_cubo <- function(x){
   out <- x^3
   return(out)
 }
 meu_cubo
-```
-
-```
-function(x){
-  out <- x^3
-  return(out)
-}
 ```
 
 Listas - Definição
@@ -190,7 +153,7 @@ incremental: true
 - são o tipo mais amplo de objeto, que pode reunir coleções de dataframes, vetores, matrizes, funções ou ainda de todos esses tipos juntos;
 <br />
 <br />
-- $\textbf{OBS:}$ Como os objetos de uma lista não precisam ser do mesmo tipo, também não há a necessidade de que sejam do mesmo tamanho. Isso, muitas vezes, ajuda na manipulação de dados.
+- **OBS:** Como os objetos de uma lista não precisam ser do mesmo tipo, também não há a necessidade de que sejam do mesmo tamanho. Isso, muitas vezes, ajuda na manipulação de dados.
 
 Listas - Exemplo
 ========================================================
@@ -199,31 +162,9 @@ class: small-code
 
 - Consegue identificar o tipo de cada objeto desta lista?
 
-
-```
-[[1]]
- [1] "R"    "FNDE" "R"    "FNDE" "R"    "FNDE" "R"    "FNDE" "R"    "FNDE"
-[11] "R"    "FNDE" "R"    "FNDE" "R"    "FNDE" "R"    "FNDE" "R"    "FNDE"
-
-[[2]]
-  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-1          5.1         3.5          1.4         0.2  setosa
-2          4.9         3.0          1.4         0.2  setosa
-3          4.7         3.2          1.3         0.2  setosa
-4          4.6         3.1          1.5         0.2  setosa
-5          5.0         3.6          1.4         0.2  setosa
-
-[[3]]
-          [,1]       [,2]
-[1,] 0.5250582 0.84664581
-[2,] 0.3826475 0.05758494
-
-[[4]]
-function (x) 
-{
-    out <- x^3
-    return(out)
-}
+```{r,echo=FALSE}
+minha_lista <- list(v2, head(iris, 5), m1, meu_cubo)
+minha_lista
 ```
 
 - Atenção para como são representados os índices dos elementos dentro de uma lista e os índices dos objetos dentro destes elementos!!
@@ -244,26 +185,23 @@ Criação, indexação e manipulação de objetos
 ========================================================
 incremental: true
 <!-- class: small-code -->
-- Para $\textbf{atribuir}$ valores a um objeto use "<-":
-
-```r
+- Para **atribuir** valores a um objeto use "**<-**":
+```{r,eval=FALSE}
 x <- 4
 # ou
 x = 4
 ```
 <br />
-- Para $\textbf{concatenar}$ vários valores e salvá-los em um objeto, use a função "c($\space$)":
-
-```r
+- Para **concatenar** vários valores e salvá-los em um objeto, use a função "**c(objeto1, objeto2, ...)**":
+```{r,eval=FALSE}
 x <- c(4,5,6,7,8)
 # ou
 x = c(4,5,6,7,8)
 ```
 
 ***
-- Para $\textbf{extrair}$ um ou vários elementos de um objeto, use "objeto[índice]":
-
-```r
+- Para **extrair** um ou vários elementos de um objeto, use "**objeto[índice]**":
+```{r,eval=FALSE}
 x[3] # extraindo 3º elemento do vetor x
 
 x[c(1,4)] # extraindo 1º e 4º elementos do vetor x
@@ -280,8 +218,7 @@ class: small-code
 
 Criação de alguns objetos:
 
-
-```r
+```{r}
 vetor1 <- c(12, 43.8, NA, 67)
 vetor2 <- c(2, 90, 360, 23) 
 vetor3 <- c("BB", "CEF", "CEF", "BB")
@@ -293,87 +230,37 @@ m <- matrix(c(1,2,3,4,5,6,7,8,9,10), ncol=2)
 m2 <- matrix(c(1,2,3,4,5,6,7,8,9,10), ncol=2, byrow=TRUE)
 
 minha_lista <- list(m2, vetor1, df)
+
 ```
 
 Indexação:
 
-
-```r
+```{r}
 vetor1[3]
-```
 
-```
-[1] NA
-```
-
-```r
 vetor2[c(1,3)]
-```
 
-```
-[1]   2 360
-```
-
-```r
 df[,2]
-```
-
-```
-[1]   2  90 360  23
 ```
 
 ***
 
+```{r}
 
-```r
 df$atraso
-```
 
-```
-[1]   2  90 360  23
-```
-
-```r
 df[,"atraso"]
-```
 
-```
-[1]   2  90 360  23
-```
-
-```r
 df[-3,]
-```
 
-```
-  valor atraso banco
-1  12.0      2    BB
-2  43.8     90   CEF
-4  67.0     23    BB
-```
-
-```r
 m[1,2]
-```
 
-```
-[1] 6
-```
-
-```r
 minha_lista[[2]]
-```
 
-```
-[1] 12.0 43.8   NA 67.0
-```
-
-```r
 minha_lista[[2]][1] # ou  minha_lista[[c(2,1)]]
-```
 
-```
-[1] 12
+
+
 ```
 
 
@@ -385,8 +272,7 @@ class: small-code
 - Há algumas funções que serão usadas muitas vezes ao se analisar dados com R;
 - Elas normalmente receberão como parâmetros algum dos objetos que vimos anteriormente;
 
-
-```r
+```{r}
 # criando dados fictícios:
 vetor1 <- c(12, 43.8, NA, 67)
 vetor2 <- c(2, 90, 360, 23) 
@@ -397,73 +283,28 @@ df <- data.frame("valor"=vetor1, "atraso"=vetor2, "banco"=vetor3)
 m <- matrix(c(1,2,3,4,5,6,7,8,9,10), ncol=2)
 ```
 
-
-```r
+```{r}
 mean(vetor2) # média
-```
 
-```
-[1] 118.75
-```
-
-```r
 mean(df[,2]) 
-```
 
-```
-[1] 118.75
 ```
 
 ***
 
-
-```r
+```{r}
 sum(df[,1]) # soma
-```
 
-```
-[1] NA
-```
-
-```r
 sum(df[,1], na.rm=TRUE) # soma com missig value
-```
 
-```
-[1] 122.8
-```
-
-```r
 colMeans(df[, c(1,2)], na.rm=TRUE) # só p/ colunas numéricas
-```
 
-```
-    valor    atraso 
- 40.93333 118.75000 
-```
-
-```r
 rowMeans(m)
-```
 
-```
-[1] 3.5 4.5 5.5 6.5 7.5
-```
-
-```r
 colSums(m)
-```
 
-```
-[1] 15 40
-```
-
-```r
 rowSums(df[,c(1,2)])
-```
 
-```
-[1]  14.0 133.8    NA  90.0
 ```
 
 Funções importantes (2) - Nomes, tamanhos e ordenação 
@@ -471,104 +312,34 @@ Funções importantes (2) - Nomes, tamanhos e ordenação
 incremental: true
 class: small-code
 
-
-```r
+```{r}
 colnames(df)
-```
 
-```
-[1] "valor"  "atraso" "banco" 
-```
-
-```r
 names(vetor1)
-```
 
-```
-NULL
-```
-
-```r
 length(vetor3)
-```
 
-```
-[1] 4
-```
-
-```r
 ncol(df) # nro colunas
-```
 
-```
-[1] 3
-```
-
-```r
 nrow(m) # nro linhas
-```
 
-```
-[1] 5
-```
-
-```r
 max(m) # max
-```
-
-```
-[1] 10
 ```
 
 ***
 
-
-```r
+```{r}
 min(vetor2) # min
-```
 
-```
-[1] 2
-```
-
-```r
 sort(df[,2]) # ordenar os valores
-```
 
-```
-[1]   2  23  90 360
-```
-
-```r
 sort(m[,2], decreasing = TRUE) # forma decrescente
-```
 
-```
-[1] 10  9  8  7  6
-```
-
-```r
 sort(vetor3) # também ordena alfabeticamente
-```
 
-```
-[1] "BB"  "BB"  "CEF" "CEF"
-```
-
-```r
 order(df[,2]) # ordena e retorna os índices originais dos elementos dentro da ordenação
-```
 
-```
-[1] 1 4 2 3
-```
-
-```r
 rank(vetor2) # atribui postos aos valores de um objeto sem ordenar a poisção da saída 
-```
-
-```
-[1] 1 3 4 2
 ```
 
 
@@ -577,94 +348,37 @@ Funções importantes (3)
 incremental: true
 class: small-code
 - Utilidades 
-
-```r
+```{r,eval=FALSE}
 ## listar e remover objetos
 ls() # listar
 rm(objeto) # remover
 ```
 
 - Sequências
-
-```r
+```{r}
 1:10 # sequencia de 1 a 10
-```
 
-```
- [1]  1  2  3  4  5  6  7  8  9 10
-```
-
-```r
 seq(from=1,to=10,by=2) # sequenciade 1 até 10 com intervalos de 2 em 2
-```
 
-```
-[1] 1 3 5 7 9
-```
-
-```r
 seq(125, 155, 5) # sequencia de 125 a 155 com intervalos de 5 em 5
-```
 
-```
-[1] 125 130 135 140 145 150 155
-```
-
-```r
 seq(0.1, 0.5, 0.05) # de 0.1 ate 0.5 de 0.05 em 0.05
-```
-
-```
-[1] 0.10 0.15 0.20 0.25 0.30 0.35 0.40 0.45 0.50
 ```
 
 ***
 
 - Repetições:
 
-
-```r
+```{r}
 rep(x=5,times=10) # repetir o numero 5, 10 vezes
-```
 
-```
- [1] 5 5 5 5 5 5 5 5 5 5
-```
-
-```r
 rep("FNDE", 4) # repete a palavra FNDE 4 vezes
-```
 
-```
-[1] "FNDE" "FNDE" "FNDE" "FNDE"
-```
-
-```r
 rep(vetor1, 2) # repete o vetor inteiro duas vezes
-```
 
-```
-[1] 12.0 43.8   NA 67.0 12.0 43.8   NA 67.0
-```
-
-```r
 rep(df[,2], each=3 ) # repete cada elemento 3 vezes
-```
 
-```
- [1]   2   2   2  90  90  90 360 360 360  23  23  23
-```
-
-```r
 rep(c("três", "dois", "um", "quatro"), c(3,2,1,4)) # primeiro parametro 
-```
-
-```
- [1] "três"   "três"   "três"   "dois"   "dois"   "um"     "quatro"
- [8] "quatro" "quatro" "quatro"
-```
-
-```r
 #...indica quais palavras devem ser repetidas e segundo parametro
 #... indica quantas vezes cada uma será repetida
 ```
@@ -674,67 +388,27 @@ Funções importantes (4)
 incremental: true
 class: small-code
 - "Colagem" e junção
-
-```r
+```{r}
 paste("FIES", "FNDE", "R", sep="")
-```
-
-```
-[1] "FIESFNDER"
-```
-
-```r
 paste("FIES", "FNDE", "R", sep="-")
-```
-
-```
-[1] "FIES-FNDE-R"
-```
-
-```r
 paste(1:3, c("FNDE","MEC"), 1:2,  sep="/") # !!reciclagem!!
-```
 
-```
-[1] "1/FNDE/1" "2/MEC/2"  "3/FNDE/1"
-```
-
-```r
 paste(c("A", "S", "D", "F"), 
       c("W", "X", "Y", "Z")) # mesmo que sep=" "
-```
 
-```
-[1] "A W" "S X" "D Y" "F Z"
-```
-
-```r
 paste(c("A", "S", "D", "F"), 
       c("W", "X", "Y", "Z"), collapse = '') # produz uma úncia string
-```
 
-```
-[1] "A WS XD YF Z"
 ```
 
 ***
 
 - Aleatorização e sorteio
-
-```r
+```{r}
 sample(x=vetor1, size=2, replace=FALSE) # sorteia dois elementos do vetor1 sem repetição
-```
 
-```
-[1] 12 NA
-```
-
-```r
 sample(x=1:5, size=4, replace=TRUE) # sorteia 4 elementos da sequencia de 1 a 5...com possibilidade de repetição
-```
 
-```
-[1] 2 5 4 2
 ```
 
 

@@ -54,7 +54,7 @@ A gramática de gráficos
 incremental: true
 class: small-code
 
-- A gramática de gráficos foi um conceito desenvolvido por Leland Wilkinson em 1999 e publicado por ele em *The Grammar of Graphics* em 2005;
+- A gramática de gráficos foi um conceito desenvolvido por Leland Wilkinson em 1999 e publicado por ele em **The Grammar of Graphics** em 2005;
 
 - Essa gramática define regras para estruturar elementos matemáticos e de "embelezamento"(**aesthetics** ~ elementos perceptíveis) em um gráfico propriamente dito;
 
@@ -124,7 +124,7 @@ A função **ggplot()**:
 
 - Note que é **ggplot()** e não **ggplot2()**;
 
-- O nosso data.frame/ *tibble* sempre será  **primeiro** argumento desta função;
+- O nosso **data.frame/tibble** sempre será  **primeiro** argumento desta função;
 
 
 
@@ -163,44 +163,12 @@ class: small-code
 
 ***
 
-
-```r
+```{r}
 library(magrittr) # vamos usar pipe
 library(ggplot2)
 str(mpg)
-```
-
-```
-Classes 'tbl_df', 'tbl' and 'data.frame':	234 obs. of  11 variables:
- $ manufacturer: chr  "audi" "audi" "audi" "audi" ...
- $ model       : chr  "a4" "a4" "a4" "a4" ...
- $ displ       : num  1.8 1.8 2 2 2.8 2.8 3.1 1.8 1.8 2 ...
- $ year        : int  1999 1999 2008 2008 1999 1999 2008 1999 1999 2008 ...
- $ cyl         : int  4 4 4 4 6 6 6 4 4 4 ...
- $ trans       : chr  "auto(l5)" "manual(m5)" "manual(m6)" "auto(av)" ...
- $ drv         : chr  "f" "f" "f" "f" ...
- $ cty         : int  18 21 20 21 16 18 18 18 16 20 ...
- $ hwy         : int  29 29 31 30 26 26 27 26 25 28 ...
- $ fl          : chr  "p" "p" "p" "p" ...
- $ class       : chr  "compact" "compact" "compact" "compact" ...
-```
-
-```r
 str(diamonds)
-```
 
-```
-Classes 'tbl_df', 'tbl' and 'data.frame':	53940 obs. of  10 variables:
- $ carat  : num  0.23 0.21 0.23 0.29 0.31 0.24 0.24 0.26 0.22 0.23 ...
- $ cut    : Ord.factor w/ 5 levels "Fair"<"Good"<..: 5 4 2 4 2 3 3 3 1 3 ...
- $ color  : Ord.factor w/ 7 levels "D"<"E"<"F"<"G"<..: 2 2 2 6 7 7 6 5 2 5 ...
- $ clarity: Ord.factor w/ 8 levels "I1"<"SI2"<"SI1"<..: 2 3 5 4 2 6 7 3 4 5 ...
- $ depth  : num  61.5 59.8 56.9 62.4 63.3 62.8 62.3 61.9 65.1 59.4 ...
- $ table  : num  55 61 65 58 58 57 57 55 61 61 ...
- $ price  : int  326 326 327 334 335 336 336 337 337 338 ...
- $ x      : num  3.95 3.89 4.05 4.2 4.34 3.94 3.95 4.07 3.87 4 ...
- $ y      : num  3.98 3.84 4.07 4.23 4.35 3.96 3.98 4.11 3.78 4.05 ...
- $ z      : num  2.43 2.31 2.31 2.63 2.75 2.48 2.47 2.53 2.49 2.39 ...
 ```
 
 
@@ -211,13 +179,10 @@ incremental: true
 
 Para fazermos um gráfico, primeiro precisamos indicar os dados e fazer o mapeamento das variáveis aos **aesthetics**. Isso reserva uma área de gráfico a ser utilizada.
 
-
-```r
+```{r, fig.align="center", fig.height=5, fig.width=5}
 mpg %>%
 ggplot(aes(x=displ, y=hwy))
 ```
-
-<img src="sessao_09-figure/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
 
 
 
@@ -228,17 +193,14 @@ class: small-code
 
 Vejamos um primeiro exemplo do consumo dos veículos galões/milhas de acordo com o número dos cilindros.
 
-
-```r
+```{r, fig.align="center", fig.height=5, fig.width=7}
 mpg %>%
 ggplot(mapping = aes(x=displ, y=hwy)) +
   geom_point() # isso sao os geoms que veremos a seguir
 ```
 
-<img src="sessao_09-figure/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 
-
-Note que não houve a necessidade de re-especificar os argumentos data e *aes()* para a função *geom_point()*.
+Note que não houve a necessidade de re-especificar os argumentos data e **aes()** para a função **geom_point()**.
 
 
 Exemplos (4)
@@ -246,24 +208,19 @@ Exemplos (4)
 incremental: true
 class: small-code
 
-- Poderíamos melhorar nosso gráfico adicionando cores dentro de *aes()*; 
+- Poderíamos melhorar nosso gráfico **adicionando cores dentro** de **aes()**; 
 
 - Isso acrescentaria mais informação. Poderíamos atribuir cores diferentes para cada classe de carros:
 
-
-```r
+```{r, fig.align="center", fig.height=5, fig.width=7}
 mpg %>%
 ggplot(mapping = aes(x=displ, y=hwy)) +
   geom_point(aes(color=class))
-```
-
-<img src="sessao_09-figure/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
-
-```r
 #ou
 # mpg %>%
 # ggplot(mapping = aes(x=displ, y=hwy, color=class)) +
 #   geom_point()
+
 ```
 
 
@@ -274,14 +231,11 @@ class: small-code
 
 Podemos ao invés de atribuir cores, trabalhar com o nível de transparência (**alpha**) das classes:
 
-
-```r
+```{r, fig.align="center", fig.height=5, fig.width=7}
 mpg %>%
 ggplot(mapping = aes(x=displ, y=hwy, alpha=class)) +
   geom_point()
 ```
-
-<img src="sessao_09-figure/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
 
 Isso não é muito útil porque temos várias classes, mas serve para ilustrar essa possibilidade com *ggplot2*.
 
@@ -293,14 +247,11 @@ class: small-code
 
 Uma outra forma de demonstrar as diferentes classes, seria utilizar diferentes formas (**shape**):
 
-
-```r
+```{r, fig.align="center", fig.height=5, fig.width=7}
 mpg %>%
 ggplot(mapping = aes(x=displ, y=hwy, shape=class)) +
   geom_point()
 ```
-
-<img src="sessao_09-figure/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
 
 ***
 
@@ -328,23 +279,17 @@ Vejamos os exemplos anteriores com um *aesthetic* constante para cor e shape:
 
 ***
 
-
-```r
+```{r, fig.align="center", fig.height=4, fig.width=5}
 mpg %>%
 ggplot(mapping = aes(x=displ, y=hwy)) +
   geom_point(color = "red")
 ```
 
-<img src="sessao_09-figure/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
-
-
-```r
+```{r, fig.align="center", fig.height=4, fig.width=5}
 mpg %>%
 ggplot(mapping = aes(x=displ, y=hwy)) +
   geom_point(shape=2)
 ```
-
-<img src="sessao_09-figure/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
 
 <!-- Note que devemos passar as constantes para *geom_point()* (fora de *aes()*) - o elemento de objetos geométricos - e não para *ggplot()*. -->
 
@@ -356,7 +301,16 @@ class: small-code
 
 Veja quantos *shapes* podemos usar no **R**:
 
-<img src="sessao_09-figure/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
+```{r, fig.align="center", fig.height=10, fig.width=10, echo=FALSE}
+d=data.frame(p=c(0:25,32:127))
+ggplot() +
+scale_y_continuous(name="") +
+scale_x_continuous(name="") +
+scale_shape_identity() +
+geom_point(data=d, mapping=aes(x=p%%16, y=p%/%16, shape=p), size=5, fill="red") +
+geom_text(data=d, mapping=aes(x=p%%16, y=p%/%16+0.25, label=p), size=3)
+# http://sape.inf.usi.ch/quick-reference/ggplot2/shape
+```
 
 
 Mapping vs Setting aesthetics (2)
@@ -365,14 +319,11 @@ incremental: true
 <!-- class: small-code -->
 
 Cuidado, pois setar uma **aesthetic** como constante dentro de **aes()** pode resultar em um comportamento inesperado.
-
-```r
+```{r, fig.align="center", fig.height=5, fig.width=7}
 mpg %>%
 ggplot(mapping = aes(x=displ, y=hwy)) +
   geom_point(aes(color = "green"))
 ```
-
-<img src="sessao_09-figure/unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" style="display: block; margin: auto;" />
 
 
 Geoms (1)
@@ -396,36 +347,23 @@ Exemplos - geoms para uma variável (contínua)
 incremental: true
 class: small-code
 
-
-```r
+```{r, fig.height=3, fig.width=3}
 c <- mpg %>%
 ggplot(mapping = aes(x=hwy))
 
 c + geom_density()
-```
 
-![plot of chunk unnamed-chunk-11](sessao_09-figure/unnamed-chunk-11-1.png)
-
-```r
 c + geom_dotplot()
 ```
 
-![plot of chunk unnamed-chunk-11](sessao_09-figure/unnamed-chunk-11-2.png)
-
 ***
 
+```{r, fig.height=3, fig.width=3, warning=TRUE}
 
-```r
 c + geom_freqpoly()
-```
 
-![plot of chunk unnamed-chunk-12](sessao_09-figure/unnamed-chunk-12-1.png)
-
-```r
 c + geom_histogram()
 ```
-
-![plot of chunk unnamed-chunk-12](sessao_09-figure/unnamed-chunk-12-2.png)
 
 
 Exemplos - geoms para uma variável (discreta)
@@ -434,13 +372,10 @@ incremental: true
 <!-- class: small-code -->
 
 
-
-```r
+```{r, fig.align="center", fig.height=5, fig.width=7}
 ggplot(data=mpg, mapping=aes(x=fl))+
 geom_bar()
 ```
-
-<img src="sessao_09-figure/unnamed-chunk-13-1.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" style="display: block; margin: auto;" />
 
 
 Exemplos - geoms para duas variáveis (ambas contínuas)
@@ -448,39 +383,26 @@ Exemplos - geoms para duas variáveis (ambas contínuas)
 incremental: true
 class: small-code
 
-
-```r
+```{r, fig.align="center", fig.height=4, fig.width=7, warning=TRUE}
 e <- mpg %>% 
   ggplot(mapping=aes(x=cty, y=hwy))
 
 e + geom_point()
-```
 
-<img src="sessao_09-figure/unnamed-chunk-14-1.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" style="display: block; margin: auto;" />
-
-```r
 e + geom_jitter()
-```
 
-<img src="sessao_09-figure/unnamed-chunk-14-2.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" style="display: block; margin: auto;" />
+```
 
 ***
 
-
-```r
+```{r, fig.align="center", fig.height=4, fig.width=7, warning=TRUE}
 e2 <- diamonds %>%
   ggplot(aes(x, z))
 
 e2 + geom_line()
-```
 
-<img src="sessao_09-figure/unnamed-chunk-15-1.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" style="display: block; margin: auto;" />
-
-```r
 e2 + geom_smooth()
 ```
-
-<img src="sessao_09-figure/unnamed-chunk-15-2.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" style="display: block; margin: auto;" />
 
 
 
@@ -491,32 +413,25 @@ class: small-code
 
 
 
-
-```r
+```{r, fig.align="center", fig.height=4, fig.width=7}
 f <- mpg %>% 
   ggplot(aes(class, hwy))
 
 f + geom_bar(stat="identity")
-```
 
-<img src="sessao_09-figure/unnamed-chunk-16-1.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" style="display: block; margin: auto;" />
-
-```r
 f + geom_boxplot()
-```
 
-<img src="sessao_09-figure/unnamed-chunk-16-2.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" style="display: block; margin: auto;" />
+
+```
 
 ***
 
+```{r, fig.align="center", fig.height=5, fig.width=7}
 
-```r
 f + geom_violin()
 ```
 
-<img src="sessao_09-figure/unnamed-chunk-17-1.png" title="plot of chunk unnamed-chunk-17" alt="plot of chunk unnamed-chunk-17" style="display: block; margin: auto;" />
-
-Há também outros *geoms* que você encontrará na página de ajuda.
+Há também outros **geoms** que você encontrará na página de ajuda.
 
 
 Stats (Transformações estatísticas) (1)
@@ -527,20 +442,15 @@ class: small-code
 
 - **Stats** transformam os dados, geralmente produzindo um resumo, como média, variância, "caixas" de contagem, etc. 
 
-- Elas podem estar associadas a um *geom* específico e, neste caso, produziraão o gráfico mesmo este *geom* não seja especificado. Veja o exemplo:
+- Elas podem estar associadas a um *geom* específico e, neste caso, produzirão o gráfico mesmo este *geom* não seja especificado. Veja o exemplo:
 
 
-
-```r
+```{r, fig.align="center", fig.height=5, fig.width=7, warning=TRUE}
 # histograma
 mpg %>% 
   ggplot(mapping=aes(x=cty))+
            stat_bin()
-```
 
-<img src="sessao_09-figure/unnamed-chunk-18-1.png" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" style="display: block; margin: auto;" />
-
-```r
 # ou equivalentemente
 # mpg %>% 
 #   ggplot(mapping=aes(x=cty))+
@@ -550,8 +460,7 @@ mpg %>%
 
 ***
 
-
-```r
+```{r, fig.align="center", fig.height=2, fig.width=3}
 # gráficos de barras
 
 
@@ -576,6 +485,8 @@ mpg %>%
 # diamonds %>% 
 #   ggplot(aes(x=cut))+
 #   geom_bar(stat="count")
+
+
 ```
 
 Cabe ressaltar o *geom* associado também pode ser mudado. A lsita das transformações pode ser encontrada com *?stat*.
@@ -591,14 +502,14 @@ class: small-code
 
 - Por *default*,  a **summary function** é **mean_se** que retorna 3 valores: **media, media+se, media-se**.
 
+```{r, fig.align="center", fig.height=5, fig.width=7, warning=TRUE}
 
-```r
 mpg %>% 
   ggplot(mapping=aes(x=class, y=cty))+
            stat_summary()
-```
 
-<img src="sessao_09-figure/unnamed-chunk-20-1.png" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" style="display: block; margin: auto;" />
+
+```
 
 
 stat_summary (2)
@@ -610,28 +521,27 @@ Se quisermos alterar as funções de sumarização, podemos fazer o segunite:
 
 - para retornar 3 valores, usamos *fun.data*:
 
-
-```r
+```{r, fig.align="center", fig.height=5, fig.width=7, warning=TRUE}
 library(Hmisc)
 mpg %>% 
   ggplot(mapping=aes(x=class, y=cty))+
            stat_summary(fun.data="mean_cl_boot")
-```
 
-<img src="sessao_09-figure/unnamed-chunk-21-1.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" style="display: block; margin: auto;" />
+
+```
 
 ***
 
 - para retornar 1 valor, usamos *fun.y*:
 
+```{r, fig.align="center", fig.height=5, fig.width=7, warning=TRUE}
 
-```r
 mpg %>% 
   ggplot(mapping=aes(x=class, y=cty))+
            stat_summary(fun.y="median", geom="point")
-```
 
-<img src="sessao_09-figure/unnamed-chunk-22-1.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" style="display: block; margin: auto;" />
+
+```
 
 
 Positions (1)
@@ -653,14 +563,11 @@ class: small-code
 
 - Ela coloca cada objeto na posição exata do contexto do gráfico. No caso de gráficos de barras, teríamos barras sobrepostas:
 
-
-```r
+```{r, fig.align="center", fig.height=5, fig.width=7, warning=TRUE}
 diamonds %>% 
   ggplot(mapping=aes(x=cut, fill=clarity))+
            geom_bar(position="identity")
 ```
-
-<img src="sessao_09-figure/unnamed-chunk-23-1.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" style="display: block; margin: auto;" />
 
 
 Positions (2)
@@ -670,27 +577,21 @@ class: small-code
 
 - **position = "dodge"** coloca objetos sobrepostos um ao lado de outro. Nesse caso, teremos barras justapostas:
 
-
-```r
+```{r, fig.align="center", fig.height=5, fig.width=7, warning=TRUE}
 diamonds %>% 
   ggplot(mapping=aes(x=cut, fill=clarity))+
            geom_bar(position="dodge")
 ```
 
-<img src="sessao_09-figure/unnamed-chunk-24-1.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" style="display: block; margin: auto;" />
-
 ***
 
 - **position="fill"** também empilhará os elementos, mas irá normalizar a altura de todas as barras para que fiquem na mesma escala. Isso torna mais fácil comparar as proporções entre os grupos:
 
-
-```r
+```{r, fig.align="center", fig.height=5, fig.width=7, warning=TRUE}
 diamonds %>% 
   ggplot(mapping=aes(x=cut, fill=clarity))+
            geom_bar(position="fill")
 ```
-
-<img src="sessao_09-figure/unnamed-chunk-25-1.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" style="display: block; margin: auto;" />
 
 
 
@@ -703,14 +604,11 @@ class: small-code
 
 - Com *jitter*, *ggplot2* adiciona um ruído aleatório nas posições de X e Y para que eles não se sobreponham:
 
-
-```r
+```{r, fig.align="center", fig.height=2, fig.width=3, warning=TRUE}
 mpg %>% 
   ggplot(mapping=aes(x=displ, y=hwy))+
            geom_point(position="jitter")
 ```
-
-<img src="sessao_09-figure/unnamed-chunk-26-1.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" style="display: block; margin: auto;" />
 
 - Há outros ajustes de posição bem úteis, como:
 
@@ -734,15 +632,12 @@ class: small-code
 
 ***
 
-
-```r
+```{r, fig.align="center", fig.height=5, fig.width=7, warning=TRUE}
 mpg %>% 
   ggplot()+
   geom_point(mapping=aes(x=displ, y=hwy))+
   facet_wrap(~ class, nrow=2)
 ```
-
-<img src="sessao_09-figure/unnamed-chunk-27-1.png" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" style="display: block; margin: auto;" />
 
 - Note acima que podemos definir o npumero de linhas desejado para plotagem;
 
@@ -759,15 +654,12 @@ Agora vamos plotar as informações referentes a 3 variáveis.
 - Neste caso especificamos que a variável "trans" deve ser plotada em função das demais variáveis passadas em **aes()**:
 
 
-
-```r
+```{r, fig.align="center", fig.height=5, fig.width=7, warning=TRUE}
 mpg %>% 
   ggplot()+
   geom_point(mapping=aes(x=displ, y=hwy))+
   facet_grid(trans ~ .)
 ```
-
-<img src="sessao_09-figure/unnamed-chunk-28-1.png" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" style="display: block; margin: auto;" />
 
 
 Títulos e rótulos
@@ -782,17 +674,13 @@ Há duas formas de alterar títulos e rótulos dos eixos em **ggplot2**:
 
 ***
 
+```{r, fig.align="center", fig.height=5, fig.width=7, warning=TRUE}
 
-```r
 mpg %>% 
   ggplot() + 
   geom_point(mapping = aes(x=displ, y = hwy, color = class)) + 
   labs(title="Título do gráfico", x = "Eixo x", y = "Eixo y", color = "Categorias")
-```
 
-<img src="sessao_09-figure/unnamed-chunk-29-1.png" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" style="display: block; margin: auto;" />
-
-```r
 #ou
 
 # mpg %>% 
@@ -801,6 +689,7 @@ mpg %>%
 #   ggtitle("título do gráfico")+
 #   xlab("rótulo eixo x")+
 #   ylab("rótulo eixo y")
+
 ```
 
 

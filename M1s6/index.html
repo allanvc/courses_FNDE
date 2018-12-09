@@ -771,16 +771,6 @@ hljs.initHighlightingOnLoad();
 </script>
 
    
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    showProcessingMessages: false,
-    messageStyle: "none"
-  });
-</script>
-
-<script type="text/javascript" src="sessao6_files/mathjax-26/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
   
 
 Análise de Dados em R (FNDE) - Módulo 1
@@ -841,7 +831,7 @@ Análise de Dados em R (FNDE) - Módulo 1
 <li class="fragment">90% do trabalho da análise de dados é preparar os dados;
 <br />
 <br /></li>
-<li class="fragment">assim como no caso dos gráficos, o \( \textbf{R} \) possui dezenas de pacotes para leitura e escrita de dados &ndash; uns focam em rapidez, outros na praticidade e outros no tamanho dos dados a serem lidos;</li>
+<li class="fragment">assim como no caso dos gráficos, o <strong>R</strong> possui dezenas de pacotes para leitura e escrita de dados &ndash; uns focam em rapidez, outros na praticidade e outros no tamanho dos dados a serem lidos;</li>
 </ul>
 
 </div>
@@ -854,10 +844,10 @@ Análise de Dados em R (FNDE) - Módulo 1
 <br /></p>
 
 <ul>
-<li class="fragment">Na maioria das vezes que fizermos uma leitura de dados no \( \textbf{R} \), ele tentará carregá-los como um dataframe;
+<li class="fragment">Na maioria das vezes que fizermos uma leitura de dados no <strong>R</strong>, ele tentará carregá-los como um dataframe;
 <br />
 <br /></li>
-<li class="fragment">Lembre-se de que você sempre poderá confirmar o tipo de objeto resultante da leitura com as funções \( \textbf{str()} \) ou \( \textbf{class()} \).</li>
+<li class="fragment">Lembre-se de que você sempre poderá confirmar o tipo de objeto resultante da leitura com as funções <strong>str()</strong> ou <strong>class()</strong>.</li>
 </ul>
 
 </div>
@@ -931,7 +921,7 @@ Análise de Dados em R (FNDE) - Módulo 1
 <div class="slideContent" >
 <ul>
 <li class="fragment"><p>Note que a função scan() lerá seus dados como um único vetor (Verifique com str(out)) ! Cabe a você separá-los da forma correta.</p></li>
-<li class="fragment"><p class="fragment">Se quiser transformá-los em um data.frame, jogue primeiro para uma matriz (usando o parâmetro byrow=TRUE) e depois force-os como dataframe, utilizando \( \textbf{as.data.frame()} \):</p></li>
+<li class="fragment"><p class="fragment">Se quiser transformá-los em um data.frame, jogue primeiro para uma matriz (usando o parâmetro byrow=TRUE) e depois force-os como dataframe, utilizando <strong>as.data.frame()</strong>:</p></li>
 </ul>
 
 <pre class="fragment"><code class="r">out_df &lt;- as.data.frame(matrix(out, ncol=4, byrow=TRUE))
@@ -953,7 +943,7 @@ Análise de Dados em R (FNDE) - Módulo 1
 <li class="fragment">No entanto, pode ser bastante útil quando desejamos ler todas as informações de um arquivo (.txt por exemplo) para trabalhar posteriormente com expressões regulares;
 <br />
 <br /></li>
-<li class="fragment">Verifique mais sobre esta função depois com \( \textbf{help(readLines)} \).</li>
+<li class="fragment">Verifique mais sobre esta função depois com <strong>help(readLines)</strong>.</li>
 </ul>
 
 </div>
@@ -966,10 +956,10 @@ Análise de Dados em R (FNDE) - Módulo 1
 <br /></p>
 
 <ul>
-<li class="fragment">As funções da família read.table() são as que você mais irá utilizar (inicialmente) para leitura de dados externos ao \( \textbf{R} \);
+<li class="fragment">As funções da família read.table() são as que você mais irá utilizar (inicialmente) para leitura de dados externos ao <strong>R</strong>;
 <br />
 <br /></li>
-<li class="fragment">\( \textbf{read.table()} \) é uma função genérica com a qual você poderá ler principalmente arquivos \( \textbf{.txt} \) e \( \textbf{.csv} \);
+<li class="fragment"><strong>read.table()</strong> é uma função genérica com a qual você poderá ler principalmente arquivos <strong>.txt</strong> e <strong>.csv</strong>;
 <br />
 <br /></li>
 <li class="fragment">Verifique o help() de read.table()!
@@ -984,14 +974,14 @@ Análise de Dados em R (FNDE) - Módulo 1
 
 
 <ul>
-<li class="fragment"><p class="fragment">Há vários parâmetros que podem ser passados a ela, mas \( \textbf{5} \) são extremamente importantes de serem observados:</p>
+<li class="fragment"><p class="fragment">Há vários parâmetros que podem ser passados a ela, mas <strong>5</strong> são extremamente importantes de serem observados:</p>
 
 <ul>
 <li class="fragment">1. localização do arquivo; </li>
 <li class="fragment">2. existência ou não de cabeçalho nos dados; </li>
 <li class="fragment">3. forma de separação das colunas;</li>
 <li class="fragment">4. forma de especificação da casa decimal nos dados;</li>
-<li class="fragment">5. \( \textit{stringsAsFactors} \).</li>
+<li class="fragment">5. <em>stringsAsFactors</em>.</li>
 </ul></li>
 </ul>
 
@@ -1002,7 +992,7 @@ Análise de Dados em R (FNDE) - Módulo 1
 <h3>Funções da família read.table() (2)</h3>
 <div class="column column1 slideContent small-code" >
 <ul>
-<li class="fragment">1. Localização do arquivo - parâmetro \( \textbf{file} \):</li>
+<li class="fragment">1. Localização do arquivo - parâmetro <strong>file</strong>:</li>
 </ul>
 
 <pre class="fragment"><code class="r">#informar a localização correta do arquivo em seu computador;
@@ -1011,7 +1001,7 @@ df &lt;- read.table(  file=&quot;C:\\caminho\\até\\meu\\arquivo\\meu_arquivo.tx
 </code></pre>
 
 <ul>
-<li class="fragment">2. Os dados possuem cabeçalho? - parâmetro \( \textbf{header} \):
+<li class="fragment">2. Os dados possuem cabeçalho? - parâmetro <strong>header</strong>:
 
 <ul>
 <li class="fragment">caso POSITIVO:</li>
@@ -1035,7 +1025,7 @@ df &lt;- read.table(  file=&quot;C:\\caminho\\até\\meu\\arquivo\\meu_arquivo.tx
 
 
 <ul>
-<li class="fragment">3. Como estão separadas as colunas? - parâmetro \( \textbf{sep} \):
+<li class="fragment">3. Como estão separadas as colunas? - parâmetro <strong>sep</strong>:
 
 <ul>
 <li class="fragment">por vírgula:</li>
@@ -1073,7 +1063,7 @@ df &lt;- read.table(  file=&quot;C:\\caminho\\até\\meu\\arquivo\\meu_arquivo.tx
 <h3>Funções da família read.table() (3)</h3>
 <div class="column column1 slideContent small-code" >
 <ul>
-<li class="fragment">4. Qual a especificação decimal para seus dados numéricos? parâmetro \( \textbf{dec} \):
+<li class="fragment">4. Qual a especificação decimal para seus dados numéricos? parâmetro <strong>dec</strong>:
 
 <ul>
 <li class="fragment">caso seja &ldquo;,&rdquo; (padrão brasileiro):</li>
@@ -1101,7 +1091,7 @@ df &lt;- read.table(  file=&quot;C:\\caminho\\até\\meu\\arquivo\\meu_arquivo.tx
 
 
 <ul>
-<li class="fragment">5. parâmetro \( \textbf{stringsAsFactors} \):
+<li class="fragment">5. parâmetro <strong>stringsAsFactors</strong>:
 
 <ul>
 <li class="fragment">O parâmetro stringsAsFActors indica como você quer ler as colunas de strings: como variáveis qualitativas categóricas/ fatores; ou como caracteres apenas.</li>
@@ -1113,7 +1103,7 @@ df &lt;- read.table(  file=&quot;C:\\caminho\\até\\meu\\arquivo\\meu_arquivo.tx
 </code></pre>
 
 <ul>
-<li class="fragment">Caso haja alguma coluna nos seus dados que deva ser tratada como variável qualitativa categórica, você poderá modificá-la postriormente com \( \textbf{as.factor(nome_da_variavel)} \).</li>
+<li class="fragment">Caso haja alguma coluna nos seus dados que deva ser tratada como variável qualitativa categórica, você poderá modificá-la postriormente com <strong>as.factor(nome_da_variavel)</strong>.</li>
 </ul>
 
 </div>
@@ -1127,10 +1117,10 @@ df &lt;- read.table(  file=&quot;C:\\caminho\\até\\meu\\arquivo\\meu_arquivo.tx
 corretamente os parâmetros;
 <br />
 <br /></li>
-<li class="fragment">Você pode por exemplo ter um arquivo \( \textit{.dat} \) que consegue abrir no bloco de notas para identificar como deve passar os parâmetros no \( \textbf{R} \);
+<li class="fragment">Você pode por exemplo ter um arquivo <em>.dat</em> que consegue abrir no bloco de notas para identificar como deve passar os parâmetros no <strong>R</strong>;
 <br />
 <br /></li>
-<li class="fragment"><p>Como na maioria das vezes, estamos lidando com arquivos do tipo .txt ou .csv separados por TAB, vírgula ou ponto e vírgula, o \( \textbf{R} \) já traz quatro funções específicas para não perdermos tempo com a especificação dos parâmetros:</p>
+<li class="fragment"><p>Como na maioria das vezes, estamos lidando com arquivos do tipo .txt ou .csv separados por TAB, vírgula ou ponto e vírgula, o <strong>R</strong> já traz quatro funções específicas para não perdermos tempo com a especificação dos parâmetros:</p>
 
 <ul>
 <li class="fragment">read.csv() - (separador vírgula, decimal com ponto)</li>
@@ -1191,7 +1181,7 @@ repasse.df &lt;- read.csv2(file=repasse.loc, stringsAsFactors=FALSE)
 <h3>Escrita de dados</h3>
 <div class="slideContent small-code" >
 <ul>
-<li class="fragment">A escrita de dados no R, segue a  mesma lógica da leitura: há uma família de funções do tipo \( \textbf{write.table()} \), com parâmetros parecidos com a read.table.
+<li class="fragment">A escrita de dados no R, segue a  mesma lógica da leitura: há uma família de funções do tipo <strong>write.table()</strong>, com parâmetros parecidos com a read.table.
 <br />
 <br /></li>
 <li class="fragment">Também há suas derivadas&hellip; write.csv, write.csv2, write.delim, etc;

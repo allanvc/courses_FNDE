@@ -839,7 +839,7 @@ Análise de Dados em R (FNDE) - Módulo 2
 <li class="fragment"><p>** DD/MM/YYYY estar em número ou string não é a mesma coisa que estar no formato de data !!**</p></li>
 <li class="fragment"><p class="fragment">o <strong>R</strong> possui uma classe específica para indicar datas</p></li>
 <li class="fragment"><p class="fragment">Dito isso, &hellip;</p></li>
-<li class="fragment"><p class="fragment">Algumas funções interessantes são: <em>ymd(), ymd_hms, dmy(), dmy_hms, mdy()</em>, etc. <code>??lubridate</code>. </p></li>
+<li class="fragment"><p class="fragment">Algumas funções interessantes são: <strong>ymd(), ymd_hms, dmy(), dmy_hms, mdy()</strong>, etc. <code>??lubridate</code>. </p></li>
 </ul>
 
 <pre class="fragment"><code class="r">library(lubridate)
@@ -895,7 +895,7 @@ leave
 <section data-transition="linear" data-transition-speed="default">
 <h3>Extração de partes de data e tempo (1)</h3>
 <div class="slideContent small-code" >
-<p><em>year(), month(), mday(), hour(), minute() and second():</em></p>
+<p><strong>year(), month(), mday(), hour(), minute() and second():</strong></p>
 
 <pre class="fragment"><code class="r">bday &lt;- dmy(&quot;02/01/1984&quot;)
 month(bday)
@@ -941,13 +941,13 @@ Levels: Sun &lt; Mon &lt; Tue &lt; Wed &lt; Thu &lt; Fri &lt; Sat
 <pre class="fragment"><code class="r">now()
 </code></pre>
 
-<pre class="fragment"><code>[1] &quot;2018-07-31 16:37:02 -03&quot;
+<pre class="fragment"><code>[1] &quot;2018-12-09 03:29:15 -02&quot;
 </code></pre>
 
 <pre class="fragment"><code class="r">today()
 </code></pre>
 
-<pre class="fragment"><code>[1] &quot;2018-07-31&quot;
+<pre class="fragment"><code>[1] &quot;2018-12-09&quot;
 </code></pre>
 
 <pre class="fragment"><code class="r">second(arrive)
@@ -1002,7 +1002,7 @@ force_tz(time, &quot;America/Chicago&quot;)
 <h3>Intervalos de tempo (1)</h3>
 <div class="slideContent small-code" >
 <ul>
-<li class="fragment">Você pode salvar intervalos de tempo em <strong>lubridate</strong> como uma classe <em>Interval</em>;</li>
+<li class="fragment">Você pode salvar intervalos de tempo em <strong>lubridate</strong> como uma classe <strong>Interval</strong>;</li>
 <li class="fragment">Isso nos permite as criar as seguintes operações:</li>
 </ul>
 
@@ -1028,7 +1028,7 @@ auckland
 <section data-transition="linear" data-transition-speed="default">
 <h3>Intervalos de tempo (2)</h3>
 <div class="slideContent small-code" >
-<p>E podemos verificar por exemplo se esse intervalo faz <em>overlap</em> (sobrepõe) com algum outro intervalo que já temos.</p>
+<p>E podemos verificar por exemplo se esse intervalo faz <strong>overlap</strong> (sobrepõe) com algum outro intervalo que já temos.</p>
 
 <pre class="fragment"><code class="r">jsm &lt;- interval(ymd(20110720, tz = &quot;Pacific/Auckland&quot;), ymd(20110831, tz = &quot;Pacific/Auckland&quot;))
 jsm
@@ -1051,7 +1051,7 @@ setdiff(auckland, jsm)
 <pre class="fragment"><code>[1] 2011-06-04 12:00:00 NZST--2011-07-20 NZST
 </code></pre>
 
-<p class="fragment">Outras funções que lidam com intervalos são: <code>int_start, int_end, int_flip, int_shift, int_aligns, union, intersect, setdiff, and %within%</code>.</p>
+<p class="fragment">Outras funções que lidam com intervalos são: <strong>int_start, int_end, int_flip, int_shift, int_aligns, union, intersect, setdiff e %within%</strong>.</p>
 
 </div>
 
@@ -1061,7 +1061,7 @@ setdiff(auckland, jsm)
 <div class="slideContent small-code" >
 <ul>
 <li class="fragment">Intervalos são um tipo específico de espaço de tempo;</li>
-<li class="fragment">Além deles, <strong>lubridate</strong> disponibiliza outras duas classes genéricas para trabalharmos com espaços de tempo: <em>Durations</em> e <em>Periods</em>. </li>
+<li class="fragment">Além deles, <strong>lubridate</strong> disponibiliza outras duas classes genéricas para trabalharmos com espaços de tempo: <strong>Durations</strong> e <strong>Periods</strong>. </li>
 </ul>
 
 <pre class="fragment"><code class="r">minutes(2) ## period
@@ -1084,8 +1084,8 @@ setdiff(auckland, jsm)
 <div class="slideContent small-code" >
 <ul>
 <li class="fragment"><p>Por que 2 classes? </p></li>
-<li class="fragment"><p class="fragment"><em>Durations</em> vão sempre gerar resultados precisos em termos de <strong>tempo</strong>, considerando, por exemplo, se o ano é bissexto ou não;</p></li>
-<li class="fragment"><p class="fragment"><em>Periods</em>, por sua vez, vão se basear na <em>number line</em>, desconsiderando detalhes como anos bissextos etc. </p></li>
+<li class="fragment"><p class="fragment"><strong>Durations</strong> vão sempre gerar resultados precisos em termos de <strong>tempo</strong>, considerando, por exemplo, se o ano é bissexto ou não;</p></li>
+<li class="fragment"><p class="fragment"><strong>Periods</strong>, por sua vez, vão se basear na <em>number line</em>, desconsiderando detalhes como anos bissextos etc. </p></li>
 <li class="fragment"><p class="fragment">Ambas as classes serão úteis para fazermos <strong>operações aritméticas</strong> com datas, dependendo do nosso objetivo.</p></li>
 </ul>
 
@@ -1122,7 +1122,7 @@ ymd(20120101) + years(1)
 </code></pre>
 
 <ul>
-<li class="fragment"><em>Durations</em> foi &ldquo;honesta&rdquo; na presença do ano bissexto, o que resulta em um dia a menos na soma, devido ao dia a mais em fevereiro.</li>
+<li class="fragment"><strong>Durations</strong> foi &ldquo;honesta&rdquo; na presença do ano bissexto, o que resulta em um dia a menos na soma, devido ao dia a mais em fevereiro.</li>
 </ul>
 
 </div>

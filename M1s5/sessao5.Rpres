@@ -37,174 +37,128 @@ incremental: true
 - há dezenas (talvez centenas) de pacotes gráficos para produzir gráficos melhores no R como vimos na aula 1 - a internet é o melhor local para conhecê-los;
 <br />
 <br />
-- uma das funções mais importantes é a $\textbf{plot()}$ do pacote base. Mostraremos outras, mas normalmente os parâmetros a serem controlados/modificados são os mesmos!!
+- uma das funções mais importantes é a **plot()** do pacote base. Mostraremos outras, mas normalmente os parâmetros a serem controlados/modificados são os mesmos!!
 
 Scatter plot/ gráfico de dispersão/ gráfico X-Y (1)
 ========================================================
 incremental: false
 class: small-code
 
-
-```r
+```{r}
 # criando dois vetores numéricos
 x <- sample(seq(1,1.98, by=0.02))
 y <- sample(seq(2,2.98, by=0.02))
 ```
 
 
-
-```r
+```{r, fig.width=4, fig.height=4, fig.show='hold', fig.align='center'}
 # plot simples
 plot(x,y)
 ```
 
-<img src="aula4-figure/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
-
 ***
 
-
-```r
+```{r, fig.width=4, fig.height=4, fig.show='hold', fig.align='center'}
 # adicionando titulo
 plot(x,y, main="Título")
 ```
 
-<img src="aula4-figure/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
-
-
-```r
+```{r, fig.width=4, fig.height=4, fig.show='hold', fig.align='center'}
 # adicionando subtitulo
 plot(x,y, main="Título \n Subtítulo")
 ```
-
-<img src="aula4-figure/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
 
 Scatter plot/ gráfico de dispersão/ gráfico X-Y (2)
 ========================================================
 incremental: false
 class: small-code
 
-
-```r
+```{r, fig.width=4, fig.height=4, fig.show='hold', fig.align='center'}
 # adicionando Fonte ou subescrito
 plot(x,y, main="Título \n Subtítulo", sub="Fonte: EU")
 ```
 
-<img src="aula4-figure/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
 
-
-
-```r
+```{r, fig.width=4, fig.height=4, fig.show='hold', fig.align='center'}
 # mudando os labels dos eixos
 plot(x,y, main="Título \n Subtítulo", sub="Fonte: EU", xlab = "eixo x",
      ylab = "eixo y")
 ```
 
-<img src="aula4-figure/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
-
 ***
 
-
-```r
+```{r, fig.width=4, fig.height=4, fig.show='hold', fig.align='center'}
 # modificando a cor dos pontos
 plot(x,y, main="Título \n Subtítulo", sub="Fonte: EU", xlab = "eixo x",
      ylab = "eixo y", col="red")
 ```
 
-<img src="aula4-figure/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
-
-
-```r
+```{r, fig.width=4, fig.height=4, fig.show='hold', fig.align='center'}
 # aumentando o tamanho do ponto ("character or symbol expansion" - cex)
 plot(x,y, main="Título \n Subtítulo", sub="Fonte: EU", xlab = "eixo x",
      ylab = "eixo y", col="red", cex= 2)
 ```
-
-<img src="aula4-figure/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
 
 Scatter plot/ gráfico de dispersão/ gráfico X-Y (3)
 ========================================================
 incremental: false
 class: small-code
 
-
-```r
+```{r, fig.width=4, fig.height=4, fig.show='hold', fig.align='center'}
 # modificando o tipo de ponto
 # pch = plotting character
 plot(x,y, main="Título \n Subtítulo", sub="Fonte: EU", xlab = "eixo x",
      ylab = "eixo y", col="red", cex= 2, pch='|')
 ```
 
-<img src="aula4-figure/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
 
-
-
-```r
+```{r, fig.width=4, fig.height=4, fig.show='hold', fig.align='center'}
 plot(x,y, main="Título \n Subtítulo", sub="Fonte: EU", xlab = "eixo x",
      ylab = "eixo y", col="red", cex= 2, pch='.')
 ```
 
-<img src="aula4-figure/unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" style="display: block; margin: auto;" />
-
 ***
 
-
-```r
+```{r, fig.width=4, fig.height=4, fig.show='hold', fig.align='center'}
 plot(x,y, main="Título \n Subtítulo", sub="Fonte: EU", xlab = "eixo x",
      ylab = "eixo y", col="red", cex= 2, pch='p')
 ```
 
-<img src="aula4-figure/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" />
-
-
-```r
+```{r, fig.width=4, fig.height=4, fig.show='hold', fig.align='center'}
 plot(x,y, main="Título", sub="Fonte: EU", xlab = "eixo x", ylab = "eixo y",
      col="red", cex= 2, pch='a')
 ```
-
-<img src="aula4-figure/unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" style="display: block; margin: auto;" />
 
 Scatter plot/ gráfico de dispersão/ gráfico X-Y (4)
 ========================================================
 incremental: false
 class: small-code
 
-
-```r
+```{r, fig.width=4, fig.height=4, fig.show='hold', fig.align='center'}
 # ainda modificando o tipo de ponto
 plot(x,y, main="Título \n Subtítulo", sub="Fonte: EU", xlab = "eixo x",
      ylab = "eixo y", col="red", cex= 2, pch='5')
 ```
 
-<img src="aula4-figure/unnamed-chunk-13-1.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" style="display: block; margin: auto;" />
 
-
-
-```r
+```{r, fig.width=4, fig.height=4, fig.show='hold', fig.align='center'}
 # usando pch numerico - para outros símbolos
 plot(x,y, main="Título \n Subtítulo", sub="Fonte: EU", xlab = "eixo x",
      ylab = "eixo y", col="red", cex= 2, pch=2)
 ```
 
-<img src="aula4-figure/unnamed-chunk-14-1.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" style="display: block; margin: auto;" />
-
 ***
 
-
-```r
+```{r, fig.width=4, fig.height=4, fig.show='hold', fig.align='center'}
 plot(x,y, main="Título \n Subtítulo", sub="Fonte: EU", xlab = "eixo x",
      ylab = "eixo y", col="red", cex= 2, pch=3)
 ```
 
-<img src="aula4-figure/unnamed-chunk-15-1.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" style="display: block; margin: auto;" />
-
-
-```r
+```{r, fig.width=4, fig.height=4, fig.show='hold', fig.align='center'}
 # para preencher os círculos: pch=16
 plot(x,y, main="Título \n Subtítulo", sub="Fonte: EU", xlab = "eixo x",
      ylab = "eixo y", col="red", cex= 2, pch=16)
 ```
-
-<img src="aula4-figure/unnamed-chunk-16-1.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" style="display: block; margin: auto;" />
 
 
 Scatter plot/ gráfico de dispersão/ gráfico X-Y (5)
@@ -212,35 +166,28 @@ Scatter plot/ gráfico de dispersão/ gráfico X-Y (5)
 incremental: false
 class: small-code
 
-
-```r
+```{r, fig.width=4, fig.height=4, fig.show='hold', fig.align='center'}
 # diferenciando ptos de acordo com um grupo existente
 # criando fator -- vetor com variável categórica
 banco <- factor(rep(c("CEF","BB"), each=25))
 ```
 
-
-```r
+```{r, fig.width=4, fig.height=4, fig.show='hold', fig.align='center'}
 # ajustamos o parametro col para apontar para o vetor tipo_estudante
 plot(x,y, main="Título \n Subtítulo", sub="Fonte: EU", xlab = "eixo x",
      ylab = "eixo y",
      col=banco, cex= 2, pch=16)
 ```
 
-<img src="aula4-figure/unnamed-chunk-18-1.png" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" style="display: block; margin: auto;" />
-
 ***
 
-
-```r
+```{r, fig.width=4, fig.height=4, fig.show='hold', fig.align='center'}
 # vamos especificar as cores de caixa - azul e banco do brasil - amarelo
 plot(x,y, main="Título \n Subtítulo", sub="Fonte: EU", xlab = "eixo x",
      ylab = "eixo y",
      col=c("blue","yellow")[banco], cex= 2, pch=16)
 # o R atribui automaticamente as cores para cada fator !!
 ```
-
-<img src="aula4-figure/unnamed-chunk-19-1.png" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" style="display: block; margin: auto;" />
 
 <!-- - É necessário que "banco" seja um fator, para que sejam atribuídos códigos numéricos a cada string e para que, portanto, este fator possa ser usado como índice de cores . Esse fator é automaticamente ordenado (em ordem alfabética no caso). Por isso, no global environment veremos 222222222....11111 , porque "BB" vem antes de CEF na ordem alfabética -->
 
@@ -249,8 +196,7 @@ Scatter plot/ gráfico de dispersão/ gráfico X-Y (6)
 incremental: false
 class: small-code
 
-
-```r
+```{r, fig.width=4, fig.height=4, fig.show='hold', fig.align='center'}
 # podemos ainda acrescentar uma legenda ao gráfico com a função legend()
 plot(x,y, main="Título \n Subtítulo", sub="Fonte: EU", xlab = "eixo x",
      ylab = "eixo y",
@@ -259,12 +205,9 @@ legend(x="topright", legend = levels(banco), col=c("blue","yellow"),
        pch=16)
 ```
 
-<img src="aula4-figure/unnamed-chunk-20-1.png" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" style="display: block; margin: auto;" />
-
 ***
 
-
-```r
+```{r, fig.width=4, fig.height=4, fig.show='hold', fig.align='center'}
 # adicionando linha ao gráfico de dispersão - média da variável y
 plot(x,y, main="Título \n Subtítulo", sub="Fonte: EU", xlab = "eixo x",
      ylab = "eixo y",
@@ -273,15 +216,12 @@ abline(h = mean(y)) # h de horizontal
 abline(v = mean(x)) # v de vertical
 ```
 
-<img src="aula4-figure/unnamed-chunk-21-1.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" style="display: block; margin: auto;" />
-
 Scatter plot/ gráfico de dispersão/ gráfico X-Y (7)
 ========================================================
 incremental: false
 class: small-code
 
-
-```r
+```{r, fig.width=8, fig.height=8, fig.show='hold', fig.align='center'}
 plot(x,y, main="Título \n Subtítulo", sub="Fonte: EU", xlab = "eixo x",
      ylab = "eixo y",
      col=c("blue","yellow")[banco], cex= 2, pch=16)
@@ -290,33 +230,25 @@ plot(x,y, main="Título \n Subtítulo", sub="Fonte: EU", xlab = "eixo x",
 points(c(1.2, 1.4, 1.8), c(2.2, 2.1, 2.8), col="red", cex=2)
 ```
 
-<img src="aula4-figure/unnamed-chunk-22-1.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" style="display: block; margin: auto;" />
-
 
 Gráficos de linhas (1)
 ========================================================
 incremental: false
 class: small-code
 
-
-```r
+```{r, fig.width=4, fig.height=4, fig.show='hold', fig.align='center'}
 ## gráficos de linhas
 # note que agora só indicamos um vetor de cada vez para a função plot()!!
 plot(x, main="Título \n Subtítulo", sub="Fonte: EU", xlab = "eixo x",
      ylab = "eixo y", col="red",type="l")
 ```
 
-<img src="aula4-figure/unnamed-chunk-23-1.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" style="display: block; margin: auto;" />
-
 ***
 
-
-```r
+```{r, fig.width=5, fig.height=5, fig.show='hold', fig.align='center'}
 plot(y, main="Título \n Subtítulo", sub="Fonte: EU", xlab = "eixo x",
      ylab = "eixo y", col="blue", type="l")
 ```
-
-<img src="aula4-figure/unnamed-chunk-24-1.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" style="display: block; margin: auto;" />
 
 
 Gráficos de linhas (2)
@@ -324,8 +256,7 @@ Gráficos de linhas (2)
 incremental: false
 class: small-code
 
-
-```r
+```{r, fig.width=8, fig.height=8, fig.show='hold', fig.align='center'}
 # colocando mais de uma linha no mesmo gráfico
 # antes é necessário criar o grid do gráfico com um range adequado
 yrange<-range(c(x,y))
@@ -335,29 +266,21 @@ lines(y,type="l",col=3)
 #...das linhas também!!
 ```
 
-<img src="aula4-figure/unnamed-chunk-25-1.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" style="display: block; margin: auto;" />
-
 Gráficos de Barras (1)
 ========================================================
 incremental: false
 class: small-code
 
-
-```r
+```{r, fig.width=4, fig.height=4, fig.show='hold', fig.align='center'}
 ## gráficos de barras - simples
 barplot(x)
 ```
 
-<img src="aula4-figure/unnamed-chunk-26-1.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" style="display: block; margin: auto;" />
-
 ***
 
-
-```r
+```{r, fig.width=4, fig.height=4, fig.show='hold', fig.align='center'}
 barplot(y)
 ```
-
-<img src="aula4-figure/unnamed-chunk-27-1.png" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" style="display: block; margin: auto;" />
 
 
 Gráficos de Barras (2)
@@ -365,16 +288,14 @@ Gráficos de Barras (2)
 incremental: false
 class: small-code
 
-
-```r
+```{r}
 # simulando dados
 anos <- rep( rep(c("2016","2017"), times=c(17,8)), 2 )
 banco <- rep(c("BB", "CEF"), c(36, 14))
 df2 <- data.frame(x, y, banco, anos)
 ```
 
-
-```r
+```{r, fig.width=7, fig.height=7, fig.show='hold', fig.align='center'}
 # barras EMPILHADAS
 freq <- table(df2$banco, df2$anos) # tabela de frequências
 # ... mas poderiam ser médias, somas, etc...
@@ -383,29 +304,21 @@ barplot(freq, main="Distribuição de alunos por ano e banco",
         legend = rownames(freq)) 
 ```
 
-<img src="aula4-figure/unnamed-chunk-29-1.png" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" style="display: block; margin: auto;" />
-
 ***
 
-
-```r
+```{r, fig.width=5, fig.height=4, fig.show='hold', fig.align='center'}
 # barras JUSTAPOSTAS NA VERTICAL
 barplot(freq, main="Distribuição de alunos por ano e banco",
         xlab="Anos", col=c("darkblue","orange"),
         legend = rownames(freq), beside = TRUE) 
 ```
 
-<img src="aula4-figure/unnamed-chunk-30-1.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" style="display: block; margin: auto;" />
-
-
-```r
+```{r, fig.width=4, fig.height=4, fig.show='hold', fig.align='center'}
 # barras JUSTAPOSTAS NA HORIZONAL E SEM BOX
 barplot(freq, main="Distribuição de alunos por ano e banco",
         xlab="Anos", col=c("darkblue","orange"),
         legend = rownames(freq), beside = TRUE, horiz = TRUE) 
 ```
-
-<img src="aula4-figure/unnamed-chunk-31-1.png" title="plot of chunk unnamed-chunk-31" alt="plot of chunk unnamed-chunk-31" style="display: block; margin: auto;" />
 
 
 Gráfico de Pizza
@@ -415,28 +328,19 @@ class: small-code
 
 - Basta passar um vetor de frequências:
 
-
-```r
+```{r, fig.width=7, fig.height=4, fig.show='hold', fig.align='center'}
 pie(c(1,5,7,10))
 ```
 
-<img src="aula4-figure/unnamed-chunk-32-1.png" title="plot of chunk unnamed-chunk-32" alt="plot of chunk unnamed-chunk-32" style="display: block; margin: auto;" />
-
-
-```r
+```{r, fig.width=7, fig.height=4, fig.show='hold', fig.align='center'}
 pie(table(df2$banco), col = c("darkblue", "orange"))
 ```
 
-<img src="aula4-figure/unnamed-chunk-33-1.png" title="plot of chunk unnamed-chunk-33" alt="plot of chunk unnamed-chunk-33" style="display: block; margin: auto;" />
-
 ***
 
-
-```r
+```{r, fig.width=7, fig.height=4, fig.show='hold', fig.align='center'}
 pie(table(df2$anos), col = c("darkblue", "red"))
 ```
-
-<img src="aula4-figure/unnamed-chunk-34-1.png" title="plot of chunk unnamed-chunk-34" alt="plot of chunk unnamed-chunk-34" style="display: block; margin: auto;" />
 
 
 FIM

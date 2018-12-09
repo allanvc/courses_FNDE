@@ -860,13 +860,13 @@ Podemos definir o <strong>Tidyverse</strong>, então, como um <em>meta-package</
 <h3>Manipulação de strings (1)</h3>
 <div class="slideContent small-code" >
 <ul>
-<li class="fragment"><p>Existem quatro famílias principais de funções no pacote <em>stringr</em>:</p>
+<li class="fragment"><p>Existem quatro famílias principais de funções no pacote <strong>stringr</strong>:</p>
 
 <ul>
 <li class="fragment">1. manipulação de caracteres: essas funções nos permite manipular caarcteres individuais dentro de strings e dentro de vetores;</li>
 <li class="fragment">2. ferramentas para lidar com espaços em branco, com as quais poderemos adicionar, remover e manipular espaços em branco;</li>
-<li class="fragment">3. operações sensíveis ao local do usuário (<em>locale sensitive</em>) - essas operações variam dependendo do local considerando o alfabeto utilizado em cada país;</li>
-<li class="fragment">4. funções de <em>pattern matching</em>. Essas funções reconhecem 4 &ldquo;Motores&rdquo; de descrição de padrões. A mais comum são expressões regulares, a qual usaremos neste curso.</li>
+<li class="fragment">3. operações sensíveis ao local do usuário (<strong>locale sensitive</strong>) - essas operações variam dependendo do local considerando o alfabeto utilizado em cada país;</li>
+<li class="fragment">4. funções de <strong>pattern matching</strong>. Essas funções reconhecem 4 &ldquo;Motores&rdquo; de descrição de padrões. A mais comum são expressões regulares, a qual usaremos neste curso.</li>
 </ul></li>
 </ul>
 
@@ -881,7 +881,7 @@ library(stringr)
 </code></pre>
 
 <ul>
-<li class="fragment">Para obter o tamanho de uma string use <em>string_length()</em>:</li>
+<li class="fragment">Para obter o tamanho de uma string use <strong>string_length()</strong>:</li>
 </ul>
 
 <pre class="fragment"><code class="r">str_length(&quot;abc&quot;)
@@ -891,7 +891,7 @@ library(stringr)
 </code></pre>
 
 <ul>
-<li class="fragment">Para acessar caracteres individuais (posições) ou partes de uma string, podemos usar <em>sub_str()</em>;</li>
+<li class="fragment">Para acessar caracteres individuais (posições) ou partes de uma string, podemos usar <strong>sub_str()</strong>;</li>
 <li class="fragment">Esta função recebe como argumentos um vetor de caracteres, uma posição de início e uma posição final; </li>
 <li class="fragment">Ambas a posições podem receber um número inteiro positivo ou um inteiro negativo. </li>
 </ul>
@@ -921,7 +921,7 @@ str_sub(x, 2, -2)
 <ul>
 <li class="fragment">posição com inteiro positivo: a contagem de posições é feita da esquerda para a direita (do início da string) até a posição desejada; </li>
 <li class="fragment">posição com inteiro negativo: a contagem é feita da direita para esquerda (do final da string) até a posição;</li>
-<li class="fragment">Cuidado: caso as posições passadas ultrapassem os limites da <em>string</em>, o resultado é truncado sem retornar qualquer <em>warning</em>.</li>
+<li class="fragment">Cuidado: caso as posições passadas ultrapassem os limites da <strong>string</strong>, o resultado é truncado sem retornar qualquer <strong>warning</strong>.</li>
 </ul>
 
 </div>
@@ -930,7 +930,7 @@ str_sub(x, 2, -2)
 <section data-transition="linear" data-transition-speed="default">
 <h3>Obtendo e modificando caracteres individuais (2)</h3>
 <div class="slideContent small-code" >
-<p><em>str_sub()</em> também pode ser usada para modificar <em>strings</em>:</p>
+<p><strong>str_sub()</strong> também pode ser usada para modificar <strong>strings</strong>:</p>
 
 <pre class="fragment"><code class="r">str_sub(x, 3, 3) &lt;- &quot;X&quot;
 x
@@ -939,7 +939,7 @@ x
 <pre class="fragment"><code>[1] &quot;abXdef&quot; &quot;ghXfjk&quot;
 </code></pre>
 
-<p class="fragment">Para duplicar strings individuais, use <em>str_dup()</em>:</p>
+<p class="fragment">Para duplicar strings individuais, use <strong>str_dup()</strong>:</p>
 
 <pre class="fragment"><code class="r">str_dup(x, c(2, 3))
 </code></pre>
@@ -958,9 +958,9 @@ x
 <p class="fragment">I)</p>
 
 <ul>
-<li class="fragment"><em>str_pad()</em> preenche uma string com espaços em branco até uma largura fixa;</li>
+<li class="fragment"><strong>str_pad()</strong> preenche uma string com espaços em branco até uma largura fixa;</li>
 <li class="fragment">Os espaços em branco podem ser adicionados à esquerda, direita ou em ambos os lados;</li>
-<li class="fragment">Esse tipo de função é bastante útil para gerar arquivos do tipo <em>fwf</em>, ou seja com larguras/tamanhos fixos para as colunas.</li>
+<li class="fragment">Esse tipo de função é bastante útil para gerar arquivos do tipo <strong>fwf</strong>, ou seja com larguras/tamanhos fixos para as colunas.</li>
 </ul>
 
 <pre class="fragment"><code class="r">x &lt;- c(&quot;abc&quot;, &quot;defghi&quot;)
@@ -999,7 +999,7 @@ str_pad(x, 10)
 </code></pre>
 
 <ul>
-<li class="fragment"><code>str_pad()</code> nunca encurtará uma <em>string</em>:</li>
+<li class="fragment"><strong>str_pad()</strong> nunca encurtará uma <em>string</em>:</li>
 </ul>
 
 <pre class="fragment"><code class="r">str_pad(x, 4)
@@ -1009,7 +1009,7 @@ str_pad(x, 10)
 </code></pre>
 
 <ul>
-<li class="fragment">Observação: Se você quiser assegurar que as <em>strings</em> tem o mesmo tamanho, combine <code>str_pad()</code><code>com</code><code>str_trunc()</code>:</li>
+<li class="fragment">Observação: Se você quiser assegurar que as <em>strings</em> tem o mesmo tamanho, combine <code>str_pad()</code>com <strong>str_trunc()</strong>:</li>
 </ul>
 
 <pre class="fragment"><code class="r">x &lt;- c(&quot;Short&quot;, &quot;This is a long string&quot;)
@@ -1040,7 +1040,7 @@ str_trunc(x, 10)
 <p>II)</p>
 
 <ul>
-<li class="fragment">O oposto de <em>str_pad()</em> é <em>str_trim()</em>, que remove os <em>leadind</em> e <em>trailing</em> <em>spaces</em>:</li>
+<li class="fragment">O oposto de <em>str_pad()</em> é <strong>str_trim()</strong>, que remove os <strong>leadind</strong> e <strong>trailing</strong> <em>spaces</em>:</li>
 </ul>
 
 <pre class="fragment"><code class="r">x &lt;- c(&quot;  a   &quot;, &quot;b   &quot;,  &quot;   c&quot;)
@@ -1065,7 +1065,7 @@ str_trim(x)
 <p>III) </p>
 
 <ul>
-<li class="fragment">Podemos usar <em>str_wrap()</em> para modificar espaços em branco já existentes de forma a &ldquo;envelopar&rdquo; por exemplo um parágrafo de texto para que o comprimento de cada linha seja o mais similar possível. É como se justificássemos o parágrafo.</li>
+<li class="fragment">Podemos usar <strong>str_wrap()</strong> para modificar espaços em branco já existentes de forma a &ldquo;envelopar&rdquo; por exemplo um parágrafo de texto para que o comprimento de cada linha seja o mais similar possível. É como se justificássemos o parágrafo.</li>
 </ul>
 
 <pre class="fragment"><code class="r">jabberwocky &lt;- str_c(
@@ -1095,7 +1095,7 @@ outgrabe.
 <section data-transition="linear" data-transition-speed="default">
 <h3>Locale sensitive (1)</h3>
 <div class="slideContent small-code" >
-<p>Uma boa parte das funções do pacote <strong>stringr</strong> são <em>locale sensitive</em>: elas vão performar de diferente dependendo do país/região em que o usuário se encontra.</p>
+<p>Uma boa parte das funções do pacote <strong>stringr</strong> são <strong>locale sensitive</strong>: elas vão performar de diferente dependendo do país/região em que o usuário se encontra.</p>
 
 <p class="fragment">Veja exemplos de funções que transformam letras de caixa baixa para caixa alta e vice-versa:</p>
 
@@ -1153,7 +1153,7 @@ str_sort(x, locale = &quot;lt&quot;)
 <pre class="fragment"><code>[1] &quot;i&quot; &quot;y&quot; &quot;k&quot;
 </code></pre>
 
-<p class="fragment">Um aspecto importante é que a configuração <em>default</em> de stringr sempre vem com o idioma em inglês para garantir um comportamento idêntico em qualquer sistema ao se utilizar as funções genéricas. Isso é diferente do que normalmente ocorre com R base, onde a opção global <em>locale</em> normalmente varia com a versão regional do sistema operacional e gera bastante confusão quando vamos desenvolver programas.</p>
+<p class="fragment">Um aspecto importante é que a configuração <em>default</em> de stringr sempre vem com o idioma em inglês para garantir um comportamento idêntico em qualquer sistema ao se utilizar as funções genéricas. Isso é diferente do que normalmente ocorre com R base, onde a opção global <strong>locale</strong> normalmente varia com a versão regional do sistema operacional e gera bastante confusão quando vamos desenvolver programas.</p>
 
 <p class="fragment">Para obtermos uma lista das abreviações e regiões disponíveis, é só rodar <code>stringi::stri_locale_list()</code>.</p>
 
@@ -1167,7 +1167,7 @@ str_sort(x, locale = &quot;lt&quot;)
 
 <p class="fragment"><strong>Tasks</strong></p>
 
-<p class="fragment">Cada função de matching possui os mesmos dois primeiros argumentos: um vetor de strings para processar e um padrão para fazer o <em>matching</em>. O pacote <strong>stringr</strong> disponibiliza função de <em>pattern matching</em> para detectar, localizar, extrair, parear, substituir e separar strings.</p>
+<p class="fragment">Cada função de matching possui os mesmos dois primeiros argumentos: um vetor de strings para processar e um padrão para fazer o <em>matching</em>. O pacote <strong>stringr</strong> disponibiliza função de <strong>pattern matching</strong> para detectar, localizar, extrair, parear, substituir e separar strings.</p>
 
 <!-- São as funções **detect**, **locate**, **extract**, **match**, **replace** e **split** -->
 
@@ -1189,8 +1189,8 @@ phone &lt;- &quot;([2-9][0-9]{2})[- .]([0-9]{3})[- .]([0-9]{4})&quot;
 <h3>Pattern Matching (2)</h3>
 <div class="slideContent small-code" >
 <ul>
-<li class="fragment"><code>str_detect()</code> detecta a presença ou ausência de um padrão e retorna um vetor lógico. </li>
-<li class="fragment"><code>str_subset()</code> retorna os elementos de um vetor de caracteres que fazem a correspondência (<em>match</em>) com uma expressão regular.</li>
+<li class="fragment"><strong>str_detect()</strong> detecta a presença ou ausência de um padrão e retorna um vetor lógico. </li>
+<li class="fragment"><strong>str_subset()</strong> retorna os elementos de um vetor de caracteres que fazem a correspondência (<em>match</em>) com uma expressão regular.</li>
 </ul>
 
 <pre class="fragment"><code class="r"># Which strings contain phone numbers?
@@ -1209,7 +1209,7 @@ str_detect(strings, phone)
 </code></pre>
 
 <ul>
-<li class="fragment"><code>str_count()</code> conta o número de correspondências:</li>
+<li class="fragment"><strong>str_count()</strong> conta o número de correspondências:</li>
 </ul>
 
 <pre class="fragment"><code class="r"># How many phone numbers in each string?
@@ -1226,7 +1226,7 @@ str_count(strings, phone)
 <h3>Pattern Matching (3)</h3>
 <div class="slideContent small-code" >
 <ul>
-<li class="fragment"><code>str_locate()</code> localiza a primeira posição do padrão procurado de cada string (elemento) presente no vetor e retorna uma matriz numérica com colunas indicando as posições de começo e fim. <code>str_loacte_all()</code> localiza todas as correspondências, retornando uma lista de matrizes numéricas.</li>
+<li class="fragment"><strong>str_locate()</strong> localiza a primeira posição do padrão procurado de cada string (elemento) presente no vetor e retorna uma matriz numérica com colunas indicando as posições de começo e fim. <strong>str_loacte_all()</strong> localiza todas as correspondências, retornando uma lista de matrizes numéricas.</li>
 </ul>
 
 <pre class="fragment"><code class="r"># Where in the string is the phone number located?
@@ -1265,9 +1265,9 @@ str_count(strings, phone)
 </section>
 <section data-transition="linear" data-transition-speed="default">
 <h3>Pattern Matching (4)</h3>
-<div class="slideContent small-code" >
+<div class="column column1 slideContent small-code" >
 <ul>
-<li class="fragment"><code>str_extract()</code> extrai o texto correspondente a primeira correspondência (<em>match</em>), retornando um vetor de caracteres. <code>str_extract_all()</code> extrai todos os matches e retorna uma lista de vetores de caracteres.</li>
+<li class="fragment"><strong>str_extract()</strong> extrai o texto correspondente a primeira correspondência (<em>match</em>), retornando um vetor de caracteres. </li>
 </ul>
 
 <pre class="fragment"><code class="r"># What are the phone numbers?
@@ -1276,6 +1276,16 @@ str_extract(strings, phone)
 
 <pre class="fragment"><code>[1] NA             &quot;219 733 8965&quot; &quot;329-293-8753&quot; &quot;579-499-7527&quot;
 </code></pre>
+
+
+</div>
+
+<div class="column column2 slideContent small-code" >
+
+
+<ul>
+<li class="fragment"><strong>str_extract_all()</strong> extrai todos os matches e retorna uma lista de vetores de caracteres.</li>
+</ul>
 
 <pre class="fragment"><code class="r">str_extract_all(strings, phone)
 </code></pre>
@@ -1310,7 +1320,7 @@ character(0)
 <h3>Pattern Matching (5)</h3>
 <div class="slideContent small-code" >
 <ul>
-<li class="fragment"><code>str_match()</code> extrai grupos de captura de expressões regulares formados por <code>()</code> apenas para o primeiro <em>match</em>. <code>str_match_all()</code> extrai grupos de captura de todos os <em>macthes</em> e retorna uma lista de matrizes de caracteres.</li>
+<li class="fragment"><strong>str_match()</strong> extrai grupos de captura de expressões regulares formados por <code>()</code> apenas para o primeiro <em>match</em>.</li>
 </ul>
 
 <pre class="fragment"><code class="r"># Pull out the three components of the match
@@ -1323,6 +1333,10 @@ str_match(strings, phone)
 [3,] &quot;329-293-8753&quot; &quot;329&quot; &quot;293&quot; &quot;8753&quot;
 [4,] &quot;579-499-7527&quot; &quot;579&quot; &quot;499&quot; &quot;7527&quot;
 </code></pre>
+
+<ul>
+<li class="fragment"><strong>str_match_all()</strong> extrai grupos de captura de todos os <em>macthes</em> e retorna uma lista de matrizes de caracteres.</li>
+</ul>
 
 <pre class="fragment"><code class="r">str_match_all(strings, phone)
 </code></pre>
@@ -1351,7 +1365,7 @@ str_match(strings, phone)
 <h3>Pattern Matching (6)</h3>
 <div class="slideContent small-code" >
 <ul>
-<li class="fragment"><code>str_replace()</code> substitui o primeiro padrão em que houve <em>match</em> e retorna um vetor de caracteres. <code>str_replace_all()</code> substitui todos os <em>matches</em>.</li>
+<li class="fragment"><strong>str_replace()</strong> substitui o primeiro padrão em que houve <em>match</em> e retorna um vetor de caracteres. </li>
 </ul>
 
 <!-- ESSAS SÃO AS EQUIVALENTES A SUB E GSUB!!! MOSTRAR COMO FAZER UMA FUNÇÃO PARA SUBSTITUIÇÃO DE "," E "." -->
@@ -1367,6 +1381,10 @@ str_replace(strings, phone, &quot;XXX-XXX-XXXX&quot;)
 [3] &quot;XXX-XXX-XXXX&quot;                          
 [4] &quot;Work: XXX-XXX-XXXX; Home: 543.355.3679&quot;
 </code></pre>
+
+<ul>
+<li class="fragment"><strong>str_replace_all()</strong> substitui todos os <em>matches</em>.</li>
+</ul>
 
 <pre class="fragment"><code class="r">str_replace_all(strings, phone, &quot;XXX-XXX-XXXX&quot;)
 </code></pre>
@@ -1384,7 +1402,7 @@ str_replace(strings, phone, &quot;XXX-XXX-XXXX&quot;)
 <h3>Pattern Matching (7)</h3>
 <div class="slideContent small-code" >
 <ul>
-<li class="fragment"><code>str_split_fixed()</code> divide a <em>string</em> em um número fixo de partes baseado no padrão passado como argumento e retorna uma matriz de caracteres. <code>str_split()</code> separar um <em>string</em> em um número variável de partes e retorna uma lista de vetores de caracteres.</li>
+<li class="fragment"><strong>str_split()</strong> separa um <em>string</em> em um número variável de partes e retorna uma lista de vetores de caracteres.</li>
 </ul>
 
 <pre class="fragment"><code class="r">str_split(&quot;a-b-c&quot;, &quot;-&quot;)
@@ -1393,6 +1411,10 @@ str_replace(strings, phone, &quot;XXX-XXX-XXXX&quot;)
 <pre class="fragment"><code>[[1]]
 [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;
 </code></pre>
+
+<ul>
+<li class="fragment"><strong>str_split_fixed()</strong> divide a <em>string</em> em um número fixo de partes baseado no padrão passado como argumento e retorna uma matriz de caracteres. </li>
+</ul>
 
 <pre class="fragment"><code class="r">str_split_fixed(&quot;a-b-c&quot;, &quot;-&quot;, n = 2)
 </code></pre>
@@ -1409,13 +1431,11 @@ str_replace(strings, phone, &quot;XXX-XXX-XXXX&quot;)
 <div class="slideContent small-code" >
 <p><strong>Obtendo índices do matching:</strong></p>
 
-<p class="fragment"><code>str_subset()</code> é uma função envelope de <code>x[str_detect(x, pattern)]</code>.</p>
+<ul>
+<li class="fragment"><strong>str_subset()</strong> é uma função envelope de <code>x[str_detect(x, pattern)]</code>.</li>
+</ul>
 
 <!-- and is equivalent to grep(pattern, x, value = TRUE). -->
-
-<p class="fragment"><code>str_which()</code>, por sua vez é uma função envelope de <code>which(str_detect(x, pattern))</code>.</p>
-
-<!-- and is equivalent to grep(pattern, x). -->
 
 <pre class="fragment"><code class="r">fruit &lt;- c(&quot;apple&quot;, &quot;banana&quot;, &quot;pear&quot;, &quot;pinapple&quot;)
 str_subset(fruit, &quot;a&quot;)
@@ -1423,6 +1443,12 @@ str_subset(fruit, &quot;a&quot;)
 
 <pre class="fragment"><code>[1] &quot;apple&quot;    &quot;banana&quot;   &quot;pear&quot;     &quot;pinapple&quot;
 </code></pre>
+
+<ul>
+<li class="fragment"><strong>str_which()</strong>, por sua vez, é uma função envelope de <code>which(str_detect(x, pattern))</code>.</li>
+</ul>
+
+<!-- and is equivalent to grep(pattern, x). -->
 
 <pre class="fragment"><code class="r">str_which(LETTERS, &quot;F&quot;)
 </code></pre>
@@ -1456,9 +1482,9 @@ str_subset(fruit, &quot;a&quot;)
 <p>As expressões regulares (regex ou regexps), em geral, são construídas da combinação de 3 componentes:</p>
 
 <ul>
-<li class="fragment"><p class="fragment">1) <em>literal characters</em>: que somente vão sofrer <em>matching</em> se houver nos dados caracteres literais idênticos;</p></li>
-<li class="fragment"><p class="fragment">2) <em>character classes</em>: que permitem o <em>matching</em> por múltiplos um caractere - são compostas de caracteres dentro de dois colchetes <code>[ ]</code>;</p></li>
-<li class="fragment"><p class="fragment">3) <em>modifiers</em> ou <em>anchors</em>: que vão operar nos caracteres, nas classes e em combinações dos dois.</p></li>
+<li class="fragment"><p class="fragment">1) <strong>literal characters</strong>: que somente vão sofrer <em>matching</em> se houver nos dados caracteres literais idênticos;</p></li>
+<li class="fragment"><p class="fragment">2) <strong>character classes</strong>: que permitem o <em>matching</em> por múltiplos um caractere - são compostas de caracteres dentro de dois colchetes <strong>[ ]</strong>;</p></li>
+<li class="fragment"><p class="fragment">3) <strong>modifiers</strong> ou <strong>anchors</strong>: que vão operar nos caracteres, nas classes e em combinações dos dois.</p></li>
 </ul>
 
 </div>
@@ -1478,7 +1504,7 @@ str_extract(x, &quot;an&quot;)
 <pre class="fragment"><code>[1] NA   &quot;an&quot; NA  
 </code></pre>
 
-<p class="fragment">Podemos ignorar letras maiúsculas e minúsculas com <code>ignore_case = TRUE</code>:</p>
+<p class="fragment">Podemos ignorar letras maiúsculas e minúsculas com <strong>ignore_case = TRUE</strong>:</p>
 
 <pre class="fragment"><code class="r">bananas &lt;- c(&quot;banana&quot;, &quot;Banana&quot;, &quot;BANANA&quot;)
 str_detect(bananas, &quot;banana&quot;)
@@ -1499,7 +1525,7 @@ str_detect(bananas, &quot;banana&quot;)
 <section data-transition="linear" data-transition-speed="default">
 <h3>Exemplos REGEX com stringr (2)</h3>
 <div class="slideContent small-code" >
-<p>Seguindo com os exemplos, o próximo passo é conhecermos o papel desempenhado por <strong>.</strong>, cuja função é buscar qualquer caractere com exceção de uma nova linha (\n):</p>
+<p>Seguindo com os exemplos, o próximo passo é conhecermos o papel desempenhado por <strong>.</strong>, cuja função é buscar qualquer caractere com exceção de uma nova linha (<strong>\n</strong>):</p>
 
 <pre class="fragment"><code class="r">str_extract(x, &quot;.a.&quot;)
 </code></pre>
@@ -1528,13 +1554,13 @@ str_detect(bananas, &quot;banana&quot;)
 <h3>Escaping Characters (1)</h3>
 <div class="slideContent small-code" >
 <ul>
-<li class="fragment"><p>Se &ldquo; . &rdquo; faz o <em>match</em> de qualquer caractere, como podemos fazer o <em>match</em> literal de um ponto &ldquo; . &rdquo; ?</p></li>
+<li class="fragment"><p>Se <strong>&ldquo; . &rdquo;</strong> faz o <em>match</em> de qualquer caractere, como podemos fazer o <em>match</em> literal de um <strong>ponto &ldquo; . &rdquo;</strong> ?</p></li>
 <li class="fragment"><p class="fragment">Teremos que usar um caractere de escape para dizer ao <strong>R</strong> que queremos um <em>matching</em> literal e não usar o comportamento especial de “ . ”</p></li>
-<li class="fragment"><p class="fragment">Em expressões regulares (regexps) se usa uma barra invertida \ para tal fim</p></li>
-<li class="fragment"><p class="fragment">Então, para buscarmos um simples <strong>.</strong> nos dados, usamos .</p></li>
+<li class="fragment"><p class="fragment">Em expressões regulares (regexps) se usa uma <strong>barra invertida \</strong> para tal fim</p></li>
+<li class="fragment"><p class="fragment">Então, para buscarmos um simples <strong>.</strong> nos dados, usamos <strong>&ldquo;\ .&rdquo;</strong></p></li>
 <li class="fragment"><p class="fragment"><strong>Mas&hellip;</strong></p></li>
 <li class="fragment"><p class="fragment">como você já viu no Módulo 1, a barra invertida também é um caractere especial no <strong>R</strong> usada para <em>strings</em></p></li>
-<li class="fragment"><p class="fragment">Portanto, teríamos que acrescentar outra barra invertida formando a string \. e fazermos o <em>matching</em> com um simples ponto nos dados.</p></li>
+<li class="fragment"><p class="fragment">Portanto, teríamos que acrescentar outra barra invertida formando a string <strong>&ldquo;\ \ .&rdquo;</strong> e fazermos o <em>matching</em> com um simples ponto nos dados.</p></li>
 </ul>
 
 </div>
@@ -1574,10 +1600,11 @@ str_extract(c(&quot;abc&quot;, &quot;a.c&quot;, &quot;bef&quot;), &quot;a\\.c&qu
 <h3>Escaping Characters (3)</h3>
 <div class="slideContent small-code" >
 <ul>
-<li class="fragment"><p>Como faríamos então para fazer o match literal de uma barra invertida \ ? </p></li>
+<li class="fragment"><p>Como faríamos então para fazer o match literal de uma barra invertida <strong>&ldquo; \ &rdquo;</strong> ? </p></li>
 <li class="fragment"><p class="fragment">Basta seguirmos o mesmo raciocínio das duas instâncias:</p></li>
 <li class="fragment"><p class="fragment">Como deve chegar literalmente a string no mecanismo de regexp (após todas as deduções de caracteres de escape)? </p></li>
-<li class="fragment"><p class="fragment">Deve chegar como &ldquo; \ &rdquo;</p></li>
+<li class="fragment"><p class="fragment">Deve chegar como <strong>&ldquo; \ \ &rdquo;</strong></p></li>
+<li class="fragment"><p class="fragment">Então, devemos digitar <strong>&ldquo; \ \ \ \ &rdquo;</strong>, onde cada par de barras equivale a uma literal que chega ao mecanismo de regex.</p></li>
 </ul>
 
 </div>
@@ -1587,8 +1614,8 @@ str_extract(c(&quot;abc&quot;, &quot;a.c&quot;, &quot;bef&quot;), &quot;a\\.c&qu
 <h3>Escaping Characters (4)</h3>
 <div class="slideContent small-code" >
 <ul>
-<li class="fragment"><p>Quando formos nos referir às expressões regulares, usaremos somente o núcleo delas, exemplo &ldquo; \ &rdquo;</p></li>
-<li class="fragment"><p class="fragment">Quando formos nos referir as strings, usaremos &ldquo;\\&rdquo;;</p></li>
+<li class="fragment"><p>Quando formos nos referir às expressões regulares, usaremos somente o núcleo delas, exemplo <strong>&ldquo; \ &rdquo;</strong></p></li>
+<li class="fragment"><p class="fragment">Quando formos nos referir as strings, usaremos <strong>&ldquo;\ \&rdquo;</strong>;</p></li>
 <li class="fragment"><p class="fragment">Lembre-se que devemos acrescentar os caracteres de escape usando os raciocínios apresentados anteriormente para que se chegue ao &ldquo;padrão final&rdquo; de uma regexp.</p></li>
 </ul>
 
@@ -1693,7 +1720,7 @@ writeLines(x)
 <section data-transition="linear" data-transition-speed="default">
 <h3>Matching de múltiplos caracteres (classes) (3)</h3>
 <div class="slideContent small-code" >
-<p>Um outro atalho interessante é &ldquo;\b&rdquo; que busca por limites/bordas de palavras, ou seja, transições entre o caracteres de palavras e caracteres de não-palavras. &ldquo;\B&rdquo; faz o oposto.</p>
+<p>Um outro atalho interessante é <strong>&ldquo;\ b&rdquo;</strong> que busca por limites/bordas de palavras, ou seja, transições entre o caracteres de palavras e caracteres de não-palavras. <strong>&ldquo;\ B&rdquo;</strong> faz o oposto.</p>
 
 <pre class="fragment"><code class="r">str_replace_all(&quot;The quick brown fox&quot;, &quot;\\b&quot;, &quot;_&quot;)
 </code></pre>
@@ -1718,11 +1745,11 @@ writeLines(x)
 <p>Há a possibilidade, ainda, de criarmos nossas próprias classes usando <strong>[]</strong>:</p>
 
 <ul>
-<li class="fragment">[abc]: busca o <em>match</em> de a, b ou c;</li>
-<li class="fragment">[a-z]: busca qualquer caractere minúsculo entre <strong>a</strong> e <strong>z</strong>;</li>
-<li class="fragment">[A-Z]: busca qualquer caractere maiúsculo entre <strong>A</strong> e <strong>Z</strong>;</li>
-<li class="fragment">[^abc]: busca qualquer coisa exceto a, b, ou c;</li>
-<li class="fragment">[^-]: busca ^ or -. (Note que teremos que adicionar mais uma barra invertida na frente de cada uma das barras ao passar o comando no <strong>R</strong>)</li>
+<li class="fragment"><strong>[abc]</strong>: busca o <em>match</em> de a, b ou c;</li>
+<li class="fragment"><strong>[a-z]</strong>: busca qualquer caractere minúsculo entre <strong>a</strong> e <strong>z</strong>;</li>
+<li class="fragment"><strong>[A-Z]</strong>: busca qualquer caractere maiúsculo entre <strong>A</strong> e <strong>Z</strong>;</li>
+<li class="fragment"><strong>[^ abc]</strong>: busca qualquer coisa exceto a, b, ou c;</li>
+<li class="fragment"><strong>[^ -]</strong>: busca ^ or -. (Note que teremos que adicionar mais uma barra invertida na frente de cada uma das barras ao passar o comando no <strong>R</strong>)</li>
 </ul>
 
 <!-- NA VIGNETTE DO LUBRIDATE, há um erro para o exemplo [\^\-] -->
@@ -1817,32 +1844,38 @@ character(0)
 </section>
 <section data-transition="linear" data-transition-speed="default">
 <h3>Matching de múltiplos caracteres (classes) (6)</h3>
-<div class="slideContent small-code" >
+<div class="column column1 slideContent small-code" >
 <p>Há ainda diversas classes pré-construídas que podemos usar com os colchetes:</p>
 
-<p class="fragment">-[:punct:]: pontuação.</p>
+<p class="fragment">-<strong>[:punct:]</strong>: pontuação.</p>
 
-<p class="fragment">-[:alpha:]: letras.</p>
+<p class="fragment">-<strong>[:alpha:]</strong>: letras.</p>
 
-<p class="fragment">-[:lower:]: letras minúsculas.</p>
+<p class="fragment">-<strong>[:lower:]</strong>: letras minúsculas.</p>
 
-<p class="fragment">-[:upper:]: LETRAS MAIÚSCULAS. </p>
+<p class="fragment">-<strong>[:upper:]</strong>: LETRAS MAIÚSCULAS. </p>
 
 <!--AQUI A UM ERRO TB NA VIGNETTE - ELE ESCREVE UPPER CLASS -->
 
-<p class="fragment">-[:digit:]: digitos.</p>
+<p class="fragment">-<strong>[:digit:]</strong>: digitos.</p>
 
-<p class="fragment">-[:alnum:]: letras e números.</p>
+<p class="fragment">-<strong>[:alnum:]</strong>: letras e números.</p>
 
-<p class="fragment">-[:cntrl:]: caracteres de controle.</p>
 
-<p class="fragment">-[:graph:]: letras, números e pontuação.</p>
+</div>
 
-<p class="fragment">-[:print:]: letras, números, pontuação e whitespace.</p>
+<div class="column column2 slideContent small-code" >
 
-<p class="fragment">-[:space:]: caracteres de espaço (equivalente a \s).</p>
 
-<p class="fragment">-[:blank:]: espaço e tab.</p>
+<p class="fragment">-<strong>[:cntrl:]</strong>: caracteres de controle.</p>
+
+<p class="fragment">-<strong>[:graph:]</strong>: letras, números e pontuação.</p>
+
+<p class="fragment">-<strong>[:print:]</strong>: letras, números, pontuação e whitespace.</p>
+
+<p class="fragment">-<strong>[:space:]</strong>: caracteres de espaço (equivalente a <strong>&ldquo;\ s&rdquo;</strong>).</p>
+
+<p class="fragment">-<strong>[:blank:]</strong>: espaço e tab.</p>
 
 </div>
 
@@ -1942,8 +1975,8 @@ character(0)
 <h3>Operador Alternation</h3>
 <div class="slideContent small-code" >
 <ul>
-<li class="fragment"><p><code>|</code> é o operador de alternância que permite escolher entre uma ou mais correspondências possíveis. </p></li>
-<li class="fragment"><p class="fragment"><code>abc|def</code> vai fazer o <em>matching</em> com <code>abc</code> <strong>OU</strong> <code>def</code>.</p></li>
+<li class="fragment"><p><strong>&ldquo; | &rdquo;</strong> é o operador de alternância que permite escolher entre uma ou mais correspondências possíveis. </p></li>
+<li class="fragment"><p class="fragment"><strong>abc|def</strong> vai fazer o <em>matching</em> com <strong>abc</strong> <strong>OU</strong> <strong>def</strong>.</p></li>
 </ul>
 
 <pre class="fragment"><code class="r">str_detect(c(&quot;abc&quot;, &quot;def&quot;, &quot;ghi&quot;), &quot;abc|def&quot;)
@@ -2046,8 +2079,8 @@ str_extract(x, &quot;^a&quot;)
 <p>Pode-se controlar quantas vezes um padrão aparece em determinada parte da <em>string</em> com:</p>
 
 <ul>
-<li class="fragment">?: 0 ou 1.</li>
-<li class="fragment">+: 1 ou mais.</li>
+<li class="fragment"><strong>?</strong>: 0 ou 1.</li>
+<li class="fragment"><strong>+</strong>: 1 ou mais.</li>
 <li class="fragment">*: 0 ou mais.</li>
 </ul>
 
@@ -2086,9 +2119,9 @@ str_extract(x, &quot;CC?&quot;)
 <p>Podemos especificar o número exato de repetições que esperamos com:</p>
 
 <ul>
-<li class="fragment">{n}: exactly n</li>
-<li class="fragment">{n,}: n or more</li>
-<li class="fragment">{n,m}: between n and m</li>
+<li class="fragment"><strong>{n}</strong>: exactly n</li>
+<li class="fragment"><strong>{n,}</strong>: n or more</li>
+<li class="fragment"><strong>{n,m}</strong>: between n and m</li>
 </ul>
 
 <pre class="fragment"><code class="r">str_extract(x, &quot;C{2}&quot;)

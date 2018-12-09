@@ -836,8 +836,8 @@ Análise de Dados em R (FNDE) - Módulo 2
 <div class="slideContent small-code" >
 <ul>
 <li class="fragment"><p>Esses verbos assumem que seus dados encontram-se no formto de <em>tidy data</em>, ou seja, linhas são observações e colunas são variáveis.</p></li>
-<li class="fragment"><p class="fragment">Todos os <em>two-table verbs</em> funcionam de forma similar: os primeiros dois argumentos são <em>x</em> e <em>y</em> e fornecem as duas tabelas que desejamos comparar e combinar. </p></li>
-<li class="fragment"><p class="fragment">O output será semore uma nova tabela com o mesmo tipo de <em>x</em>.</p></li>
+<li class="fragment"><p class="fragment">Todos os <em>two-table verbs</em> funcionam de forma similar: os primeiros dois argumentos são <strong>x</strong> e <strong>y</strong> e fornecem as duas tabelas que desejamos comparar e combinar. </p></li>
+<li class="fragment"><p class="fragment">O output será sempre uma nova tabela com o mesmo tipo de <strong>x</strong>.</p></li>
 </ul>
 
 </div>
@@ -883,7 +883,7 @@ flights2 %&gt;%
 <h3>Mutating join - controlando como as tabelas sofrem *match* (1)</h3>
 <div class="slideContent small-code" >
 <ul>
-<li class="fragment"><p>Além dos argumentos <strong>x</strong> e <strong>y</strong>, cada <em>mutating join</em> recebe também um argumento <em>by</em> utilizado como índice para fazer o <em>match</em> entre as tabelas;</p></li>
+<li class="fragment"><p>Além dos argumentos <strong>x</strong> e <strong>y</strong>, cada <em>mutating join</em> recebe também um argumento <strong>by</strong> utilizado como índice para fazer o <em>match</em> entre as tabelas;</p></li>
 <li class="fragment"><p class="fragment">Controlar o <strong>match</strong> é controlar o parâmetro <strong>by</strong>!</p></li>
 <li class="fragment"><p class="fragment">Vejamos as maneiras de como especificar o parâmetro <em>by</em>:</p>
 
@@ -913,7 +913,7 @@ flights2 %&gt;%
 #   visib &lt;dbl&gt;, time_hour &lt;dttm&gt;
 </code></pre>
 
-<p class="fragment">As tabelas <em>flights</em> e <em>wheathers</em> foram &ldquo;juntadas&rdquo; com base nas variáveis comuns: <em>year, month, day, hour e origin</em>.</p>
+<p class="fragment">As tabelas <em>flights</em> e <em>wheathers</em> foram &ldquo;juntadas&rdquo; com base nas variáveis comuns: <strong>year, month, day, hour e origin</strong>.</p>
 
 </div>
 
@@ -951,7 +951,7 @@ flights2 %&gt;%
 #   model &lt;chr&gt;, engines &lt;int&gt;, seats &lt;int&gt;, speed &lt;int&gt;, engine &lt;chr&gt;
 </code></pre>
 
-<p class="fragment">Note que ao juntar todas as colunas de ambos os data.frames, <strong>dplyr</strong> acrescenta um sufixo à segunda variável <em>year</em> para diferenciar de qual tabela cada uma veio</p>
+<p class="fragment">Note que ao juntar todas as colunas de ambos os data.frames, <strong>dplyr</strong> acrescenta um sufixo à segunda variável <strong>year</strong> para diferenciar de qual tabela cada uma veio</p>
 
 </div>
 
@@ -963,12 +963,12 @@ flights2 %&gt;%
 <li class="fragment"><p>um vetor de caracteres com nomes: <strong>by = c(&ldquo;x&rdquo; = &ldquo;y&rdquo;)</strong>. </p>
 
 <ul>
-<li class="fragment">Isto vai fazer o <em>match</em> da variável <em>x</em> na tabela <em>a</em> com a variável <em>y</em> na tabela <em>b</em>; </li>
+<li class="fragment">Isto vai fazer o <em>match</em> da variável <strong>x</strong> na tabela <strong>A</strong> com a variável <strong>y</strong> na tabela <em>B</em>; </li>
 <li class="fragment">As variáveis da tabela de origem serão usadas no output.</li>
 </ul></li>
 </ul>
 
-<p class="fragment">Cada voo tem uma origem e um aeroporto de destino. Então precisamos especificar qual dessas variáveis do dataset <em>flight</em> queremos fazer o <em>match</em> com a coluna <em>faa</em> do dataset <em>airports</em>.</p>
+<p class="fragment">Cada voo tem uma origem e um aeroporto de destino. Então precisamos especificar qual dessas variáveis do <strong>dataset flight</strong> queremos fazer o <em>match</em> com a <strong>coluna faa</strong> do <strong>dataset airports</strong>.</p>
 
 <pre class="fragment"><code class="r"># ??airports
 airports
@@ -1170,11 +1170,8 @@ flights2 %&gt;% left_join(airports, c(&quot;dest&quot; = &quot;faa&quot;))
 </code></pre>
 
 <ul>
-<li class="fragment"><p>Os <em>left, right e full joins</em> são conhecidos cletivamente como <strong>outer joins</strong> (ou joins externos):</p>
-
-<ul>
-<li class="fragment">Quando uma linha não faz o match em um <strong>outer join</strong>, as novas variáveis são preenchidas com <em>missing values</em>.</li>
-</ul></li>
+<li class="fragment"><p>Os <em>left, right e full joins</em> são conhecidos cletivamente como <strong>outer joins</strong> (ou joins externos):</p></li>
+<li class="fragment"><p class="fragment">Quando uma linha não faz o match em um <strong>outer join</strong>, as novas variáveis são preenchidas com <strong>missing values</strong>.</p></li>
 </ul>
 
 </div>
@@ -1184,11 +1181,8 @@ flights2 %&gt;% left_join(airports, c(&quot;dest&quot; = &quot;faa&quot;))
 <h3>Tipos de join (5)</h3>
 <div class="slideContent small-code" >
 <ul>
-<li class="fragment"><p>Embora os <em>mutating joins</em> existam para adicionar novas variáveis, em alguns casos eles podem gerar novas observações:</p>
-
-<ul>
-<li class="fragment">se uma correspondência não é única, um <em>join</em> vai acrescentar linhas para todas as combinações possíveis (produto cartesiano) do <em>matching</em> das observações:</li>
-</ul></li>
+<li class="fragment"><p>Embora os <em>mutating joins</em> existam para adicionar novas variáveis, em alguns casos eles podem gerar novas observações:</p></li>
+<li class="fragment"><p class="fragment">se uma correspondência não é única, um <em>join</em> vai acrescentar linhas para todas as combinações possíveis (produto cartesiano) do <em>matching</em> das observações:</p></li>
 </ul>
 
 <pre class="fragment"><code class="r">df1 &lt;- data_frame(x = c(1, 1, 2), y = 1:3)
@@ -1302,7 +1296,7 @@ df1 %&gt;% semi_join(df2, by = &quot;x&quot;) %&gt;% nrow()
 <h3>Set operations (1)</h3>
 <div class="slideContent small-code" >
 <ul>
-<li class="fragment"><p>O último tipo de verbo  <em>two-table</em> são as <em>set operations</em> (ou operações com conjuntos);</p></li>
+<li class="fragment"><p>O último tipo de verbo  <em>two-table</em> são as <strong>set operations</strong> (ou operações com conjuntos);</p></li>
 <li class="fragment"><p class="fragment">Esses verbos/ funções esperam que os inputs &ldquo;x&rdquo; e &ldquo;y&rdquo; possuam as mesmas variáveis e tratam as observações como conjuntos:</p>
 
 <ul>

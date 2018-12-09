@@ -1,0 +1,373 @@
+Análise de Dados em R (FNDE) - Módulo 2
+Sessão 7 - TWO TABLE verbs com dplyr
+========================================================
+author: Allan Vieira
+date: julho de 2018
+width: 1440
+height: 900
+<style>
+.small-code pre code {
+  font-size: 1em;
+}
+</style>
+<!-- para trazer codigos em caixas menores: -->
+<!-- https://stackoverflow.com/questions/25612385/code-box-size-and-font-size-in-rpres -->
+
+
+
+Objetivos
+========================================================
+incremental: true
+
+<br />
+<br />
+
+- Conhecer e aprender como utilizar os Two Table verbs do pacote **dplyr**
+
+
+
+
+Introdução (1)
+========================================================
+incremental: true
+class: small-code
+
+
+- A Análise de dados, na maioria das vezes, envolve mais de uma base de dados;
+
+- Na prática, normalmente teremos diversas bases de dados que contribuem para a análise e precisamos de ferramentas flexiveis para combiná-las;
+
+- No pacote **dplyr**, existem três famílias de verbos que trabalham com duas tabelas de uma vez.
+
+
+  - **mutating joins**: adicionam novas variáveis a uma tabela a partir da correspondência (*matching*) das linhas em outra;
+  
+  - **filtering joins**: filtram observações de uma tabela se estas observações fazem o *match* um observação em outra tabela;
+  
+  - **set oeprations**: combinam observações nos datasets caso eles sejam elementos do conjunto passado.
+
+
+
+Pacote dplyr - Introdução (2)
+========================================================
+incremental: true
+class: small-code
+
+
+- Esses verbos assumem que seus dados encontram-se no formto de *tidy data*, ou seja, linhas são observações e colunas são variáveis.
+
+- Todos os *two-table verbs* funcionam de forma similar: os primeiros dois argumentos são **x** e **y** e fornecem as duas tabelas que desejamos comparar e combinar. 
+
+- O output será sempre uma nova tabela com o mesmo tipo de **x**.
+
+
+Mutating joins
+========================================================
+incremental: true
+class: small-code
+
+- **Mutating joins** nos permitem combinar variáveis de múltiplas tabelas; 
+
+- Vamos dividir o data.frame flights em dois e depois tentaremos juntar os dois com base no nome da cia aérea:
+
+```{r}
+library(dplyr)
+library("nycflights13")
+# Drop unimportant variables so it's easier to understand the join results.
+flights2 <- flights %>% select(year:day, hour, origin, dest, tailnum, carrier)
+
+flights2 %>% 
+  left_join(airlines)
+```
+
+
+
+Mutating join - controlando como as tabelas sofrem *match* (1)
+========================================================
+incremental: true
+class: small-code
+
+
+
+- Além dos argumentos **x** e **y**, cada *mutating join* recebe também um argumento **by** utilizado como índice para fazer o *match* entre as tabelas;
+
+- Controlar o **match** é controlar o parâmetro **by**!
+
+- Vejamos as maneiras de como especificar o parâmetro *by*:
+
+  - **NULL** é o *default*: **dplyr** vai usar todas as variáveis comuns às duas tabelas(**natural join**)
+  
+  
+```{r}
+flights2 %>% left_join(weather)
+```
+
+
+As tabelas *flights* e *wheathers* foram "juntadas" com base nas variáveis comuns: **year, month, day, hour e origin**.
+
+
+
+Mutating join - controlando como as tabelas sofrem *match* (2)
+========================================================
+incremental: true
+class: small-code
+
+- Um vetor de caracteres, **by = "x"**:
+  
+  - opera como se fosse um *natural join*, mas usa somente algumas das variáveis comuns. 
+  
+  <!-- Por exemplo, *flights* e *planes* possuem uma variável *year*, mas elas significam coisas diferentes em cada data.frame. Então, queremos especificar uma coluna que sabemos que significa a mesma coisa em ambos os data.frames e que possa servir de índice para o *matching*. Vamos usar *tailnum* que é o número do avião. -->
+
+```{r}
+flights2 %>% left_join(planes, by = "tailnum")
+```
+
+Note que ao juntar todas as colunas de ambos os data.frames, **dplyr** acrescenta um sufixo à segunda variável **year** para diferenciar de qual tabela cada uma veio
+
+
+Mutating join - controlando como as tabelas sofrem *match* (3)
+========================================================
+incremental: true
+class: small-code
+
+- um vetor de caracteres com nomes: **by = c("x" = "y")**. 
+
+  - Isto vai fazer o *match* da variável **x** na tabela **A** com a variável **y** na tabela *B*; 
+  - As variáveis da tabela de origem serão usadas no output.
+
+Cada voo tem uma origem e um aeroporto de destino. Então precisamos especificar qual dessas variáveis do **dataset flight** queremos fazer o *match* com a **coluna faa** do **dataset airports**.
+
+```{r}
+# ??airports
+airports
+```
+
+
+***
+
+```{r}
+# ??flights
+flights2 %>% left_join(airports, c("dest" = "faa"))
+```
+
+```{r}
+flights2 %>% left_join(airports, c("origin" = "faa"))
+```
+
+
+Tipos de join (1)
+========================================================
+incremental: true
+class: small-code
+
+- Há 4 tipos de *mutating join*, que diferem pelo comportamento quando **NÃO** ocorre o *match*.
+
+Vamos criar dois data.frames e depois veremos exemplos de cada caso.
+```{r}
+library(dplyr)
+(df1 <- data_frame(x = c(1, 2), y = 2:1))
+# note que a função dplyr::data_frame é diferente da função data.frame do R base
+
+(df2 <- data_frame(x = c(1, 3), a = 10, b = "a"))
+```
+
+***
+
+- **inner_join(x, y)**: inclui somente observações que possuem correspondência tanto em *x* quanto em *y* (ou seja linhas iguais nos data.frames).
+
+```{r}
+df1 %>% inner_join(df2)
+```
+
+- Note que o "by" foi o *default* e utilizou a coluna "x" como índice para juntar os dois data frames;
+
+- As linhas iguais para a variável "x" em ambos os dataframes são trazidas na íntegra (ou seja, traz-se todas as colunas).
+
+
+Tipos de join (2)
+========================================================
+incremental: true
+class: small-code
+
+- **left_join(x, y)**: inclui todas as observações em  "x", independente de haver *match* ou não;
+
+- Esse é o tipo de *join* mais usado, porque ele garante que nós não perderemos nenhuma informação da nossa tabela primária.
+
+```{r}
+df1 %>% left_join(df2)
+```
+
+
+Tipos de join (3)
+========================================================
+incremental: true
+class: small-code
+
+- **right_join(x, y)**: inclui todas as observações em "y";
+
+- É equivalente a *left_join(**y**, **x**)*, mas a ordenação das variáveis será diferente neste último caso:
+
+```{r}
+df1 %>% right_join(df2)
+
+df2 %>% left_join(df1)
+```
+
+
+
+Tipos de join (4)
+========================================================
+incremental: true
+class: small-code
+
+- **full_join()**: inclui todas as observações de x e y:
+
+```{r}
+df1 %>% full_join(df2)
+```
+
+
+- Os *left, right e full joins* são conhecidos cletivamente como **outer joins** (ou joins externos):
+  
+- Quando uma linha não faz o match em um **outer join**, as novas variáveis são preenchidas com **missing values**.
+
+
+Tipos de join (5)
+========================================================
+incremental: true
+class: small-code
+
+- Embora os *mutating joins* existam para adicionar novas variáveis, em alguns casos eles podem gerar novas observações:
+  
+- se uma correspondência não é única, um *join* vai acrescentar linhas para todas as combinações possíveis (produto cartesiano) do *matching* das observações:
+
+```{r}
+df1 <- data_frame(x = c(1, 1, 2), y = 1:3)
+df2 <- data_frame(x = c(1, 1, 2), z = c("a", "b", "a"))
+
+df1 %>% left_join(df2)
+```
+
+
+Tipos de join - resumo
+========================================================
+incremental: true
+class: small-code
+
+**Resumindo ...**
+
+![](./img/combine_cheatsheet.png)
+
+
+
+Filtering joins (1)
+========================================================
+incremental: true
+class: small-code
+
+
+- **Filtering joins** "casam" observações da mesma forma que os *mutating joins*, mas afetam as próprias observações (**linhas**) e não as variáveis (**colunas**);
+
+- Existem dois tipos de *filtering joins*:
+
+  - **semi_join() MANTÉM** todas as observações em "x" que possuem *match* em "y";
+  - **anti_join() RETIRA** todas as observações em "x"que tem *match* em "y".
+
+- Esses joins são muito úteis para identificar "descasamentos" entre tabelas:
+
+  - por exemplo, há diversos voos no dataset *flights* que não possuem correspondências com base no *tailnum* no dataset *planes*:
+
+```{r}
+library("nycflights13")
+flights %>% 
+  anti_join(planes, by = "tailnum") %>% 
+  count(tailnum, sort = TRUE)
+```
+
+
+
+
+Filtering joins (2)
+========================================================
+incremental: true
+class: small-code
+
+- Caso você esteja preocupado com quais observações nosso *join* vai fazer o *match*, sugere-se iniciar com um *semi_join()* ou *anti_join()*;
+
+- Esses joins nunca duplicam as observações, eles somente removem:
+
+
+```{r}
+df1 <- data_frame(x = c(1, 1, 3, 4), y = 1:4)
+df2 <- data_frame(x = c(1, 1, 2), z = c("a", "b", "a"))
+
+# Four rows to start with:
+df1 %>% nrow()
+
+# And we get four rows after the join
+df1 %>% inner_join(df2, by = "x") %>% nrow()
+
+# But only two rows actually match
+df1 %>% semi_join(df2, by = "x") %>% nrow()
+```
+
+
+Set operations (1)
+========================================================
+incremental: true
+class: small-code
+
+
+- O último tipo de verbo  *two-table* são as **set operations** (ou operações com conjuntos);
+
+- Esses verbos/ funções esperam que os inputs "x" e "y" possuam as mesmas variáveis e tratam as observações como conjuntos:
+
+  - **intersect(x, y)**: retorna somente observações que estejam tanto em "x" quanto em "y".
+  
+  - **union(x,y)**: retornam observações únicas em "x" e "y";
+  
+  - **setdiff(x,y)**: retornam observações em "x", mas não em "y".
+
+
+Set operations (2)
+========================================================
+incremental: true
+class: small-code
+
+
+Considerando os dados a seguir:
+```{r}
+(df1 <- data_frame(x = 1:2, y = c(1L, 1L)))
+
+(df2 <- data_frame(x = 1:2, y = 1:2))
+
+```
+
+Há 4 possibilidades:
+
+```{r}
+intersect(df1, df2)
+# Note that we get 3 rows, not 4
+```
+
+***
+
+```{r}
+union(df1, df2)
+
+setdiff(df1, df2)
+
+setdiff(df2, df1)
+```
+
+- Por fim, cabe fazer menção a funções que seriam úteis caso você tivesse que trabalhar com 3 ou mais tabelas:  purrr::reduce() ou Reduce()
+
+
+
+
+FIM
+========================================================
+incremental: false
+class: small-code
+
+OBRIGADO!!

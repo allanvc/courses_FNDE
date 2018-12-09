@@ -1,0 +1,554 @@
+Análise de Dados em R (FNDE) - Módulo 2
+Sessão 6 - Manipulação de dados com dplyr
+========================================================
+author: Allan Vieira
+date: julho de 2018
+width: 1440
+height: 900
+<style>
+.small-code pre code {
+  font-size: 1em;
+}
+</style>
+<!-- para trazer codigos em caixas menores: -->
+<!-- https://stackoverflow.com/questions/25612385/code-box-size-and-font-size-in-rpres -->
+
+
+
+Objetivos
+========================================================
+incremental: true
+
+<br />
+<br />
+- conhecer a **"gramática"** específica de manipulação de dados trazida pelo **dplyr**;
+<br />
+- conhecer as principais tarefas que podem ser desempenhadas utilizando o pacote;
+<br />
+- aprender as principais funções do pacote
+
+
+
+
+Pacote dplyr - Introdução (1)
+========================================================
+incremental: true
+class: small-code
+
+
+![](./img/dplyr.jpeg)
+
+Conforme os autores afirmam, quando trabalhamos com dados nós precisamos:
+
+- Descobrir o que desejamos fazer;
+
+- Descrever essas tarefas na forma de um programa de computador;
+
+- Executar o programa.
+
+
+Pacote dplyr - Introdução (2)
+========================================================
+incremental: true
+class: small-code
+
+O pacote **dplyr** torna estes passos mais rápidos e fáceis de executar, pois:
+
+- resume-se a poucas funções (!= R base);
+
+- provém "verbos" simples -> funções que correspondem às tarefas mais comuns de manipulação de dados ->  traduzir pensamentos em código;
+
+- utiliza backends (códigos de final de processo, ou seja, mais próximos ao usuário) eficientes, de modo que gastamos menos tempo esperando pelo computador.
+
+
+Pacote dplyr - Introdução (3)
+========================================================
+incremental: true
+class: small-code
+
+O pacote  **dplyr** proporciona uma função para cada "verbo" considerado importante em manipulação de dados:
+
+- **filter()** para selecionar "casos" baseados em seus valores;
+
+- **arrange()** para reordenar os "casos";
+
+- **select()** e **rename()** para selecionar variáveis baseadas em seus nomes;
+
+- **mutate()** e **transmute()** para adicionar novas variáveis que são funções de variáveis já existentes nos dados;
+
+- **summarise()** ou **summarize()** para condensar multiplos valores em um único;
+
+- **sample_n()** and **sample_frac()** para fazer amostras aleatórias.
+
+
+
+Pacote dplyr - Exemplos (1)
+========================================================
+incremental: true
+class: small-code
+
+Vamos utilizar **nycflights13::flights** que contempla os dados de 336.776 voos que saíram de 3 aeroportos de Nova York em 2013. Os dados são oriundos do US Bureau of Transportation Statistics.
+
+```{r, results}
+library(dplyr)
+library(nycflights13)
+dim(flights)
+
+
+flights
+```
+
+
+
+Pacote dplyr - Exemplos (2)
+========================================================
+incremental: true
+class: small-code
+
+Note que:
+
+- O *print* se dá de forma diferente do que estávamos acostumados até então;
+- Isso porque na verdade temos um **tibble**, que é uma forma moderna de data.frame implementada pelo pessoal do **tidyverse**;
+- Só é impresso na tela as primeiras linhas e diversos resumos/ informações sobre nossas variáveis. 
+- Para saber mais sobre *tibbles*, você pode visitar *http://tibble.tidyverse.org*. Para converter data.frames em tibbles, usamos **as_tibble()**.
+
+
+Filtrando linhas com filter()
+========================================================
+incremental: true
+class: small-code
+
+- **filter()** permite fazer um *subset* das linhas de um data.frame;
+
+- Como todos os verbos simples de **dplyr**, o primeiro argumento será um *tibble* (ou data.frame);
+- O segundo argumento e os subsequentes se referem a variáveis dentro do data.frame, em que se selecionam as linhas onde a expressão é verdadeira (TRUE).
+
+- Vamos selecionar todos os voos em 1º de janeiro:
+
+```{r}
+filter(flights, month == 1, day == 1)
+```
+
+- Isso seria equivalente ao código do base R que vimos no primeiro módulo: `flights[flights$month == 1 & flights$day == 1, ]`.
+
+
+Organizando linhas com arrange()
+========================================================
+incremental: true
+class: small-code
+
+- **arrange()** funciona de modo semelhante a *filter*, mas ao invés de filtrar e selecionar linhas, ele apenas as reordena de acordo com alguma condição que passamos;
+
+- Essa função recebe um data.frame (ou tibble) e um conjunto de *column names* pelo qual vai ordenar;
+
+<!-- - Se você fornecer mais de um nome de coluna, cada coluna adicional passada será usada como critério de desempate. -->
+
+```{r}
+arrange(flights, year, month, day)
+```
+
+Se quiser ordenar de forma decrescente, utilize a helper function **desc(nome_da_coluna)**` dentro de **arrange()**.
+
+
+Selecionando colunas com select() (1)
+========================================================
+incremental: true
+class: small-code
+
+- Geralmente trabalhamos com *datasets* com muitas colunas, mas somente algumas poucas são de nosso interesse;
+
+- `select()` nos permite rapidamente focar num subconjunto dos dados;
+
+- O melhor é que podemos utilizar operações - que normalmente só funcionam com as posições das colunas - direto nos nomes das variáveis.
+
+```{r}
+# Select columns by name
+select(flights, year, month, day)
+```
+
+***
+
+```{r}
+# Select all columns between year and day (inclusive)
+select(flights, year:day)
+
+# Select all columns except those from year to day (inclusive)
+select(flights, -(year:day))
+```
+
+
+
+Selecionando colunas com select() (2)
+========================================================
+incremental: true
+class: small-code
+
+- Existem **helper functions** que podemos usar dentro de **select()**;
+- São funções que lembram o funcionamento de uma *regular expression* para identificarmos nomes de colunas que atendem a determinado critério;
+- São muito úteis com grandes datasets: **starts_with(), ends_with(), matches() e contains()**. 
+
+- **select()** pode ser usada inclusive para renomear variáveis:
+
+```{r}
+select(flights, tail_num = tailnum)
+```
+
+- A nova variável será chamada *tail_num* e receberá toda a informação da original *tailnum*.
+
+***
+
+- No entanto, *select()* "abandona" todas as demais variáveis quando você faz uma renomeação. O melhor então é usar **rename()**:
+
+```{r}
+rename(flights, tail_num = tailnum)
+```
+
+
+Adicionando novas colunas com mutate() (1)
+========================================================
+incremental: true
+class: small-code
+
+- Além de selecionar subconjuntos de colunas existentes, é geralmente útil adicionar novas colunas que são funções de colunas já presentes no data.frame;
+
+- Veja um exemplo com **mutate()**:
+
+```{r}
+mutate(flights,
+  gain = arr_delay - dep_delay,
+  speed = distance / air_time * 60
+)
+```
+
+
+Adicionando novas colunas com mutate() (2)
+========================================================
+incremental: true
+class: small-code
+
+- `mutate()` equivale a função `transform()` que vimos no Módulo 1 ...
+
+- ... Mas uma inovação: nos permite nos referir a colunas que acabamos de criar no mesmo comando:
+
+```{r}
+mutate(flights,
+  gain = arr_delay - dep_delay,
+  gain_per_hour = gain / (air_time / 60)
+)
+```
+
+
+***
+
+- Se só nos interessarem as novas variáveis, usamos **transmute()**:
+
+```{r}
+transmute(flights,
+  gain = arr_delay - dep_delay,
+  gain_per_hour = gain / (air_time / 60)
+)
+```
+
+
+Sumarizando valores com summarise()
+========================================================
+incremental: true
+class: small-code
+
+- O último "verbo" de **dplyr** é **summarise()**;
+
+- Ele colapsa um data.frame em uma única linha:
+
+```{r}
+summarise(flights,
+  delay = mean(dep_delay, na.rm = TRUE)
+)
+```
+
+... Contudo, é mais útil usarmos o "verbo" **group_by()** que veremos a seguir.
+
+
+Comunalidades
+========================================================
+incremental: true
+class: small-code
+
+- Note que a sintaxe e funcionamento de todos os verbos de **dplyr** apresentados até aqui são bem similares:
+
+  - o primeiro argumento é um data.frame;
+  - os argumentos subsequentes descrevem o que fazer com o data.frame. Podemos nos referir às colunas do data.frame diretamente sem a necessidade de usar **$**;
+  - o resultado é um noo data.frame.
+
+- Juntas, essas propriedades facilitam encadear múltiplos passos simples para alcançar um resultado complexo;
+
+- O restante do que **dplyr** faz, vem de aplicar as 5 funções a diferentes tipos de dados;
+
+- O próximo passo é trabalhar com dados agrupados.
+
+
+Operações agrupadas (1)
+========================================================
+incremental: true
+class: small-code
+
+- Podemos aplicar os verbos de dplyr a grupos presentes nos nossos dados utilizando a função **group_by()**;
+
+- Ela "quebra" o dataset em grupos específicos de linhas;
+
+- No início, você não percebe qualquer alteração -- É como elas ficassem em segundo plano;
+
+- No entanto, ao aplicarmos algum dos verbos principais no dataset "alterado" por **group_by**, eles automaticamente serão aplicados por grupo ou "by group".
+
+
+Operações agrupadas - exemplos com os verbos de dplyr (1)
+========================================================
+incremental: true
+class: small-code
+
+No exemplo a seguir, nos separamos o dataset por aviões e então sumarizamos cada avião contando o número de voos (**count = n()**), computando a distância média (**dist = mean(distance, na.rm = TRUE)**) e *arrival delay* (**delay = mean(arr_delay, na.rm = TRUE)**).
+
+```{r}
+by_tailnum <- group_by(flights, tailnum)
+delay <- summarise(by_tailnum,
+  count = n(),
+  dist = mean(distance, na.rm = TRUE),
+  delay = mean(arr_delay, na.rm = TRUE))
+delay <- filter(delay, count > 20, dist < 2000)
+delay
+```
+
+***
+
+```{r}
+# notar que group_by() nao deixa alterações evidentes
+by_tailnum
+
+```
+
+
+
+Operações agrupadas - exemplos com os verbos de dplyr (2)
+========================================================
+incremental: true
+class: small-code
+
+
+- **summarise()**` é utilizada com **aggregate functions**, as quais recebem um vetor de valores e retornam um único número;
+
+- Há muito exemplos úteis do *base R* que podem ser utilizados, como **min(), max(), mean(), sum(), sd(), median()**, etc;
+
+- **dplyr** fornece mais algumas outras bem úteis:
+
+  - **n()**: número de observações no grupo atual;
+  - **n_distinct(x)**: número de valores únicos em x;
+  - **first(x), last(x) e nth(x, n)** funcionam de forma similar a ``x[1]``, ``x[length(x)]`` e ``x[n]``, mas nos dão maior controle sobre resultado caso algum valor seja **missing**.
+
+
+Operações agrupadas - exemplos com os verbos de dplyr (3)
+========================================================
+incremental: true
+class: small-code
+
+Quando agrupamos mais de uma variável, cada *summarise()* que executamos, "raspa"/elimina um nível do agrupamento. Exemplo:
+```{r}
+daily <- group_by(flights, year, month, day)
+(per_day   <- summarise(daily, flights = n()))
+# notar que da descrição "Groups:" do tibble, o número de variáveis de agrupamento vai diminuindo.
+
+```
+
+***
+
+```{r}
+(per_month <- summarise(per_day, flights = sum(flights)))
+
+
+(per_year  <- summarise(per_month, flights = sum(flights)))
+```
+
+<!-- ISSO SE CHAMA PROGRSSIVELY ROLLING UP SUMMARIES IN A DATA FRAME -->
+
+<!-- COMO MEDIAS PONDERADAS E VARIANCIAS EH COMPLICADO FAZER ISSO PQ EH UM EQUIVOCO -->
+
+
+Outros Exemplos com os verbos de dplyr - select (1)
+========================================================
+incremental: true
+class: small-code
+
+**select():**
+
+- Uma das melhores carcterísticas de **dplyr** é que podemos nos referir as variáveis de um **tibble** ou data.frame como se fossem variáveis regulares (aquelas que estão no GlobalEnv);
+
+Veja formas equivalentes do ponto de vista de **dplyr**:
+```{r}
+select(flights, year)
+```
+
+***
+
+```{r}
+select(flights, 1)
+```
+
+
+Outros Exemplos com os verbos de dplyr - select (2)
+========================================================
+incremental: true
+class: small-code
+
+- Se houver uma variável no GlobalEnv(surrounding conetxt - arredondezas) com o mesmo nome de uma coluna de nosso data.frame, você não poderá referenciá-la diretamente:
+
+
+```{r}
+year <- 5
+select(flights, year)
+```
+
+
+Outros Exemplos com os verbos de dplyr - mutate (1)
+========================================================
+incremental: true
+class: small-code
+
+**mutate():**
+
+- A semântica de **mutating** é um pouco diferente da semântica de *selecting*;
+
+- Enquanto *select()* espera por receber nomes ou posições, **mutate()** espera por vetores colunas. 
+
+
+Vamos criar um *tibble* menor a partir do original para demonstrar:
+```{r}
+df <- select(flights, year:dep_time)
+```
+
+***
+
+Quando usamos *select()*, os nomes "crus" das colunas representam as próprias colunas do *tibble*. Veja o que acontece quando usamos *mutate()* com uma *string*:
+```{r}
+mutate(df, "year", 2)
+```
+
+*"year"* - um vetor de *string* de tamanho 1 - é entendido por *mutate()* como se quiséssemos acrescentar uma nova coluna no data.frame. Então, ele recicla esse vetor de tamanho 1 até atingir o número de linhas. O mesmo ocorre para o numeral 2.
+
+
+Outros Exemplos com os verbos de dplyr - mutate (2)
+========================================================
+incremental: true
+class: small-code
+
+Se você quisesse criar uma coluna que executa **year + 10** para cada linha, não pode utilizar aspas ("year" + 10). Estaria somando 10 a uma string e não aos valores de uma coluna. O correto seria:
+```{r}
+mutate(df, year + 10)
+
+```
+
+Podemos criar um novo vetor e adicionar ao data.frame com um nome diferente:
+
+```{r}
+var <- seq(1, nrow(df))
+mutate(df, new = var)
+```
+
+
+Outros Exemplos com os verbos de dplyr - group_by (1)
+========================================================
+incremental: true
+class: small-code
+
+**group_by():**
+
+- A função **group_by** tem semântica parecida com a de *mutate()*; 
+
+- Se passarmos uma string como nome das colunas pelas quais desejamos agrupar, ele irá reciclar um vetor apenas com aquela string $\rightarrow$ temos que passar, então, os nomes das colunas sem aspas.
+
+```{r}
+group_by(df, "month")
+```
+
+***
+
+```{r}
+group_by(df, month)
+```
+
+
+Outros Exemplos com os verbos de dplyr - group_by (2)
+========================================================
+incremental: true
+class: small-code
+
+Mas, como às vezes fazer agrupamentos utilizando a semântica de *select()* também pode ser útil, os autores do pacote adicionaram uma variante de *group_by()*: **group_by_at()**.
+
+```{r}
+group_by_at(df, vars(year:day))
+```
+
+
+
+Pipes %>% (1)
+========================================================
+incremental: true
+class: small-code
+
+**dplyr** é funcional no sentido de que os chamados às funções não tem efeitos colaterais. Ou seja, você **NÃO** precisa sempre precisa salvar seus resultados. Isso faz com que não tenhámos um código tão elegante, especialmente quando vamos fazer várias operações, uma de cada vez:
+
+```{r}
+a1 <- group_by(flights, year, month, day)
+a2 <- select(a1, arr_delay, dep_delay)
+a3 <- summarise(a2,
+  arr = mean(arr_delay, na.rm = TRUE),
+  dep = mean(dep_delay, na.rm = TRUE))
+a4 <- filter(a3, arr > 30 | dep > 30)
+```
+
+
+Note que há muitos resultados intermediários que vamos salvando, quando na verdade só nos interessaria o final. Para resolver isso poderíamos ir chamando uma função dentro da outra:
+
+```{r}
+filter(
+  summarise(
+    select(
+      group_by(flights, year, month, day),
+      arr_delay, dep_delay
+    ),
+    arr = mean(arr_delay, na.rm = TRUE),
+    dep = mean(dep_delay, na.rm = TRUE)
+  ),
+  arr > 30 | dep > 30
+)
+```
+
+Embora resolva o problema de salvar os objetos intermediários, esta abordagem é difícil de lermos porque a ordem das operações se dá dentro para fora. Então, os argumentos acabam ficando longe da função propriamente dita.
+
+
+Pipes %>% (2)
+========================================================
+incremental: true
+class: small-code
+
+- Para dar uma solução elegante ao problema anterior, **dplyr** utiliza o operador pipe **%>%** do pacote **magritrr**;
+
+- **x %>% f(y)** equivale a `f(x, y)`;
+
+- Então, podemos utilizar esse operador para reescrever múltiplas operações que podemos ler da esquerda para direita e de cima para baixo:
+```{r}
+flights %>%
+  group_by(year, month, day) %>%
+  select(arr_delay, dep_delay) %>%
+  summarise(
+    arr = mean(arr_delay, na.rm = TRUE),
+    dep = mean(dep_delay, na.rm = TRUE)
+  ) %>%
+  filter(arr > 30 | dep > 30)
+```
+
+
+
+FIM
+========================================================
+incremental: false
+class: small-code
+
+OBRIGADO!!

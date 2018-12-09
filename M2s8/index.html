@@ -817,7 +817,7 @@ Análise de Dados em R (FNDE) - Módulo 2
 <h3>Introdução (1)</h3>
 <div class="slideContent small-code" >
 <ul>
-<li class="fragment"><p>Usar bancos de dados pe inevitável para aqueles cuja parte do trabalho é analisar dados;</p></li>
+<li class="fragment"><p>Usar bancos de dados é inevitável para aqueles cuja parte do trabalho é analisar dados;</p></li>
 <li class="fragment"><p class="fragment">Como desenvolvedor de programas em <strong>R</strong>, o instinto nos leva a fazer um <em>approach</em> com as bases de dados do mesmo modo com o qual faríamos a leitura de um arquivo de dados .txt: </p>
 
 <ul>
@@ -952,7 +952,7 @@ con &lt;- DBI::dbConnect(RSQLite::SQLite(), path = &quot;:memory:&quot;)
 </code></pre>
 
 <ul>
-<li class="fragment"><p class="fragment">O argumento <em>DBI::dbConnect()</em> pode variar de database para database, mas o primeiro argumento é sempre o <em>backend</em> do tipo de banco de dados ao qual você irá se conectar: </p>
+<li class="fragment"><p class="fragment">O argumento <em>DBI::dbConnect()</em> pode variar de database para database, mas o primeiro argumento é sempre o <strong>backend</strong> do tipo de banco de dados ao qual você irá se conectar: </p>
 
 <ul>
 <li class="fragment"><strong>RSQLite::SQLite()</strong> para RSQLite; </li>
@@ -1032,7 +1032,7 @@ con &lt;- DBI::dbConnect(RSQLite::SQLite(), path = &quot;:memory:&quot;)
 <section data-transition="linear" data-transition-speed="default">
 <h3>Conectando a um database (3)</h3>
 <div class="slideContent small-code" >
-<p>Umavez que copiamos os dados para o servidor, podemos referenciar (ainda não estamos importando) essa tabela no <strong>R</strong> usando a função <strong>tbl()</strong>:</p>
+<p>Uma vez que copiamos os dados para o servidor, podemos referenciar (ainda não estamos importando) essa tabela no <strong>R</strong> usando a função <strong>tbl()</strong>:</p>
 
 <pre class="fragment"><code class="r">flights_db &lt;- tbl(con, &quot;flights&quot;)
 </code></pre>
@@ -1074,7 +1074,7 @@ con &lt;- DBI::dbConnect(RSQLite::SQLite(), path = &quot;:memory:&quot;)
 <li class="fragment"><p>Para interagir com um banco de dados nós geralmente usamos <em>SQL</em> - <em>Structured Query Language</em>; </p></li>
 <li class="fragment"><p class="fragment">SQL tem mais de 40 anos e é usado em praticamente todas as bases de dados que existem; </p></li>
 <li class="fragment"><p class="fragment">O objetivo de <strong>dbplyr</strong> é automaticamente gerar códigos em <em>SQL</em> para que nśo não sejamos forçados a utilizá-los <strong>: )</strong>; </p></li>
-<li class="fragment"><p class="fragment">No entanto, <strong>dbplyr</strong> não faz tudo que uma linguagem SQL faz; </p>
+<li class="fragment"><p class="fragment">No entanto, <strong>dbplyr</strong> não faz tudo que uma linguagem SQL faz:</p>
 
 <ul>
 <li class="fragment">Ele foca na declarativa <strong>SELECT</strong> e derivadas, o que já é muita coisa para objetivo desse curso e para o que precisamos no FNDE.</li>
@@ -1170,7 +1170,7 @@ con &lt;- DBI::dbConnect(RSQLite::SQLite(), path = &quot;:memory:&quot;)
 <div class="slideContent small-code" >
 <ul>
 <li class="fragment"><p>A diferença mais importante entre data.frames comuns e <em>queries</em> a bancos de dados remotos é que nosso código <strong>R</strong> é traduzido em <em>SQL</em> e <strong>executado no database</strong>; não no <strong>R</strong>!!</p></li>
-<li class="fragment"><p class="fragment">Quando trabalhamos com <em>databases</em> o <strong>dplyr</strong> tenta ser o mais <em>lazy</em> (do conceito de <em>lazy evaluation</em>) quanto for possível:</p></li>
+<li class="fragment"><p class="fragment">Quando trabalhamos com <em>databases</em> o <strong>dplyr</strong> tenta ser o mais <strong>lazy</strong> (do conceito de <em>lazy evaluation</em>) quanto for possível:</p></li>
 <li class="fragment"><p class="fragment">Ele nunca traz dados para o <strong>R</strong> a não ser que explicitamente solicitamos que ele faça isso;</p></li>
 <li class="fragment"><p class="fragment">Ele &ldquo;atrasa&rdquo; fazer qualquer tarefa até o último momento: </p>
 

@@ -1,0 +1,550 @@
+Análise de Dados em R (FNDE) - Módulo 1
+Sessão 1 - Introdução e Sessão 2 - Primeiros Passos
+========================================================
+author: Allan Vieira
+date: janeiro de 2018
+width: 1440
+height: 900
+<style>
+.small-code pre code {
+  font-size: 1em;
+}
+</style>
+<!-- para trazer codigos em caixas menores: -->
+<!-- https://stackoverflow.com/questions/25612385/code-box-size-and-font-size-in-rpres -->
+
+Introdução
+========================================================
+incremental: true
+<br />
+
+- Dificuldade em aprender Linguagens de Programação;
+</br>
+</br>
+- Objetivos do Curso;
+</br>
+</br>
+- Estrutura do Curso;
+</br>
+</br>
+- *Alguém já teve contato com R ou outra linguagem de programação?*
+
+Conceituação
+========================================================
+incremental: true
+<br />
+
+- Análise de Dados - inspecionar, limpar, tranformar e modelar dados
+<br />
+<br />
+- R - linguagem e ambiente para programação estatística
+<br />
+<br />
+<br />
+
+> DADOS -> INFORMAÇÃO -> usando *R*
+
+
+***
+
+![alt text](./img/Rlogo.png)
+
+
+Histórico (1)
+========================================================
+incremental: false
+<!-- - Importante para contextualizar - não deixar "pontas soltas"; -->
+- Soluções surgem para problemas específicos...
+
+![alt text](./img/hidden_figures.jpg)
+
+***
+![alt text](./img/hidden_figures2.jpg)
+![alt text](./img/punch_card_ibm.jpg)
+
+
+Histórico (2)
+========================================================
+incremental: false
+<br />
+
+Linguagem **S**: 
+- John Chambers
+- Bell Labs
+
+<br />
+<br />
+Outras invenções Bell Labs:
+
+> fax, C, UNIX, C++, Radio Astronomia, etc
+
+
+***
+
+![alt text](./img/john.jpg)
+![alt text](./img/bell.jpg)
+
+
+Histórico (2)
+========================================================
+<!-- ![alt text](./img/C2.png) $\rightarrow$ ![alt text](./img/looking_glass.png) $\rightarrow$ ![alt text](./img/os_logos.jpg) -->
+![alt text](./img/C2.png) -> ![alt text](./img/looking_glass.png) -> ![alt text](./img/os_logos.jpg)
+
+Histórico (3)
+========================================================
+incremental: false
+<br />
+Voltando à linguagem S:
+> versão comercial -> *S-PLUS*
+
+<br />
+<br />
+*R* surge como uma alternativa livre/gratuita à linguagem *S*
+
+Criada por *R*oss Ihaka e  *R*obert Gentleman
+
+***
+<br />
+<br />
+<br />
+![alt text](./img/rr.jpg)
+
+Linguagens de programação
+========================================================
+incremental: false
+<br />
+
+![alt text](./img/programming_languages.png)
+
+Fonte: justcode.me
+
+***
+<br />
+- Assembly vs Linguagem de Máquina;
+<br />
+- Assembler vs Compilador;
+<br />
+- Compilador vs Interpretador;
+<br />
+- Linguagem Compilada vs Linguagem Interpretada;
+
+![alt text](./img/rosetta.JPG)
+
+Vantagens do R
+========================================================
+incremental: true
+<br />
+
+1. reproducibilidade;
+2. plataforma-independente (até no celular!!);
+3. free e open source;
+4. atribuição de nomes aos objetos (vetores, matrizes, dataframes, listas, ...) e a partes dos objetos (colunas, linhas, ...);
+5. integração com outras linguagens (C/C++, Fortran, Java, Python, ...);
+6. interação com bancos de dados Excel-Access e relacionais (PostgreSql, ...);
+7. interação com outros pacotes estatísticos e matemáticos (SAS, Stata, SPSS, ...)
+8. paralelismo;
+9. comunidade extramamente ativa;
+10. adoção de técnicas estatísticas/matemáticas cutting-edge; 
+11. *Mostraremos depois....*
+
+Desvantagens do R
+========================================================
+incremental: true
+
+1. base R é mais lento que seus principais "concorrentes" **;
+<br />
+<br />
+2. possibilidade de um usuário não dar continuidade a um pacote **;
+<br />
+<br />
+3. possibilidade de falta de backward-compatibility;
+<br />
+<br />
+4. linguagem extremamente flexível e, por isso, sem muitas regras -> possibilidade de bagunçar o código **;
+<br />
+<br />
+5. memória **;
+
+Instalação do R
+========================================================
+incremental: false
+<br />
+
+![alt text](./img/Rlogo.png)
+
+Instalação do RStudio
+========================================================
+incremental: false
+<br />
+
+<!-- ![alt text](./img/rstudio_logo2.png) -->
+![alt text](./img/rstudio_logo3.png)
+
+Dando uma olhada no R
+========================================================
+incremental: false
+<br />
+
+![alt text](./img/Rlogo.png)
+
+What the F***!? (1)
+========================================================
+incremental: false
+<br />
+*Gráficos !!*
+
+What the F***!? (2)
+========================================================
+incremental: false
+<br />
+*Web Apps!!*
+
+What the F***!? (3)
+========================================================
+incremental: false
+<br />
+*Softwares para automação de rotinas!!*
+
+What the F***!? (4)
+========================================================
+incremental: false
+<br />
+*Slides sofisticados!!*
+
+What the F***!? (5)
+========================================================
+incremental: false
+<br />
+*Web Scraping*
+
+What the F***!? (6)
+========================================================
+incremental: false
+<br />
+*Fazendo maldade com R...*
+
+
+Operadores aritméticos básicos
+========================================================
+incremental: false
+<br />
+<center>
+```{r operadores,echo=FALSE, results='asis'}
+df <- data.frame("operador" = c("+","-","*","/","^ ou **","%%","%/%"),
+                 "operação" = c("soma","subtração","multiplicação",
+                                "divisão","potenciação","módulo(resto)",
+                                "divisão inteira") )
+knitr::kable(df, format = "html")
+#help(kable)
+# library(xtable)
+# print(xtable(df, type = "html", include.rownames = F))
+
+```
+</center>
+
+
+R como calculadora
+========================================================
+incremental: true
+class: small-code
+```{r rcalc1,echo=TRUE}
+# soma
+2+3
+# subtração
+4-2
+# multiplicação
+2*3
+# divisão
+3/3
+```
+***
+```{r rcalc2,echo=TRUE}
+# potenciação
+3^2
+3**2
+# módulo(resto)
+5%%2
+# divisão inteira
+5%/%2
+
+# --> indica comentário; código que não será executado
+```
+
+<!-- já explicar comentários e o [1] do output aqui -->
+
+Priorização de execução
+========================================================
+incremental: true
+```{r prio1,echo=TRUE}
+# parênteses indicam a prioridade de execução para o interpretador
+((63+1)/8)^2
+```
+
+Guardando os códigos em um Script
+========================================================
+incremental: false
+</br>
+![alt text](./img/rstudio_logo3.png)
+![alt text](./img/menu_script.PNG)
+
+Funções no R (1)
+========================================================
+incremental: true
+As funções são objetos muito utilizados no R.
+</br>
+</br>
+Como você calcularia a raiz quadrada de 81 ?
+```{r sqrt1}
+ sqrt(81)
+```
+
+Juntando com a priorização via parênteses:
+```{r sqrt2}
+sqrt(3*3^2)
+sqrt((3*3)^2)
+``` 
+
+***
+Estrutura básica:
+
+*função(argumentos)*
+
+**"R, at its heart, is a functional programming (FP) language"**
+(Hadley Wickham)
+![alt text](./img/hadley.png)
+
+Outras Funções Matemáticas no R
+========================================================
+incremental: true
+css: small-code
+```{r mat_fun1}
+## prod = multiplicação
+prod(2,2) # 2x2
+
+prod(2,2,3,4) # 2x2x3x4
+
+## log = logaritmo natural
+log(3) # log na base e
+
+# log de 3 na base 10
+log(3,10)
+```
+
+***
+```{r mat_fun2}
+# log3 na base 10
+log10(3)
+
+# abs = modulo, |3 - 9|
+abs(3-9)
+
+#factorial() = fatorial do número
+#4 fatorial (4!)
+factorial(4)
+```
+
+Pacotes no R (1)
+========================================================
+incremental: true
+css: small-code
+- Os pacotes são espécies de 'módulos' que, ao serem instalados, disponibilizam uma série de novas funções para serem utilizadas;
+- Há pacotes gráficos, estatísticos, matemáticos, de análise de dados, de aprendizagem de máquina, etc;
+- São criados por outros usuários...
+- Portanto, você também pode criar funções e disponibilizá-las via pacote!!
+
+***
+- Veja quais são os pacotes já instalados na sua máquina:
+```{r packages1}
+installed.packages()
+```
+
+Pacotes no R (2)
+========================================================
+incremental: true
+css: small-code
+
+- Repositório central de pacotes do R: *CRAN* **Comprehensive R Archive Network**
+- Para um pacote ser incluído no CRAN, ele passa por uma série de testes.
+- *Bioconductor* é um repositório voltado para pacotes com a aplicações na área de Biológicas e Ciências Médicas.
+- Mas há outras fontes com pacotes sensacionais também!!
+- Como installar um pacote no R?
+```{r packages2,echo=TRUE, eval=FALSE}
+install.packages("nome_do_pacote")
+```
+
+***
+- Depois de instalado, o pacote precisa ser carregado - há duas opções:
+```{r packages3,echo=TRUE, eval=FALSE}
+library("nome_do_pacote") # se não existir, retorna erro
+#ou
+require("nome_do_pacote") # se não existir, retorna TRUE ou FALSE
+```
+
+Pacotes no R (3)
+========================================================
+incremental: true
+css: small-code
+Vamos fazer um teste...
+</br>
+</br>
+</br>
+- Instale e carregue o pacote *fun*
+```{r miner1,echo=TRUE, eval=FALSE}
+install.packages("fun")
+library(fun)
+```
+
+- Execute o comando
+```{r miner2,echo=TRUE, eval=FALSE}
+x11() # abrirá uma janela de gráficos fora do RStudio
+```
+
+***
+![alt text](./img/x11_screen.PNG)
+
+- Depois, voltando ao seu script no RStudio, chame a seguinte função:
+```{r miner3,echo=TRUE, eval=FALSE}
+miner_sweeper()
+```
+
+Como obter ajuda no R ?
+========================================================
+incremental: false
+css: small-code
+- Para obter ajuda no R, também usamos funções:
+</br>
+
+1) Se já sabe que a função ou pacote existe e está instalado:
+```{r help1,echo=TRUE, eval=FALSE}
+help("plot")
+?plot
+```
+
+2) Se não faz a menor ideia:
+```{r help2,echo=TRUE, eval=FALSE}
+help.search("cubic")
+# ou
+??cubic
+```
+
+Na (2), o R trará todas os pacotes e funções que contenham aquela palavra ou partes dela.
+
+***
+
+</br>
+</br>
+</br>
+OBS: 
+
+1. Ele só poderá pesquisar nas funções de um determinado pacote se o pacote estiver carregado.
+</br>
+2. Quando abrir o "Help", foque em *Usage*, *Arguments* e *Examples*  
+
+Outras formas de obter ajuda ...
+========================================================
+incremental: true
+css: small-code
+</br>
+- Como vimos, a comunidade do R é uma das maiores dentre as comunidades de linguagens de programação e de Ciência de Dados;
+</br>
+</br>
+- Há diversos sites do tipo Q&A, mailing lists, blogs, compartilhamento de código que são fontes confiáveis e abundantes para solucionar dúvidas;
+</br>
+</br>
+- Exemplos:
+</br>
+*Stack Overflow*, *RBloggers*, *Github*, *mailing lists ([R-br])*,...
+</br>
+Cuidado: há certas regras para postar questões nestes sites!!
+
+Global Environment
+========================================================
+incremental: true
+css: small-code
+
+- O R possui uma série de "camadas" (ou environments), nas quais os objetos criados em uma sessão são "alocados";
+
+- Ha uma hierarquia entre essas camadas/ambientes e a posição mais alta na hierarquia é ocupada pelo $\textbf{Global Environment}$;
+
+![alt text](./img/envsearch_path.png)
+Fonte: "Advanced R" - Hadley Wickham
+
+***
+
+- Digite:
+```{r env,echo=TRUE}
+search()
+```
+
+R Workspace (.RData)
+========================================================
+incremental: true
+css: small-code
+
+- É a "área de trabalho" do R;
+
+- Nela estarão todos os objetos que você criou e salvou em uma determinada sessão;
+
+- Você pode salvar um workspace para recuperá-lo depois de duas formas:
+
+Salvando:
+```{r work1,echo=TRUE,eval=FALSE}
+save(file="C:\\Desktop\\meu_workspace-aula01.RData")
+# perceba que para indicar diretórios no R, usamos duas barras
+```
+
+***
+
+Carregando:
+```{r work2,echo=TRUE,eval=FALSE}
+load(file="C:\\Desktop\\meu_workspace-aula01.RData")
+```
+
+OU via Menu:
+
+![alt text](./img/workspace_menu.PNG)
+
+Working Directory (wd)
+========================================================
+incremental: true
+css: small-code
+
+- O working directory é o diretório no nosso computador em que o R procurará por arquivos ou salvará arquivos caso não especifiquemos o caminho completo.
+
+- Para sabermos qual é o diretório atual, usamos:
+```{r wd1,echo=TRUE}
+getwd()
+```
+
+- Para alterarmos o diretório, fazemos, por exemplo:
+```{r wd2,echo=TRUE, eval=FALSE}
+setwd("C:\\Desktop")
+```
+
+***
+
+Altere o seu working directory para uma pasta de sua preferência e tente SALVAR e CARREGAR novamente seu Workspace, indicando somente o nome do arquivo .RData:
+```{r wd3,echo=TRUE, eval=FALSE}
+save(file="meu_workspace-aula01.RData")
+```
+
+
+Demos - brincando um pouco
+========================================================
+incremental: false
+<br />
+Digite no seu console:
+```{r demos, echo=TRUE, eval=FALSE}
+  demo()
+```
+
+Verifique as demonstrações presentes no R e tente executá-las com:
+```{r demos2, echo=TRUE, eval=FALSE}
+  demo(nome_da_demonstração)
+```
+
+
+========================================================
+incremental: false
+<!-- ![alt text](./img/thats_all_folks.png) -->
+![alt text](./img/fim.png)
